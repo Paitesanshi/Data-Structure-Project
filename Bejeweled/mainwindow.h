@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QDebug>
+#include "cranklogic.h"
 namespace Ui {
 class MainWindow;
 }

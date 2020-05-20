@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT       +=sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Bejeweled
@@ -25,10 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    cranklogic.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    cranklogic.h \
+    connectiondb.h
 
 FORMS += \
         mainwindow.ui
