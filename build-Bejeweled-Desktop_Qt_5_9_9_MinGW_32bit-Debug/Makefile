@@ -210,6 +210,7 @@ Makefile: ../Bejeweled/Bejeweled.pro ../../QtCreator/5.9.9/mingw53_32/mkspecs/wi
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/features/qt_config.prf \
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/features/toolchain.prf \
 		../../QtCreator/5.9.9/mingw53_32/mkspecs/features/default_pre.prf \
@@ -388,6 +389,7 @@ Makefile: ../Bejeweled/Bejeweled.pro ../../QtCreator/5.9.9/mingw53_32/mkspecs/wi
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/features/qt_config.prf:
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/features/toolchain.prf:
 ../../QtCreator/5.9.9/mingw53_32/mkspecs/features/default_pre.prf:

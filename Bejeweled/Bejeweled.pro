@@ -25,15 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     cmenudlg.cpp \
+    csetdlg.cpp \
         main.cpp \
         mainwindow.cpp \
     cranklogic.cpp
 
 HEADERS += \
     cmenudlg.h \
+    csetdlg.h \
         mainwindow.h \
     cranklogic.h \
     connectiondb.h
 
 FORMS += \
+        csetdlg.ui \
         mainwindow.ui

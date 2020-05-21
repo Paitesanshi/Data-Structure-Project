@@ -19,6 +19,9 @@ public:
 
     //游戏菜单窗口
     CMenuDlg* CMenu = NULL;
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
