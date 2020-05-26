@@ -41,7 +41,8 @@ HEADERS += \
     connectiondb.h \
     cconfig.h \
     cconfiglogic.h \
-    cgamelogic.h
+    cgamelogic.h \
+    global.h
 
 FORMS += \
         csetdlg.ui \
