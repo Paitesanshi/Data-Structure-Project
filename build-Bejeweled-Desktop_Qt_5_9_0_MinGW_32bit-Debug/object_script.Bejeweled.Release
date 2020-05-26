@@ -1,0 +1,12 @@
+INPUT(
+./release\cmenudlg.o
+./release\csetdlg.o
+./release\main.o
+./release\mainwindow.o
+./release\cranklogic.o
+./release\cconfig.o
+./release\cconfiglogic.o
+./release\cgamelogic.o
+./release\moc_csetdlg.o
+./release\moc_mainwindow.o
+);

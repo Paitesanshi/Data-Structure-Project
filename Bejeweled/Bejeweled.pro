@@ -28,14 +28,20 @@ SOURCES += \
     csetdlg.cpp \
         main.cpp \
         mainwindow.cpp \
-    cranklogic.cpp
+    cranklogic.cpp \
+    cconfig.cpp \
+    cconfiglogic.cpp \
+    cgamelogic.cpp
 
 HEADERS += \
     cmenudlg.h \
     csetdlg.h \
         mainwindow.h \
     cranklogic.h \
-    connectiondb.h
+    connectiondb.h \
+    cconfig.h \
+    cconfiglogic.h \
+    cgamelogic.h
 
 FORMS += \
         csetdlg.ui \
