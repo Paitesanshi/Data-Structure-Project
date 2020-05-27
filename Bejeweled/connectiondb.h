@@ -25,10 +25,10 @@ static bool createConnection( QSqlDatabase &db)
     // 使数据库支持中文
     query.exec("SET NAMES 'Latin1'");
     QStringList tables=db.tables();
-    if(!tables.contains("rank"))
+    if(!tables.contains("ranks"))
     {
         // 创建 course 表
-        query.exec("create table bejeweled.rank(number int,name varchar(50),remainingTime int,score int)");
+        query.exec("create table bejeweled.ranks(name varchar(50),remainingTime int,grade int)");
         qDebug()<<"kk"+query.lastError().databaseText();
     }
     return true;

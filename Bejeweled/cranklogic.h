@@ -7,12 +7,14 @@
 #include <QString>
 #include <QSqlError>
 #include "connectiondb.h"
+#include "crankdao.h"
 class CRankLogic
 {
 public:
     CRankLogic();
+    void addUser(RANKINFOR x);
 private:
-    QSqlDatabase db;
+    CRankDao *dao;
 
 };
 

@@ -7,10 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug()<<"xx";
     CRankLogic *c=new CRankLogic();
-
-
 }
 
 MainWindow::~MainWindow()

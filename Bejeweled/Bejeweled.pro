@@ -31,7 +31,8 @@ SOURCES += \
     cranklogic.cpp \
     cconfig.cpp \
     cconfiglogic.cpp \
-    cgamelogic.cpp
+    cgamelogic.cpp \
+    crankdao.cpp
 
 HEADERS += \
     cmenudlg.h \
@@ -42,7 +43,8 @@ HEADERS += \
     cconfig.h \
     cconfiglogic.h \
     cgamelogic.h \
-    global.h
+    global.h \
+    crankdao.h
 
 FORMS += \
         csetdlg.ui \

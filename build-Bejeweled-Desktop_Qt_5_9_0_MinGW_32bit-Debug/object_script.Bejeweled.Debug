@@ -7,6 +7,7 @@ INPUT(
 ./debug\cconfig.o
 ./debug\cconfiglogic.o
 ./debug\cgamelogic.o
+./debug\crankdao.o
 ./debug\moc_csetdlg.o
 ./debug\moc_mainwindow.o
 );
