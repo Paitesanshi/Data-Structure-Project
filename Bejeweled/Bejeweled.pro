@@ -32,7 +32,14 @@ SOURCES += \
     cconfig.cpp \
     cconfiglogic.cpp \
     cgamelogic.cpp \
-    crankdao.cpp
+    crankdao.cpp \
+    cbejeweleddlg.cpp \
+    cgamedlg.cpp \
+    choose.cpp \
+    cjewel.cpp \
+    picture.cpp \
+    qnamedlg.cpp \
+    qsetupdlg.cpp
 
 HEADERS += \
     cmenudlg.h \
@@ -44,8 +51,19 @@ HEADERS += \
     cconfiglogic.h \
     cgamelogic.h \
     global.h \
-    crankdao.h
+    crankdao.h \
+    cbejeweleddlg.h \
+    cgamedlg.h \
+    choose.h \
+    cjewel.h \
+    picture.h \
+    qnamedlg.h \
+    qsetupdlg.h
 
 FORMS += \
         csetdlg.ui \
-        mainwindow.ui
+        mainwindow.ui \
+    cbejeweleddlg.ui \
+    cgamedlg.ui \
+    qnamedlg.ui \
+    qsetupdlg.ui
