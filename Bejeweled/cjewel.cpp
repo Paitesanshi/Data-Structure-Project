@@ -1,5 +1,8 @@
 #include "cjewel.h"
 
+#include <QCoreApplication>
+#include <QFile>
+
 CJewel::CJewel(QMainWindow* ui,QWidget* parent):QLabel(parent)
 {
     this->ui=ui;
@@ -11,6 +14,11 @@ CJewel::CJewel(QMainWindow* ui,QWidget* parent):QLabel(parent)
 void CJewel::setPhoto(){
     filename=new QString("D:\\Qt\\"+QString::number(number)+".png");
     pixmap=new QPixmap("D:\\Qt\\"+QString::number(number)+".png");
+//    filename=new QString("img\\Jewel"+QString::number(number)+".png");
+      filename=new QString("img\\Jewel\\"+QString::number(number)+".png");
+    pixmap=new QPixmap("img\\Jewel\\"+QString::number(number)+".png");
+    qDebug()<<QCoreApplication::applicationDirPath()<<*filename<<endl;
+    //QFile file("")
     if(! ( img->load(*filename) ) ) //加载图像
         {
             QMessageBox::information(this,tr("打开图像失败"),tr("打开图像失败!"));

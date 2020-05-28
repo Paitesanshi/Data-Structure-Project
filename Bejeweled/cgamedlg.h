@@ -18,6 +18,8 @@
 //#include "structure.h"
 #include "cgamelogic.h"
 #include <set>
+#include <QTime>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CGameDlg; }
@@ -28,6 +30,7 @@ class CGameDlg : public QMainWindow
     Q_OBJECT
 
 public:
+
     CMenuDlg* cMenu;
     set<PICELEM> elimite;
     CGameLogic* logic;
@@ -41,7 +44,11 @@ public:
     QTimer* timer[8][8];
     QImage* image[8][8];
     int delLength=0;
+
     int del[8][3];
+
+    int del[8][2];
+
     int mark[8]={0};
     int number[8]={0};
     int min[8]={-1};
@@ -55,6 +62,10 @@ public:
     void changeJewel();
     void deleteJewel();
     void changeTheme();
+
+
+    void setDelete(set<PICELEM> elimite);
+
     void moveChangeJewel(int labelx,int labely,int targetx,int targety,int pos);
     void moveDeleteJewel(int labelx,int labely);
     CGameDlg(int c,QWidget *parent = nullptr);
@@ -63,6 +74,7 @@ private:
     Ui::CGameDlg *ui;
 protected:
     void mousePressEvent(QMouseEvent *ev) override;
+
 private slots:
     void on_pushButton_2_clicked();
 };

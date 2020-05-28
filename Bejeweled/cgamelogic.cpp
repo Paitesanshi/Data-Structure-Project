@@ -10,7 +10,6 @@ CGameLogic::CGameLogic(int row, int col, int kinds)
         distribute[i] = new int[col];
     }
 }
-
 CGameLogic::~CGameLogic(){
     for (int i = 0; i < row; i++)
         delete []distribute[i];
@@ -30,23 +29,18 @@ void CGameLogic::changeDemension(int row, int col)
         distribute[i] = new int[col];
     }
     solutions.clear();
-    eliminateSet.clear();
-
 }
 
 void CGameLogic::changeKinds(int kinds)
 {
     this->kinds = kinds;
     solutions.clear();
-    eliminateSet.clear();
-
 }
 
 int **CGameLogic::getRandomDistribution()
 {
-    srand((int)time(0));
+    srand((int)time(0));  // 产生随机种子  把0换成NULL也行
     solutions.clear();
-    eliminateSet.clear();
 
     do{
         do{
@@ -54,6 +48,8 @@ int **CGameLogic::getRandomDistribution()
             for (int j = 0; j<col; j++)
                 distribute[i][j] = rand() % kinds + 1;
         } while (hasChanged());
+
+
 
     } while (getAllSolutions() == false);
 
@@ -101,7 +97,7 @@ bool CGameLogic::isAdjacent(PICELEM p1, PICELEM p2)
 set<PICELEM> CGameLogic::canSwop()
 {
     for (set<SOLUTION>::iterator it = solutions.begin(); it != solutions.end(); it++){
-        if ((*it).picture1 == p1 && (*it).picture2 == p2){
+        if ((*it).picture1 == p1 && (*it).picture2 == p2 || (*it).picture1 == p2 && (*it).picture2 == p1){
             int x = distribute[(*it).picture1.nRow][(*it).picture1.nCol];
             distribute[(*it).picture1.nRow][(*it).picture1.nCol] = distribute[(*it).picture2.nRow][(*it).picture2.nCol];
             distribute[(*it).picture2.nRow][(*it).picture2.nCol] = x;
@@ -115,12 +111,12 @@ set<PICELEM> CGameLogic::canSwop()
 
 set<PICELEM> CGameLogic::fall()
 {
+    set<PICELEM> ss;
+    PICELEM p;
     for (set<PICELEM>::iterator it = eliminateSet.begin(); it != eliminateSet.end(); it++){
         distribute[(*it).nRow][(*it).nCol] = 0;
     }
     int k;
-    set<PICELEM> s;
-    PICELEM p;
     srand((int)time(0));
     for (int i = 0; i<col; i++){
         k = row - 1;
@@ -135,14 +131,15 @@ set<PICELEM> CGameLogic::fall()
             distribute[k][i] = rand() % kinds + 1;
             p.nRow=k;
             p.nCol=i;
-            p.nPicNum = distribute[k][i];
-            s.insert(p);
+            p.nPicNum=distribute[k][i];
+            ss.insert(p);
         }
     }
+
     solutions.clear();
     eliminateSet.clear();
     getAllSolutions();
-    return s;
+    return ss;
 }
 
 set<PICELEM> CGameLogic::canEliminate(){
@@ -199,17 +196,17 @@ bool CGameLogic::getAllSolutions()
 
     for (int i = 0; i<row; i++){
         for (int j = 0; j<col; j++){
-            if (j < col - 1){
+            if (j < col - 1 && distribute[i][j]!=distribute[i][j+1]){
                 p1.nRow = i;
                 p1.nCol = j;
                 p1.nPicNum = distribute[i][j];
                 p2.nRow = i;
-                p2.nCol = j + 1;
+                p2.nCol = j+1;
                 p2.nPicNum = distribute[i][j+1];
 
                 x = distribute[i][j];
-                distribute[i][j] = distribute[i][j + 1];
-                distribute[i][j + 1] = x;
+                distribute[i][j] = distribute[i][j+1];
+                distribute[i][j+1] = x;
 
                 if (changeIsFeasible(distribute, p1, p2))
                     flag = true;
@@ -219,7 +216,7 @@ bool CGameLogic::getAllSolutions()
                 distribute[i][j + 1] = x;
             }
 
-            if (i < row - 1){
+            if (i < row - 1 && distribute[i][j]!=distribute[i + 1][j]){
                 p1.nRow = i;
                 p1.nCol = j;
                 p1.nPicNum = distribute[i][j];

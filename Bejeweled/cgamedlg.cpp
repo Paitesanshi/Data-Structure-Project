@@ -12,6 +12,17 @@ CGameDlg::CGameDlg(int kinds,QWidget *parent)
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             jewel[i][j]=new CJewel(this,this);
+    elimite=logic->canEliminate();
+    while(elimite.size()>0||logic->hasEliminate()==false){
+        photo=logic->getRandomDistribution();
+        elimite=logic->canEliminate();
+    }
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
+            del[j][0]=8;
+            del[j][1]=8;
+            jewel[i][j]=new CJewel(this,this);
+            jewel[i][j]->targety=0;
             jewel[i][j]->number=photo[i][j];
             jewel[i][j]->col=i;
             jewel[i][j]->row=j;
@@ -55,6 +66,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
     int y=(pos.x()-205)/50;
     int x=(pos.y()-105)/50;
     jewel[x][y]->setStyleSheet("QLabel{border:2px solid rgb(0, 255, 0);}");
+    jewel[index[x][y].x()][index[x][y].y()]->setStyleSheet("QLabel{border:2px solid rgb(0, 255, 0);}");
     qDebug()<<x;
     qDebug()<<y;
     if(choose1.flag==false){
@@ -78,6 +90,11 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
         p1.nPicNum=picture[choose1.x][choose1.y]->nPicNum;
         p2.nCol=choose2.x;
         p2.nRow=choose2.y;
+        p1.nCol=choose1.y;
+        p1.nRow=choose1.x;
+        p1.nPicNum=picture[choose1.x][choose1.y]->nPicNum;
+        p2.nCol=choose2.y;
+        p2.nRow=choose2.x;
         p2.nPicNum=picture[choose2.x][choose2.y]->nPicNum;
         int flag=logic->isAdjacent(p1,p2);
         //调用logic的相邻判断函数
@@ -127,6 +144,45 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
             deleteJewel();
         }
     }
+            QTime time;
+            time.start();
+            while(time.elapsed() < 600)             //等待时间流逝5秒钟
+                QCoreApplication::processEvents();
+            elimite=logic->canSwop();
+            qDebug()<<"@@";
+            qDebug()<<elimite.size();
+            setDelete(elimite);
+        }
+    }
+}
+
+void CGameDlg::setDelete(set<PICELEM> elimite){
+    int iter=0;
+    int minite[8]={0};
+    for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+        qDebug()<<"!!";
+        delLength++;
+        del[iter][0]=it->nRow;
+        del[iter][1]=it->nCol;
+        iter++;
+        mark[it->nCol]++;
+        number[it->nCol]++;
+        if(it->nRow+1>minite[it->nCol]){
+            minite[it->nCol]=it->nRow+1;
+        }
+    }
+    qDebug()<<22333444;
+    for(int i=0;i<8;i++){
+        min[i]=minite[i];
+        qDebug()<<min[i];
+    }
+    deleteJewel();
+    delLength=0;
+    for(int i=0;i<8;i++){
+        number[i]=0;
+        mark[i]=0;
+        min[i]=-1;
+    }
 }
 
 void CGameDlg::deleteJewel(){
@@ -136,6 +192,11 @@ void CGameDlg::deleteJewel(){
         int row=del[i][1];
         qDebug()<<6<<" "<<col<<" "<<row;
         jewel[index[col][row].x()][index[col][row].y()]->setVisible(false);
+    for(int i=0;i<8;i++){
+        int col=del[i][0];
+        int row=del[i][1];
+        qDebug()<<6<<" "<<col<<" "<<row;
+        //jewel[index[col][row].x()][index[col][row].y()]->setVisible(false);
     }
     //宝石都应该在的位置，等待降落
     for(int i=0;i<8;i++){//第i列是否有需要消的子
@@ -160,12 +221,32 @@ void CGameDlg::deleteJewel(){
                     qDebug()<<j<<"false"<<i;
                     jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
                     jewel[index[j][i].x()][index[j][i].y()]->targety=105+(j+mark[i])*50;
+                    qDebug()<<j<<i<<"true";
+                    qDebug()<<mark[i];
+                    jewel[index[j][i].x()][index[j][i].y()]->move(i*50+205,105-mark[i]*50);
+                    QTime time;
+                    time.start();
+                    while(time.elapsed() < 100)             //等待时间流逝5秒钟
+                        QCoreApplication::processEvents();
+                    jewel[index[j][i].x()][index[j][i].y()]->setVisible(true);
+                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
+                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+((j+number[i])%min[i])*50;
+                    qDebug()<<(jewel[index[j][i].x()][index[j][i].y()]->targety-105)/50;
+                    mark[i]--;
+                }
+                else{
+                    qDebug()<<j<<i<<"false";
+                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
+                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+(j+mark[i])*50;
+                    qDebug()<<(jewel[index[j][i].x()][index[j][i].y()]->targety-105)/50;
                 }
             }
         }
     }
     for(int i=0;i<8;i++){
         if(min[i]!=-1){
+        if(min[i]!=0){
+            qDebug()<<min[i];
             for(int j=0;j<min[i];j++){
                 moveDeleteJewel(index[j][i].x(),index[j][i].y());
             }
@@ -177,6 +258,12 @@ void CGameDlg::deleteJewel(){
                 qDebug()<<(j+number[i]-1)%min[i];
                 jewel[index[j][i].x()][index[j][i].y()]->col=(j+number[i])%min[i];
                 index[j][i].setX(index[j+min[i]-number[i]%min[i]]->x());
+                picture[j][i]->nPicNum=picture[(j+number[i])%min[i]][i]->nPicNum;
+                qDebug()<<(j+min[i]-number[i])%min[i];
+                jewel[index[j][i].x()][index[j][i].y()]->col=(j+number[i])%min[i];
+                jewel[index[j][i].x()][index[j][i].y()]->row=i;
+                index[j][i].setX(index[(j+min[i]-number[i])%min[i]][i].x());
+                index[j][i].setY(index[(j+min[i]-number[i])%min[i]][i].y());
             }
         }
     }
@@ -249,3 +336,4 @@ void CGameDlg::on_pushButton_2_clicked()//打开菜单
     cMenu = new CMenuDlg(this);
     cMenu->show();
 }
+

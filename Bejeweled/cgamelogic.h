@@ -8,48 +8,37 @@
 using namespace std;
 
 typedef struct FEASIBLESOLUTION{
-    PICELEM picture1;  //需要交换的第一个图片
-    PICELEM picture2;  //需要交换的第二个图片
-    set<PICELEM> feasible;  //交换后能消除的图片位置集合
+    PICELEM picture1;
+    PICELEM picture2;
+    set<PICELEM> feasible;
     bool operator<(const FEASIBLESOLUTION &s) const
     {
-        if (picture1.nCol < s.picture1.nCol)
+        if (picture1.nRow < s.picture1.nRow)
             return true;
+        else if (picture1.nRow == s.picture1.nRow){
+            if (picture1.nCol < s.picture1.nCol)
+                return true;
+            else if (picture1.nCol == s.picture1.nCol){
+                if (picture2.nRow < s.picture2.nRow)
+                    return true;
+                else if (picture2.nRow == s.picture2.nRow){
+                    if (picture2.nCol < s.picture2.nCol)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
         else
             return false;
-        /*bool flag1, flag2;
 
-        if (picture1.nRow<s.picture1.nRow)
-            flag1=true;
-        else if (picture1.nRow == s.picture1.nRow){
-            if (picture1.nCol<s.picture1.nCol)
-                flag1 = true;
-            else
-                flag1 = false;
-        }
-        else
-            flag1=false;
-
-        if (picture2.nRow<s.picture2.nRow)
-            flag2 = true;
-        else if (picture2.nRow == s.picture2.nRow){
-            if (picture2.nCol<s.picture2.nCol)
-                flag2 = true;
-            else
-                flag2 = false;
-        }
-        else
-            flag2 = false;
-
-        if (flag1)
-            return true;
-        else if (flag2)
-            return true;
-        else
-            return false;*/
     }
     bool operator==(const FEASIBLESOLUTION &s) const{
-        if (picture1 == s.picture1 && picture2 == s.picture2)
+        if ((picture1 == s.picture1 && picture2 == s.picture2) || (picture1 == s.picture2 && picture2 == s.picture1))
             return true;
         else
             return false;

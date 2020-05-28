@@ -5,6 +5,7 @@
 #include <qsetupdlg.h>
 #include <qnamedlg.h>
 #include <cgamedlg.h>
+
 #include <chelpdlg.h>
 #include <crankdlg.h>
 #include <cmenudlg.h>
@@ -49,6 +50,7 @@ private slots:
     void on_pushButton_7_clicked();
 
     void on_pushButton_8_clicked();
+
 
 private:
     Ui::CBejeweledDlg *ui;
