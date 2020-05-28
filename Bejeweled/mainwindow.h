@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "cranklogic.h"
 #include "cmenudlg.h"
+#include "cbejeweleddlg.h"
 namespace Ui {
 class MainWindow;
 }
@@ -18,9 +19,7 @@ public:
     ~MainWindow();
 
     //游戏菜单窗口
-    CMenuDlg* CMenu = NULL;
-private slots:
-    void on_pushButton_clicked();
+    CBejeweledDlg* CDialog = NULL;
 
 private:
     Ui::MainWindow *ui;

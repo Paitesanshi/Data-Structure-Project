@@ -1,5 +1,7 @@
 #include "cmenudlg.h"
 #include "csetdlg.h"
+#include <cbejeweleddlg.h>
+#include <cgamedlg.h>
 
 CMenuDlg::CMenuDlg(QMainWindow *parent)
 {
@@ -38,12 +40,29 @@ CMenuDlg::CMenuDlg(QMainWindow *parent)
     quitBtn->move(100,450);
 
     connect(quitBtn,&QPushButton::clicked,[=](){
-        parent->close();
-        this->close();
-    });//退出按钮：关闭菜单窗口与主窗口
+        exit(0);
+    });//退出按钮：退出整个程序
 
     connect(settingBtn,&QPushButton::clicked,[=](){
         CSetDlg* CSet = new CSetDlg(nullptr);
         CSet->show();
     });//设置按钮：打开设置窗口
+
+    connect(mainMenuBtn,&QPushButton::clicked,[=](){
+        CBejeweledDlg* CMainmenu = new CBejeweledDlg(nullptr);
+        CMainmenu->show();
+        this->close();
+        parent->close();
+    });//主菜单按钮，关闭该菜单并返回主菜单
+
+    connect(resumeBtn,&QPushButton::clicked,[=](){
+        this->close();
+    });//返回游戏按钮，关闭该菜单
+
+    connect(restartBtn,&QPushButton::clicked,[=](){
+        CGameDlg* gameDlg=new CGameDlg(6);
+        gameDlg->show();
+        this->close();
+        parent->close();
+    });//重新开始游戏按钮，创建一个新的CGameDlg，并关闭原来的CGameDlg
 }

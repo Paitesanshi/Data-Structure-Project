@@ -24,7 +24,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    cbejeweleddlg.cpp \
+    cgamedlg.cpp \
+    chelpdlg.cpp \
+    choose.cpp \
+    cjewel.cpp \
     cmenudlg.cpp \
+    crankdlg.cpp \
     csetdlg.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -32,10 +38,19 @@ SOURCES += \
     cconfig.cpp \
     cconfiglogic.cpp \
     cgamelogic.cpp \
-    crankdao.cpp
+    crankdao.cpp \
+    picture.cpp \
+    qnamedlg.cpp \
+    qsetupdlg.cpp
 
 HEADERS += \
+    cbejeweleddlg.h \
+    cgamedlg.h \
+    chelpdlg.h \
+    choose.h \
+    cjewel.h \
     cmenudlg.h \
+    crankdlg.h \
     csetdlg.h \
         mainwindow.h \
     cranklogic.h \
@@ -44,8 +59,18 @@ HEADERS += \
     cconfiglogic.h \
     cgamelogic.h \
     global.h \
-    crankdao.h
+    crankdao.h \
+    picture.h \
+    qnamedlg.h \
+    qsetupdlg.h
 
 FORMS += \
+        cbejeweleddlg.ui \
+        cgamedlg.ui \
+        chelpdlg.ui \
+        crankdlg.ui \
         csetdlg.ui \
-        mainwindow.ui
+        csetdlg.ui \
+        mainwindow.ui \
+        qnamedlg.ui \
+        qsetupdlg.ui

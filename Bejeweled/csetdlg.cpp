@@ -58,3 +58,9 @@ void CSetDlg::on_pushButton_2_clicked()//“取消”按钮
 {
     this->close();
 }
+
+void CSetDlg::on_pushButton_clicked()//“确定”按钮
+{
+    //TODO：将设置内容传递给相应对象
+    this->close();
+}

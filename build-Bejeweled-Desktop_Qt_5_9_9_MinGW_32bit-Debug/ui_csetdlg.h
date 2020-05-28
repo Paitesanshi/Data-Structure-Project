@@ -67,10 +67,12 @@ public:
         font.setFamily(QStringLiteral("AcadEref"));
         font.setPointSize(11);
         checkBox->setFont(font);
+        checkBox->setChecked(true);
         checkBox_2 = new QCheckBox(groupBox);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
         checkBox_2->setGeometry(QRect(320, 30, 91, 21));
         checkBox_2->setFont(font);
+        checkBox_2->setChecked(true);
         groupBox_2 = new QGroupBox(sound);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         groupBox_2->setGeometry(QRect(20, 120, 501, 191));
@@ -127,7 +129,7 @@ public:
 
         retranslateUi(CSetDlg);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(CSetDlg);
