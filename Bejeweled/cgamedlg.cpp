@@ -12,10 +12,12 @@ CGameDlg::CGameDlg(int kinds,QWidget *parent)
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             jewel[i][j]=new CJewel(this,this);
-    elimite=logic->canEliminate();
-    while(elimite.size()>0||logic->hasEliminate()==false){
-        photo=logic->getRandomDistribution();
-        elimite=logic->canEliminate();
+            elimite=logic->canEliminate();
+            while(elimite.size()>0||logic->hasEliminate()==false){
+                photo=logic->getRandomDistribution();
+                elimite=logic->canEliminate();
+            }
+        }
     }
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
@@ -125,34 +127,32 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                     moveChangeJewel(index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),3);
                 }
             }
-            changeJewel();
-            elimite=logic->canSwop();
-            qDebug()<<"@@";
-            qDebug()<<elimite.size();
-            int iter=0;
-            for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
-                qDebug()<<"!!";
-                delLength++;
-                del[iter][0]=it->nCol;
-                del[iter][1]=it->nRow;
-                mark[it->nRow]++;
-                number[it->nRow]++;
-                if(it->nCol+1>min[it->nRow]){
-                    min[it->nRow]=it->nCol+1;
-                }
+        }
+        changeJewel();
+        elimite=logic->canSwop();
+        qDebug()<<"@@";
+        qDebug()<<elimite.size();
+        int iter=0;
+        for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+            qDebug()<<"!!";
+            delLength++;
+            del[iter][0]=it->nCol;
+            del[iter][1]=it->nRow;
+            mark[it->nRow]++;
+            number[it->nRow]++;
+            if(it->nCol+1>min[it->nRow]){
+                min[it->nRow]=it->nCol+1;
             }
-            deleteJewel();
         }
-    }
-            QTime time;
-            time.start();
-            while(time.elapsed() < 600)             //等待时间流逝5秒钟
-                QCoreApplication::processEvents();
-            elimite=logic->canSwop();
-            qDebug()<<"@@";
-            qDebug()<<elimite.size();
-            setDelete(elimite);
-        }
+        deleteJewel();
+        QTime time;
+        time.start();
+        while(time.elapsed() < 600)             //等待时间流逝5秒钟
+            QCoreApplication::processEvents();
+        elimite=logic->canSwop();
+        qDebug()<<"@@";
+        qDebug()<<elimite.size();
+        setDelete(elimite);
     }
 }
 
@@ -192,6 +192,7 @@ void CGameDlg::deleteJewel(){
         int row=del[i][1];
         qDebug()<<6<<" "<<col<<" "<<row;
         jewel[index[col][row].x()][index[col][row].y()]->setVisible(false);
+    }
     for(int i=0;i<8;i++){
         int col=del[i][0];
         int row=del[i][1];
@@ -234,21 +235,16 @@ void CGameDlg::deleteJewel(){
                     qDebug()<<(jewel[index[j][i].x()][index[j][i].y()]->targety-105)/50;
                     mark[i]--;
                 }
-                else{
-                    qDebug()<<j<<i<<"false";
-                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
-                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+(j+mark[i])*50;
-                    qDebug()<<(jewel[index[j][i].x()][index[j][i].y()]->targety-105)/50;
-                }
             }
         }
     }
     for(int i=0;i<8;i++){
         if(min[i]!=-1){
-        if(min[i]!=0){
-            qDebug()<<min[i];
-            for(int j=0;j<min[i];j++){
-                moveDeleteJewel(index[j][i].x(),index[j][i].y());
+            if(min[i]!=0){
+                qDebug()<<min[i];
+                for(int j=0;j<min[i];j++){
+                    moveDeleteJewel(index[j][i].x(),index[j][i].y());
+                }
             }
         }
     }
@@ -268,6 +264,7 @@ void CGameDlg::deleteJewel(){
         }
     }
 }
+
 
 void CGameDlg::moveDeleteJewel(int labelx,int labely){
     connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutd()));

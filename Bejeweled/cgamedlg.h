@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QDebug>
 //#include "structure.h"
-#include "Global.h"
+#include "global.h"
 #include "picture.h"
 #include "choose.h"
 #include <cmenudlg.h>
@@ -47,7 +47,7 @@ public:
 
     int del[8][3];
 
-    int del[8][2];
+//    int del[8][2];
 
     int mark[8]={0};
     int number[8]={0};
