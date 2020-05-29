@@ -13,7 +13,6 @@
   <property name="windowTitle">
    <string>CGameDlg</string>
   </property>
-<<<<<<< HEAD
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
@@ -61,20 +60,13 @@
     </property>
    </widget>
   </widget>
-=======
-  <widget class="QWidget" name="centralwidget"/>
->>>>>>> 7b23f088ebee6665b4e186e44932514f97a7208e
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-<<<<<<< HEAD
-     <height>22</height>
-=======
      <height>26</height>
->>>>>>> 7b23f088ebee6665b4e186e44932514f97a7208e
     </rect>
    </property>
   </widget>
