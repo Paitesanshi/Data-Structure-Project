@@ -81,9 +81,4 @@ FORMS += \
         csetdlg.ui \
         mainwindow.ui \
         qnamedlg.ui \
-        qsetupdlg.ui
-        mainwindow.ui \
-    cbejeweleddlg.ui \
-    cgamedlg.ui \
-    qnamedlg.ui \
     qsetupdlg.ui
