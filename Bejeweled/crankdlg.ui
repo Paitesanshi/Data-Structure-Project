@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
+    <width>450</width>
     <height>424</height>
    </rect>
   </property>
@@ -43,7 +43,7 @@
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>451</width>
+     <width>411</width>
      <height>341</height>
     </rect>
    </property>
@@ -55,52 +55,52 @@
    </property>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <row>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </row>
    <column>
