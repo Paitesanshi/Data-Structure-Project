@@ -23,11 +23,15 @@ CConfig::CConfig()
             style[i].picture_Mask[i].append(".bmp");
         }
     }
-    music_BgMusicPath="Music\\backgroundMusic.mp3";
+    music_BgMusicPath="music\\backgroundMusic1.mp3";
 }
 
 void CConfig::Set_Picture_Style(int style){
     picture_Style = style;
+}
+
+void CConfig::Set_BgStyle(BgStyle bgstyle){
+    style[picture_Style] = bgstyle;
 }
 
 void CConfig::Set_Music_Type(int type){
@@ -50,6 +54,10 @@ BgStyle CConfig::Get_Picture_Style(){
     if(picture_Style == 0) return style[0];
     else if(picture_Style == 1) return style[1];
     else if(picture_Style == 2) return style[2];
+}
+
+int CConfig::Get_PictureStyle(){
+    return picture_Style;
 }
 
 int CConfig::Get_Music_Type(){

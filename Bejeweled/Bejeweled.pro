@@ -1,4 +1,6 @@
 QT       += core gui
+QT       +=sql
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,7 +35,10 @@ SOURCES += \
     mainwindow.cpp \
     picture.cpp \
     qnamedlg.cpp \
-    qsetupdlg.cpp
+    qsetupdlg.cpp \
+    capptool.cpp \
+    cconfigdao.cpp \
+    cmusicplayer.cpp
 
 HEADERS += \
     cbejeweleddlg.h \
@@ -54,7 +59,10 @@ HEADERS += \
     mainwindow.h \
     picture.h \
     qnamedlg.h \
-    qsetupdlg.h
+    qsetupdlg.h \
+    capptool.h \
+    cconfigdao.h \
+    cmusicplayer.h
 
 FORMS += \
     cbejeweleddlg.ui \

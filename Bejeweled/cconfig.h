@@ -14,12 +14,14 @@ class CConfig
 public:
     CConfig();
     void Set_Picture_Style(int style);
+    void Set_BgStyle(BgStyle bgstyle);
     void Set_Music_Type(int type);
     void Set_Music_BgMusicPath(QString bgMusic);
     void Set_Switch_BgMusic(int bgMus);
     void Set_Switch_Sound(int sound);
 
     BgStyle Get_Picture_Style();
+    int Get_PictureStyle();
     int Get_Music_Type();
     QString Get_Music_BgMusicPath();
     int Get_Switch_BgMusic();
