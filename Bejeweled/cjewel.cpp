@@ -26,7 +26,7 @@ void CJewel::setPhoto(){
             return;
         }
     setPixmap(QPixmap::fromImage(*img));
-    setScaledContents(false);//图片随着标签大小的改变而改变
+    setScaledContents(true);//图片随着标签大小的改变而改变
 }
 
 void CJewel::timerTimeOutl(){
