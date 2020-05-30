@@ -19,6 +19,8 @@ public:
     set<RANKINFOR,comp> getUsers() ;
     void addRank(RANKINFOR x);
     void addRanktoDB(RANKINFOR x);
+    int loginCheck(QString name,QString password);
+    bool userRegister(QString name,QString password);
 private:
     QSqlDatabase db;
     set<RANKINFOR,comp> users;

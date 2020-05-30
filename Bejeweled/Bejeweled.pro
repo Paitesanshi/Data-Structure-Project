@@ -30,7 +30,6 @@ SOURCES += \
     cmenudlg.cpp \
     crankdao.cpp \
     crankdlg.cpp \
-    cranklogic.cpp \
     csetdlg.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -39,7 +38,8 @@ SOURCES += \
     qsetupdlg.cpp \
     capptool.cpp \
     cconfigdao.cpp \
-    cmusicplayer.cpp
+    cmusicplayer.cpp \
+    cranklogic.cpp
 
 HEADERS += \
     cbejeweleddlg.h \
@@ -54,7 +54,6 @@ HEADERS += \
     connectiondb.h \
     crankdao.h \
     crankdlg.h \
-    cranklogic.h \
     csetdlg.h \
     global.h \
     mainwindow.h \
@@ -63,7 +62,8 @@ HEADERS += \
     qsetupdlg.h \
     capptool.h \
     cconfigdao.h \
-    cmusicplayer.h
+    cmusicplayer.h \
+    cranklogic.h
 
 FORMS += \
     cbejeweleddlg.ui \

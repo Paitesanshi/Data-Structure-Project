@@ -31,6 +31,7 @@ typedef struct PICTUREELEMENT  // 图片元素信息
 typedef struct RANKINFORMATION  // 玩家积分信息
 {
     char *strName;   // 玩家姓名
+    char *strPass;
     int nTime;          // 剩余时间
     int nGrade;         // 玩家积分
     int nRank;          // 玩家排名

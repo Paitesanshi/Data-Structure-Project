@@ -2,7 +2,8 @@
 #define QSETUPDLG_H
 
 #include <QDialog>
-
+#include <QDebug>
+#include "cranklogic.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class QSetupDlg; }
 QT_END_NAMESPACE
@@ -20,5 +21,6 @@ private slots:
 
 private:
     Ui::QSetupDlg *ui;
+    CRankLogic *logic;
 };
 #endif // QSETUPDLG_H
