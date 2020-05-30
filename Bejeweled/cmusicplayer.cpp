@@ -36,10 +36,10 @@ void CMusicPlayer::StopBgMusic(){
 }
 
 void CMusicPlayer::PlaySound(int i){
-    if(i = 1) Sound_Start->play();
-    else if(i = 2) Sound_Click->play();
-    else if(i = 3) Sound_Eliminate->play();
-    else if(i = 4) Sound_Down->play();
-    else if(i = 5) Sound_Success->play();
-    else if(i = 6) Sound_Fail->play();
+    if(i == 1) Sound_Start->play();
+    else if(i == 2) Sound_Click->play();
+    else if(i == 3) Sound_Eliminate->play();
+    else if(i == 4) Sound_Down->play();
+    else if(i == 5) Sound_Success->play();
+    else if(i == 6) Sound_Fail->play();
 }
