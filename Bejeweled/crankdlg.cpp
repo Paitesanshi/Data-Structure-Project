@@ -7,6 +7,7 @@ CRankDlg::CRankDlg(QWidget *parent) :
     ui(new Ui::CRankDlg)
 {
     ui->setupUi(this);
+    logic=CRankLogic::getInstance();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setColumnWidth(0, ui->tableWidget->width() / 4);
     ui->tableWidget->setColumnWidth(1, ui->tableWidget->width() / 2);
@@ -17,8 +18,6 @@ CRankDlg::CRankDlg(QWidget *parent) :
     ui->tableWidget->setItem(0,2,new QTableWidgetItem("Deathfist"));
     ui->tableWidget->setItem(1,1,new QTableWidgetItem("Marshall Law"));
     ui->tableWidget->setItem(1,2,new QTableWidgetItem("DB4"));
-
-
 
 
 }

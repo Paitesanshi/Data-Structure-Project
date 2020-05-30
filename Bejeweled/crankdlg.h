@@ -2,7 +2,7 @@
 #define CRANKDLG_H
 
 #include <QWidget>
-
+#include "cranklogic.h"
 namespace Ui {
 class CRankDlg;
 }
@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::CRankDlg *ui;
+    CRankLogic *logic;
 };
 
 #endif // CRANKDLG_H
