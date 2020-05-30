@@ -1,8 +1,10 @@
 #include "cranklogic.h"
+CRankLogic* CRankLogic::single=NULL;
 CRankLogic::CRankLogic()
 {
     dao=new CRankDao();
-
+    playerName="";
+    playerPassword="";
 }
 
 void CRankLogic::addUser(RANKINFOR x)
@@ -18,7 +20,13 @@ set<RANKINFOR,comp> CRankLogic::getRank()
 
 int CRankLogic::loginCheck(QString name, QString password)
 {
-    return dao->loginCheck(name,password);
+    int result=dao->loginCheck(name,password);
+    if(result==1)
+    {
+         playerName=name;
+         playerPassword=password;
+    }
+    return result;
 }
 
 bool CRankLogic::userRegister(QString name, QString password)

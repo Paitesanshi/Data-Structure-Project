@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->setupUi(this);
     CBejeweledDlg* CDialog = new CBejeweledDlg(this);//实例化游戏菜单窗口
     CDialog->show();
-    CRankLogic *c=new CRankLogic();
 }
 
 MainWindow::~MainWindow()

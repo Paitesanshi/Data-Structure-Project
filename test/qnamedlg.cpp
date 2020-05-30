@@ -6,7 +6,7 @@ QNameDlg::QNameDlg(QWidget *parent)
     , ui(new Ui::QNameDlg)
 {
     ui->setupUi(this);
-    logic=new CRankLogic();
+    logic=CRankLogic::getInstance();
 }
 
 QNameDlg::~QNameDlg()

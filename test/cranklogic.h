@@ -12,14 +12,22 @@
 class CRankLogic
 {
 public:
-    CRankLogic();
+    static CRankLogic* getInstance()
+    {
+        if(single==NULL)
+            single=new CRankLogic();
+        return single;
+    }
     void addUser(RANKINFOR x);
     set<RANKINFOR,comp> getRank();
     int loginCheck(QString name,QString password);
     bool userRegister(QString name,QString password);
 private:
     CRankDao *dao;
-
+    CRankLogic();
+    QString playerName;
+    QString playerPassword;
+    static CRankLogic *single;
 };
 
 #endif // CRANKLOGIC_H

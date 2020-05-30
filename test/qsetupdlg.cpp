@@ -6,7 +6,7 @@ QSetupDlg::QSetupDlg(QWidget *parent)
     , ui(new Ui::QSetupDlg)
 {
     ui->setupUi(this);
-    logic=new CRankLogic();
+    logic=CRankLogic::getInstance();
 }
 
 QSetupDlg::~QSetupDlg()
