@@ -154,7 +154,7 @@
    </column>
    <column>
     <property name="text">
-     <string>分数</string>
+     <string>最高解锁关卡</string>
     </property>
     <property name="textAlignment">
      <set>AlignCenter</set>
@@ -162,7 +162,7 @@
    </column>
    <column>
     <property name="text">
-     <string>剩余时间</string>
+     <string>最高关卡积分</string>
     </property>
     <property name="textAlignment">
      <set>AlignCenter</set>
@@ -184,7 +184,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="0" column="2">
+   <item row="0" column="3">
     <property name="text">
      <string/>
     </property>
@@ -208,7 +208,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="1" column="2">
+   <item row="1" column="3">
     <property name="text">
      <string/>
     </property>
@@ -232,7 +232,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="2" column="2">
+   <item row="2" column="3">
     <property name="text">
      <string/>
     </property>
@@ -256,7 +256,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="3" column="2">
+   <item row="3" column="3">
     <property name="text">
      <string/>
     </property>
@@ -280,7 +280,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="4" column="2">
+   <item row="4" column="3">
     <property name="text">
      <string/>
     </property>
@@ -304,7 +304,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="5" column="2">
+   <item row="5" column="3">
     <property name="text">
      <string/>
     </property>
@@ -328,7 +328,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="6" column="2">
+   <item row="6" column="3">
     <property name="text">
      <string/>
     </property>
@@ -352,7 +352,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="7" column="2">
+   <item row="7" column="3">
     <property name="text">
      <string/>
     </property>
@@ -376,7 +376,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="8" column="2">
+   <item row="8" column="3">
     <property name="text">
      <string/>
     </property>
@@ -400,7 +400,7 @@
      <set>AlignCenter</set>
     </property>
    </item>
-   <item row="9" column="2">
+   <item row="9" column="3">
     <property name="text">
      <string/>
     </property>

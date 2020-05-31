@@ -10,6 +10,7 @@
 #include <crankdlg.h>
 #include <cmenudlg.h>
 #include <csetdlg.h>
+#include <cstageselectdlg.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -54,6 +55,7 @@ private slots:
 
 private:
     Ui::CBejeweledDlg *ui;
+    CRankLogic *logic;
 };
 
 #endif // CBEJEWELEDDLG_H

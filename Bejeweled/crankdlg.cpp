@@ -15,10 +15,6 @@ CRankDlg::CRankDlg(QWidget *parent) :
     ui->tableWidget->setColumnWidth(3, (ui->tableWidget->width() / 4)-10);
 
     //设置排行榜表格正文
-//    ui->tableWidget->setItem(0,1,new QTableWidgetItem("Paul Pheonix"));
-//    ui->tableWidget->setItem(0,2,new QTableWidgetItem("Deathfist"));
-//    ui->tableWidget->setItem(1,1,new QTableWidgetItem("Marshall Law"));
-//    ui->tableWidget->setItem(1,2,new QTableWidgetItem("DB4"));
 
     set<RANKINFOR,comp> ranks = logic->getRank();//获得排名信息
 
