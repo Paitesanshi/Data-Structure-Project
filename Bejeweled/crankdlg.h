@@ -2,6 +2,7 @@
 #define CRANKDLG_H
 
 #include <QWidget>
+#include <QString>
 #include "cranklogic.h"
 namespace Ui {
 class CRankDlg;

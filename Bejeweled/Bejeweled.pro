@@ -31,6 +31,7 @@ SOURCES += \
     crankdao.cpp \
     crankdlg.cpp \
     csetdlg.cpp \
+    cstageselectdlg.cpp \
     main.cpp \
     mainwindow.cpp \
     picture.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     crankdao.h \
     crankdlg.h \
     csetdlg.h \
+    cstageselectdlg.h \
     global.h \
     mainwindow.h \
     picture.h \
@@ -71,6 +73,7 @@ FORMS += \
     chelpdlg.ui \
     crankdlg.ui \
     csetdlg.ui \
+    cstageselectdlg.ui \
     mainwindow.ui \
     qnamedlg.ui \
     qsetupdlg.ui

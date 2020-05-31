@@ -16,7 +16,6 @@ QNameDlg::~QNameDlg()
 
 void QNameDlg::on_pushButton_clicked()
 {
-    //int result=logic->loginCheck(this->ui->lineEdit->text(),this->ui->lineEdit_2->text());
     int result=logic->loginCheck(this->ui->lineEdit->text(),this->ui->lineEdit_2->text());
     switch (result) {
     case -1:
