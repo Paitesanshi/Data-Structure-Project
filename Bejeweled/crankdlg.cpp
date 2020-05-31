@@ -9,10 +9,11 @@ CRankDlg::CRankDlg(QWidget *parent) :
     ui->setupUi(this);
     logic=CRankLogic::getInstance();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setColumnWidth(0, ui->tableWidget->width() / 4);
-    ui->tableWidget->setColumnWidth(1, ui->tableWidget->width() / 4);
-    ui->tableWidget->setColumnWidth(2, (ui->tableWidget->width() / 4)-10);
-    ui->tableWidget->setColumnWidth(3, (ui->tableWidget->width() / 4)-10);
+    ui->tableWidget->setColumnWidth(0, ui->tableWidget->width() / 5);
+    ui->tableWidget->setColumnWidth(1, ui->tableWidget->width() / 5);
+    ui->tableWidget->setColumnWidth(2, (ui->tableWidget->width() / 5)-10);
+    ui->tableWidget->setColumnWidth(3, (ui->tableWidget->width() / 5)-10);
+    ui->tableWidget->setColumnWidth(4, (ui->tableWidget->width() / 5)+15);
 
     //设置排行榜表格正文
     set<RANKINFOR,comp> ranks = logic->getRank();//获得排名信息
@@ -24,18 +25,19 @@ CRankDlg::CRankDlg(QWidget *parent) :
             for(int i = 0 ; i < 10 ; i++){
                 ui->tableWidget->setItem(i,1,new QTableWidgetItem(it->strName));
                 ui->tableWidget->setItem(i,2,new QTableWidgetItem(QString::number(it->finalGrade)));
-                ui->tableWidget->setItem(i,3,new QTableWidgetItem(QString::number(it->nTime)));
-
+                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade));
+                ui->tableWidget->setItem(i,4,new QTableWidgetItem(it->nTime));
                 it++;
             }
         }
         else{
             for(int i = 0 ; i < (int)ranks.size() ; i++){
-
                 ui->tableWidget->setItem(i,1,new QTableWidgetItem(it->strName));
                 ui->tableWidget->setItem(i,2,new QTableWidgetItem(QString::number(it->finalGrade)));
-                ui->tableWidget->setItem(i,3,new QTableWidgetItem(QString::number(it->nTime)));
                // qDebug()<<it->finalGrade<<it->nTime;
+//                ui->tableWidget->setItem(i,2,new QTableWidgetItem(it->nGrade));
+                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade));
+                ui->tableWidget->setItem(i,4,new QTableWidgetItem(it->nTime));
                 it++;
             }
         }

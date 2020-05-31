@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>491</width>
+    <width>565</width>
     <height>444</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>250</x>
      <y>10</y>
      <width>101</width>
      <height>31</height>
@@ -43,7 +43,7 @@
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>451</width>
+     <width>531</width>
      <height>351</height>
     </rect>
    </property>
@@ -54,7 +54,7 @@
     <number>10</number>
    </property>
    <property name="columnCount">
-    <number>4</number>
+    <number>5</number>
    </property>
    <row>
     <property name="text">
@@ -163,6 +163,14 @@
    <column>
     <property name="text">
      <string>最高关卡积分</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>最高关卡剩余时间</string>
     </property>
     <property name="textAlignment">
      <set>AlignCenter</set>
