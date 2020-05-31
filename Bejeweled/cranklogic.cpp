@@ -3,20 +3,14 @@ CRankLogic* CRankLogic::single=NULL;
 CRankLogic::CRankLogic()
 {
     dao=new CRankDao();
-    playerName="";
-    playerPassword="";
+    player.strName="";
+    player.strPass="";
 }
 
-QString CRankLogic::getPlayerPassword() const
+RANKINFOR CRankLogic::getPlayer() const
 {
-    return playerPassword;
+    return player;
 }
-
-QString CRankLogic::getPlayerName() const
-{
-    return playerName;
-}
-
 void CRankLogic::addUser(RANKINFOR x)
 {
     dao->addRank(x);
@@ -30,12 +24,7 @@ set<RANKINFOR,comp> CRankLogic::getRank()
 
 int CRankLogic::loginCheck(QString name, QString password)
 {
-    int result=dao->loginCheck(name,password);
-    if(result==1)
-    {
-         playerName=name;
-         playerPassword=password;
-    }
+    int result=dao->loginCheck(name,password,player);
     return result;
 }
 

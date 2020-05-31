@@ -28,7 +28,8 @@ static bool createConnection( QSqlDatabase &db)
     if(!tables.contains("ranks"))
     {
         // 创建 course 表
-        query.exec("create table bejeweled.ranks(name varchar(50),remainingTime int,grade int)");
+        //query.exec("create table bejeweled.ranks(name varchar(50),password varchar(50),Time1 int,grade1 int,Time2 int,grade2 int,Time3 int,grade3 int,Time4 int,grade4 int,Time5 int,grade5 int,Time6 int,grade6 int,Time7 int,grade7 int,Time8 int,grade8 int,Time9 int,grade9 int)");
+        query.exec("create table bejeweled.ranks(name varchar(50),password varchar(50),level int,finalGrade int,finalTime int,grade1 int,grade2 int,grade3 int,grade4 int,grade5 int,grade6 int,grade7 int,grade8 int,grade9 int)");
         qDebug()<<"kk"+query.lastError().databaseText();
     }
     return true;

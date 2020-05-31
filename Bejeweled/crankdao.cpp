@@ -5,11 +5,11 @@ CRankDao::CRankDao()
 
    if(createConnection(db))
    {
-    qDebug()<<"ss"<<endl;
+    //qDebug()<<"ss"<<endl;
        users.clear();
         QSqlQuery query(db);
         //query.exec("insert into bejeweled.ranks values('PTSS',0,0)");
-        query.exec("select * from bejeweled.ranks ORDER BY grade DESC");
+        query.exec("select * from bejeweled.ranks ORDER BY level desc,final-grade DESC");
         while (query.next()&&users.size()<10) {
             qDebug()<<query.value(0)<<" "<<query.value(1)<<" "<<query.value(2)<<query.value(3);
             QByteArray ba = query.value(0).toString().toUtf8();
@@ -17,10 +17,13 @@ CRankDao::CRankDao()
             tem.strName=ba.data();
             ba = query.value(1).toString().toUtf8();
             tem.strPass=ba.data();
+            tem.level=query.value(2).toInt();
             //strcpy(tem.strName,ba.data());
+            tem.finalGrade=query.value(3).toInt();
+            tem.nTime=query.value(4).toInt();
             tem.nRank=users.size()+1;
-            tem.nTime=query.value(2).toInt();
-            tem.nGrade=query.value(3).toInt();
+            for(int i=1;i<=9;++i)
+                tem.nGrade[i]=query.value(4+i).toInt();
             users.insert(tem);
         }
 
@@ -63,17 +66,9 @@ void CRankDao::addRanktoDB(RANKINFOR x)
     query.exec(str);
     if(query.next())
     {
-        QByteArray ba = query.value(0).toString().toUtf8();
-        RANKINFOR tem;
-        tem.strName=ba.data();
-        tem.nRank=users.size()+1;
-        tem.nTime=query.value(1).toInt();
-        tem.nGrade=query.value(2).toInt();
-        if(x>tem)
-        {
-            str=QString("update bejeweled.ranks set remainingTime=%1,grade=%2 where name='%3'").arg(x.nTime).arg(x.nGrade).arg(x.strName);
-            query.exec(str);
-        }
+
+        str=QString("update bejeweled.ranks set level=%1,finalGrade=%2,finalTime=%3,grade1=%4,grade2=%5,grade3=%6,grade4=%7,grade5=%8,grade6=%9,grade7=%10,grade8=%11,grade9=%12 where name='%13'").arg(x.level).arg(x.finalGrade).arg(x.nTime).arg(x.nGrade[1]).arg(x.nGrade[2]).arg(x.nGrade[3]).arg(x.nGrade[4]).arg(x.nGrade[5]).arg(x.nGrade[6]).arg(x.nGrade[7]).arg(x.nGrade[8]).arg(x.nGrade[9]).arg(x.strName);
+        query.exec(str);
     }
 //    else
 //    {
@@ -84,7 +79,7 @@ void CRankDao::addRanktoDB(RANKINFOR x)
 
 }
 
-int CRankDao::loginCheck(QString name, QString password)
+int CRankDao::loginCheck(QString name, QString password,RANKINFOR &tem)
 {
     QSqlQuery query(db);
     QString str=QString("select * from bejeweled.ranks where name='%1'").arg(name);
@@ -93,6 +88,17 @@ int CRankDao::loginCheck(QString name, QString password)
     {
         if(password==query.value(1))
         {
+            QByteArray ba = query.value(0).toString().toUtf8();
+            RANKINFOR tem;
+            tem.strName=ba.data();
+            ba = query.value(1).toString().toUtf8();
+            tem.strPass=ba.data();
+            tem.level=query.value(2).toInt();
+            //strcpy(tem.strName,ba.data());
+            tem.finalGrade=query.value(3).toInt();
+            tem.nTime=query.value(4).toInt();
+            for(int i=1;i<=9;++i)
+                tem.nGrade[i]=query.value(4+i).toInt();
             return 1;
         }
         return 0;
@@ -106,15 +112,14 @@ int CRankDao::loginCheck(QString name, QString password)
 bool CRankDao::userRegister(QString name, QString password)
 {qDebug()<<name<<password;
     QSqlQuery query(db);
-
-    QString str=QString("select * from bejeweled.ranks where name='%1'").arg(name.toStdString().c_str());
+    QString str=QString("select * from bejeweled.ranks where name='%1'").arg(name);
     query.exec(str);
     if(query.next())
     {
         return false;
     }
     qDebug()<<name<<password;
-    str=QString("insert into bejeweled.ranks values('%1','%2',0,0)").arg(name.toStdString().c_str()).arg(password.toStdString().c_str());
+    str=QString("insert into bejeweled.ranks values('%1','%2',0,0,0,0,0,0,0,0,0,0,0,0)").arg(name).arg(password);
     query.exec(str);
     return true;
 

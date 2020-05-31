@@ -22,13 +22,12 @@ public:
     set<RANKINFOR,comp> getRank();//返回set按积分大小降序排列玩家排名信息，注意接收返回值的应该也是set<RANKINFOR,comp>
     int loginCheck(QString name,QString password);//用户登录检验，用户名不存在返回-1，用户密码错误返回0，用户登陆成功返回1
     bool userRegister(QString name,QString password);
-    QString getPlayerName() const;  //获取当前登录玩家姓名，可用于游戏结算更新
-    QString getPlayerPassword() const;   //获取当前登录玩家密码，可用于游戏结算更新
+    RANKINFOR getPlayer() const;//获取已登录玩家信息
+
 private:
     CRankDao *dao;
     CRankLogic();
-    QString playerName;//当前登录玩家用户名
-    QString playerPassword;//当前登录玩家密码
+    RANKINFOR player;//已登录玩家信息
     static CRankLogic *single;//单例模式指针
 };
 
