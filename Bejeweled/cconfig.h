@@ -4,9 +4,9 @@
 #include <QString>
 struct BgStyle  // 主题样式信息
 {
-    QString picture_BgPic;          // 背景图片路径 绝对路径
-    QString picture_Element[6];     // 元素图片路径 绝对路径
-    QString picture_Mask[6];        // 掩码图片路径 绝对路径
+    QString picture_BgPic;          // 背景图片路径 相对路径
+    QString picture_Element[6];     // 元素图片路径 相对路径
+    QString picture_Mask[6];        // 掩码图片路径 相对路径
 };
 
 class CConfig

@@ -2,28 +2,35 @@
 
 CConfig::CConfig()
 {
-    for(int i=0;i<3;i++){
-        style[i].picture_BgPic="Picture\\Theme";
+    picture_Style = 0; // 初始化主题为主题1
+    for(int i = 0; i < 3; i++){
+        style[i].picture_BgPic = "./img/";
         style[i].picture_BgPic.append(QString::number(i+1));
-        style[i].picture_BgPic.append("\\background.bmp");
-        QString s="Picture\\Theme";
+        style[i].picture_BgPic.append("/background.png");
+
+        int k = 0;
+        QString s = "./img/";
         s.append(QString::number(i+1));
-        s.append("\\Element\\");
-        for(int j=1;j<=6;j++){
-            style[i].picture_Element[i]=s;
-            style[i].picture_Element[i].append(QString::number(j));
-            style[i].picture_Element[i].append(".bmp");
+        for(int j = 1; j <= 6; j++){
+            style[i].picture_Element[k] = s;
+            style[i].picture_Element[k].append(QString::number(j));
+            style[i].picture_Element[k].append(".png");
+            k++;
         }
-        s="Picture\\Theme";
-        s.append(QString::number(i+1));
-        s.append("\\Mask\\");
-        for(int j=1;j<=6;j++){
-            style[i].picture_Mask[i]=s;
-            style[i].picture_Mask[i].append(QString::number(j));
-            style[i].picture_Mask[i].append(".bmp");
+
+        // 掩码初始化待修改 目前三套主题掩码图片相同 确认后再修改
+        k = 0;
+        for(int j = 11; j <= 16; j++){
+            style[i].picture_Mask[k] = s;
+            style[i].picture_Mask[k].append(QString::number(j));
+            style[i].picture_Mask[k].append(".png");
+            k++;
         }
     }
-    music_BgMusicPath="music\\backgroundMusic1.mp3";
+    music_Type = 0; // 背景音乐初始化为默认
+    music_BgMusicPath = "./music/backgroundMusic1.mp3"; // 初始化音乐为backgroundMusic1.mp3
+    switch_BgMusic = 1; // 背景音乐初始化为开
+    switch_Sound = 1; // 音效初始化为开
 }
 
 void CConfig::Set_Picture_Style(int style){

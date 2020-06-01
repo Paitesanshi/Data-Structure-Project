@@ -11,12 +11,12 @@ CMusicPlayer::CMusicPlayer(QString BgMusicPath)
     Sound_Fail = new QMediaPlayer;
 
     BgMusic->setMedia(QUrl::fromLocalFile(BgMusicPath));
-    Sound_Start->setMedia(QUrl::fromLocalFile("music\\Start.mp3"));
-    Sound_Click->setMedia(QUrl::fromLocalFile("music\\Click.mp3"));
-    Sound_Eliminate->setMedia(QUrl::fromLocalFile("music\\Eliminate.mp3"));
-    Sound_Down->setMedia(QUrl::fromLocalFile("music\\Down.mp3"));
-    Sound_Success->setMedia(QUrl::fromLocalFile("music\\Success.mp3"));
-    Sound_Fail->setMedia(QUrl::fromLocalFile("music\\Fail.mp3"));
+    Sound_Start->setMedia(QUrl::fromLocalFile("./music/Start.mp3"));
+    Sound_Click->setMedia(QUrl::fromLocalFile("./music/Click.mp3"));
+    Sound_Eliminate->setMedia(QUrl::fromLocalFile("./music/Eliminate.mp3"));
+    Sound_Down->setMedia(QUrl::fromLocalFile("./music/Down.mp3"));
+    Sound_Success->setMedia(QUrl::fromLocalFile("./music/Success.mp3"));
+    Sound_Fail->setMedia(QUrl::fromLocalFile("./music/Fail.mp3"));
 
     Sound_Start->setVolume(30);
     Sound_Click->setVolume(30);

@@ -1,5 +1,6 @@
 #include "cconfigdao.h"
 #include <QSettings>
+#include <QFileInfo>
 
 CConfigDao::CConfigDao()
 {
@@ -10,7 +11,11 @@ CConfig CConfigDao::ReadConFile(){
     BgStyle style;
     CConfig config;
     QSettings *configFile = new QSettings("./config.ini", QSettings::IniFormat);
-
+    QFileInfo file = new QFileInfo(configFile->fileName());
+    if(!file.isFile()){
+        config = new CConfig();
+        WriteConFile(config);
+    }
     config.Set_Picture_Style(configFile->value("/Picture/Style").toInt());
     style.picture_BgPic = configFile->value("/Picture/Bgpic").toString();
     style.picture_Element[0] = configFile->value("/Picture/Element1").toString();
