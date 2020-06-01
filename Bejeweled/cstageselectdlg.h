@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <cgamedlg.h>
+#include <cranklogic.h>
 
 namespace Ui {
 class CStageSelectDlg;
@@ -23,6 +24,7 @@ private slots:
 
 private:
     Ui::CStageSelectDlg *ui;
+    CRankLogic *logic;
 };
 
 #endif // CSTAGESELECTDLG_H

@@ -25,7 +25,7 @@ CRankDlg::CRankDlg(QWidget *parent) :
             for(int i = 0 ; i < 10 ; i++){
                 ui->tableWidget->setItem(i,1,new QTableWidgetItem(it->strName));
                 ui->tableWidget->setItem(i,2,new QTableWidgetItem(QString::number(it->finalGrade)));
-                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade));
+                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade[it->level-1]));
                 ui->tableWidget->setItem(i,4,new QTableWidgetItem(it->nTime));
                 it++;
             }
@@ -36,7 +36,7 @@ CRankDlg::CRankDlg(QWidget *parent) :
                 ui->tableWidget->setItem(i,2,new QTableWidgetItem(QString::number(it->finalGrade)));
                // qDebug()<<it->finalGrade<<it->nTime;
 //                ui->tableWidget->setItem(i,2,new QTableWidgetItem(it->nGrade));
-                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade));
+                ui->tableWidget->setItem(i,3,new QTableWidgetItem(it->nGrade[it->level-1]));
                 ui->tableWidget->setItem(i,4,new QTableWidgetItem(it->nTime));
                 it++;
             }

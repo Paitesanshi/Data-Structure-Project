@@ -7,6 +7,11 @@ namespace Ui {
 class CSetDlg;
 }
 
+struct Settings{
+    int themeselect;//用户选择的主题
+    QString musicfilepath;//用户所设置的音乐文件路径
+};
+
 class CSetDlg : public QWidget
 {
     Q_OBJECT
@@ -14,7 +19,7 @@ class CSetDlg : public QWidget
 public:
     explicit CSetDlg(QWidget *parent = nullptr);
     ~CSetDlg();
-
+    struct Settings getSettings();
 
 private slots:
     void on_pushButton_3_clicked();
@@ -32,6 +37,7 @@ private slots:
 
 private:
     Ui::CSetDlg *ui;
+    Settings settings;
 };
 
 #endif // CSETDLG_H
