@@ -89,11 +89,11 @@ int CRankDao::loginCheck(QString name, QString password,RANKINFOR &tem)
         if(password==query.value(1))
         {
             QByteArray ba = query.value(0).toString().toUtf8();
-            RANKINFOR tem;
             tem.strName=ba.data();
             ba = query.value(1).toString().toUtf8();
             tem.strPass=ba.data();
             tem.level=query.value(2).toInt();
+           // qDebug()<<tem.strName<<" "<<tem.level;
             //strcpy(tem.strName,ba.data());
             tem.finalGrade=query.value(3).toInt();
             tem.nTime=query.value(4).toInt();
@@ -119,7 +119,7 @@ bool CRankDao::userRegister(QString name, QString password)
         return false;
     }
     qDebug()<<name<<password;
-    str=QString("insert into bejeweled.ranks values('%1','%2',0,0,0,0,0,0,0,0,0,0,0,0)").arg(name).arg(password);
+    str=QString("insert into bejeweled.ranks values('%1','%2',1,0,0,0,0,0,0,0,0,0,0,0)").arg(name).arg(password);
     query.exec(str);
     return true;
 

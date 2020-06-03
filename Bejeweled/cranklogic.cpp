@@ -25,6 +25,7 @@ set<RANKINFOR,comp> CRankLogic::getRank()
 int CRankLogic::loginCheck(QString name, QString password)
 {
     int result=dao->loginCheck(name,password,player);
+    //qDebug()<<result<<"-----"<<player.strName<<"-----"<<player.level;
     return result;
 }
 

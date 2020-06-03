@@ -7,8 +7,8 @@ class CConfigDao
 {
 public:
     CConfigDao();
-    CConfig ReadConFile();
-    void WriteConFile(CConfig config);
+    CConfig* ReadConFile();
+    void WriteConFile(CConfig *config);
 };
 
 #endif // CCONFIGDAO_H
