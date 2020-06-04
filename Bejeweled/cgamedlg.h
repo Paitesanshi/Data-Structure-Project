@@ -1,81 +1,91 @@
 #ifndef CGAMEDLG_H
 #define CGAMEDLG_H
 
-#include <QMainWindow>
-#include <cjewel.h>
-#include <QMouseEvent>
-#include <QLabel>
-#include <QTimer>
-//#include <QImage>
+#include <QWidget>
 #include <QPixmap>
-#include <QMessageBox>
+#include <cgamelogic.h>
+#include <QPainter>
+#include <QPaintEvent>
 #include <QDebug>
-//#include "structure.h"
-#include "global.h"
-#include "picture.h"
-#include "choose.h"
-#include <cmenudlg.h>
-//#include "structure.h"
-#include "cgamelogic.h"
+#include <QDir>
+#include <QList>
 #include <set>
-#include <QTime>
-
+#include <math.h>
+#include <QThread>
+#include <QTimer>
+#include <cmenudlg.h>
+#include <cprogressbar.h>
+#include <cmusicplayer.h>
+#include <cconfig.h>
+#include <cconfiglogic.h>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CGameDlg; }
 QT_END_NAMESPACE
 
-class CGameDlg : public QMainWindow
+class CGameDlg : public QWidget
 {
     Q_OBJECT
 
 public:
-
-    CMenuDlg* cMenu;
-    set<PICELEM> elimite;
-    CGameLogic* logic;
+    //QPixmap* pixmap[8][8];
+    int score;
+    int target;
+    int time;
+    int difficulty;
     PICELEM p1;
     PICELEM p2;
-    Choose choose1;
-    Choose choose2;
-    int col;
-    int row;
-    int kinds;
-    QTimer* timer[8][8];
-    QImage* image[8][8];
-    int delLength=0;
-
-    int del[8][3];
-
-//    int del[8][2];
-
-    int mark[8]={0};
-    int number[8]={0};
-    int min[8]={-1};
-    Picture* picture[8][8];
-    QPixmap* pixmap[8][8];
-    CJewel* jewel[8][8];
-    QPoint index[8][8];
-    int** photo;
-    void setPhoto();
-    void paintMap();
-    void changeJewel();
-    void deleteJewel();
+    bool flag1;
+    bool flag2;
+    int** picture;
+    int **photo;
+    int** index;
+    int dimension;
+    int startX;
+    int startY;
+    int** showPic;
+    int** lay;
+    int bgplay;
+    int soundplay;
+    int del[10][2]={0};
+    int number[10]={0};
+    int max[10]={0};
+    int* first;
+    QLabel* label;
+    CMusicPlayer* musicplayer;
+    BgStyle theme;
+    QString music;
+    CConfig* config;
+    CConfigLogic* configLogic;
+    QTimer* timer;
+    CProgressBar* bar;
+    QString stringP[8];
+    set<PICELEM> layout;
+    set<PICELEM> setPic;
+    set<PICELEM> elimite;
+    QList<QPixmap*> frame;
+    QList<QPixmap*> list;
+    QList<PICELEM> pic;
+    CGameLogic* logic;
     void changeTheme();
-
-
-    void setDelete(set<PICELEM> elimite);
-
-    void moveChangeJewel(int labelx,int labely,int targetx,int targety,int pos);
-    void moveDeleteJewel(int labelx,int labely);
-    CGameDlg(int c,QWidget *parent = nullptr);
+    void changeMusic();
+    void setDelete(set<PICELEM> set);
+    void msleep(unsigned long msecs);
+    CGameDlg(int difficulty,int dimension,QWidget *parent = nullptr);
     ~CGameDlg();
-private:
-    Ui::CGameDlg *ui;
+
 protected:
     void mousePressEvent(QMouseEvent *ev) override;
+    void paintEvent(QPaintEvent* event) override;
+
+public slots:
+    void timeOut();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_pushButton_clicked();
+
+private:
+    Ui::CGameDlg *ui;
 };
 #endif // CGAMEDLG_H

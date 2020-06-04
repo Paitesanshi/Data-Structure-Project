@@ -10,8 +10,8 @@ CConfig::CConfig()
 
         int k = 0;
         QString s = "./img/";
-        s.append(QString::number(i+1));
-        for(int j = 1; j <= 6; j++){
+        s.append(QString::number(i+1)+"/");
+        for(int j = 1; j <= 11; j++){
             style[i].picture_Element[k] = s;
             style[i].picture_Element[k].append(QString::number(j));
             style[i].picture_Element[k].append(".png");
@@ -20,7 +20,7 @@ CConfig::CConfig()
 
         // 掩码初始化待修改 目前三套主题掩码图片相同 确认后再修改
         k = 0;
-        for(int j = 11; j <= 16; j++){
+        for(int j = 12; j <= 17; j++){
             style[i].picture_Mask[k] = s;
             style[i].picture_Mask[k].append(QString::number(j));
             style[i].picture_Mask[k].append(".png");

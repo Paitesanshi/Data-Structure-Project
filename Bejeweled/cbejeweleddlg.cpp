@@ -57,7 +57,7 @@ void CBejeweledDlg::on_pushButton_6_clicked()//排行榜
 
 void CBejeweledDlg::on_pushButton_7_clicked()//菜单
 {
-    cMenu = new CMenuDlg(this);
+    cMenu = new CMenuDlg(1,6);
     cMenu->show();
 }
 

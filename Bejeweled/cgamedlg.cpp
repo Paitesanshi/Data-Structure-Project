@@ -1,326 +1,377 @@
 #include "cgamedlg.h"
 #include "ui_cgamedlg.h"
 
-CGameDlg::CGameDlg(int kinds,QWidget *parent)
-    : QMainWindow(parent)
+CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
+    : QWidget(parent)
     , ui(new Ui::CGameDlg)
 {
     ui->setupUi(this);
-    logic=new CGameLogic(8,8,kinds);
-    //在这里调用Logic函数得到图片的二维数组
-    photo=logic->getRandomDistribution();
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            jewel[i][j]=new CJewel(this,this);
-            elimite=logic->canEliminate();
-            while(elimite.size()>0||logic->hasEliminate()==false){
-                photo=logic->getRandomDistribution();
-                elimite=logic->canEliminate();
+    flag1=false;
+    flag2=false;
+    startX=400-dimension/2.0*70;
+    startY=startX;
+    //qDebug()<<startX;
+    this->dimension=dimension;
+    for(int i=0;i<dimension*dimension;i++){
+        QPixmap* pixmap=new QPixmap();
+        list.append(pixmap);
+    }
+    for(int i=0;i<dimension*dimension;i++){
+        QPixmap* pixmap=new QPixmap();
+        frame.append(pixmap);
+    }
+    first=new int[dimension];
+    photo = (int **) new int *[dimension];
+    for (int i = 0; i < dimension; i++){
+        first[i]=0;
+        photo[i] = new int[dimension];
+    }
+    showPic = (int **) new int *[dimension];
+    for (int i = 0; i < dimension; i++){
+        showPic[i] = new int[dimension];
+    }
+    lay = (int **) new int *[dimension];
+    for (int i = 0; i < dimension; i++){
+        lay[i] = new int[dimension];
+    }
+    //qDebug()<<44;
+    //bgpaint=new QPixmap();
+    configLogic=new CConfigLogic();
+    //qDebug()<<33;
+    config=configLogic->getConfig();
+    //qDebug()<<11;
+    theme=config->Get_Picture_Style();
+    //qDebug()<<22;
+    bgplay=config->Get_Switch_BgMusic();
+    ui->label->setStyleSheet("background-color:white");
+    //QString background=theme.picture_BgPic;
+    //qDebug()<<background;
+    if(bgplay==1){
+        musicplayer=new CMusicPlayer(config->Get_Music_BgMusicPath());
+        musicplayer->PlayBgMusic();
+    }
+    soundplay=config->Get_Switch_Sound();
+    if(soundplay==1){
+        musicplayer->PlaySound(1);
+    }
+    bar=new CProgressBar(this);
+    bar->setGeometry(300,800,600,40);
+    /*bar->setStyleSheet("\
+                          QProgressBar::chunk {\
+                              background-color: #CD96CD;\
+                              width: 10px;\
+                              margin: 0.5px;\
+                          }");*/
+    //bar->setRange(0,100);
+    score=0;//初始分数为0
+    target=100;//可改
+    time=100;//可改，通过更改time来改变,单位是秒
+    bar->setValue(time);
+    timer=new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(timeOut()));
+    int kinds=0;
+    if(dimension==6){
+        kinds=4;
+    }
+    else if(dimension==8){
+        kinds=5;
+    }
+    else{
+        kinds=6;
+    }
+    logic=new CGameLogic(dimension,dimension,kinds,difficulty);
+    picture=logic->getRandomDistribution();
+    //qDebug()<<22;
+    for(int i=0;i<dimension;i++){
+        for(int j=0;j<dimension;j++){
+            photo[i][j]=picture[i][j];
+            //qDebug()<<photo[i][j];
+            showPic[i][j]=0;
+        }
+    }
+    /*
+    for(set<PICELEM>::iterator it=setPic.begin();it!=setPic.end();it++){
+        int x=(*it).nRow;
+        //qDebug()<<x;
+        int y=(*it).nCol;
+        //qDebug()<<x<<y;
+        photo[x][y]=it->nPicNum;
+        //qDebug()<<x<<y<<photo[x][y];
+    }
+    */
+    //qDebug()<<11;
+    layout=logic->getLayout();
+    for(set<PICELEM>::iterator it=layout.begin();it!=layout.end();it++){
+        int x=(*it).nRow;
+        int y=(*it).nCol;
+        lay[x][y]=1;
+    }
+    elimite=logic->canEliminate();
+    while(elimite.size()>0||logic->hasEliminate()==false){
+        picture=logic->getRandomDistribution();
+        for(int i=0;i<dimension;i++){
+            for(int j=0;j<dimension;j++){
+                photo[i][j]=picture[i][j];
+            }
+        }
+        for(set<PICELEM>::iterator it=setPic.begin();it!=setPic.end();it++){
+            int x=(*it).nRow;
+            int y=(*it).nCol;
+            photo[x][y]=it->nPicNum;
+        }
+        elimite=logic->canEliminate();
+    }
+    timer->start(1000);
+}
+
+void CGameDlg::timeOut(){
+    time--;
+    bar->setValue(time);
+    bar->repaint();
+    if(time==0){
+        timer->stop();
+        //弹出界面
+    }
+}
+
+void CGameDlg::paintEvent(QPaintEvent *event){
+    //qDebug()<<11;
+    QPainter painter(this);
+    //qDebug()<<"aaaaa";
+    //qDebug()<<"bbbb";
+    painter.drawPixmap(0,0,1200,900,theme.picture_BgPic);
+    for(int i=0;i<dimension;i++){
+        for(int j=0;j<dimension;j++){
+            //if(photo[i][j]==0){
+                //continue;
+            //}
+            if(lay[i][j]==1){
+                //qDebug()<<theme.picture_Element[photo[i][j]-1]<<photo[i][j];
+                if(showPic[i][j]==1){
+                    frame.at(i*dimension+j)->load("./images/10.png");
+                    painter.drawPixmap(startX+j*70,startY+i*70,70,70,*frame.at(i*dimension+j));
+                }
+                list.at(i*dimension+j)->load(theme.picture_Element[photo[i][j]-1]);
+                painter.drawPixmap(startX+j*70,startY+i*70,70,70,*list.at(i*dimension+j));
+            }
+            else{
+                list.at(i*dimension+j)->load(theme.picture_Element[photo[i][j]-1]);
             }
         }
     }
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            del[j][0]=8;
-            del[j][1]=8;
-            jewel[i][j]=new CJewel(this,this);
-            jewel[i][j]->targety=0;
-            jewel[i][j]->number=photo[i][j];
-            jewel[i][j]->col=i;
-            jewel[i][j]->row=j;
-            jewel[i][j]->setPhoto();
-            image[i][j]=new QImage;
-            timer[i][j]=new QTimer;
-            index[i][j].setX(i);
-            index[i][j].setY(j);
-            picture[i][j]=new Picture;
-            picture[i][j]->nRow=i;
-            picture[i][j]->nCol=j;
-            picture[i][j]->nPicNum=photo[i][j];
-        }
-    }
-    paintMap();
 }
 
-void CGameDlg::changeTheme(){
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            int ncol=index[i][j].x();
-            int nrow=index[i][j].y();
-            jewel[ncol][nrow]->number=photo[i][j];
-            jewel[ncol][nrow]->setPhoto();
-        }
-    }
-}
-
-void CGameDlg::paintMap(){
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            jewel[i][j]->setGeometry(205+j*50,105+i*50,40,40);
-            jewel[i][j]->setParent(this);
-            jewel[i][j]->show();
-        }
-    }
+void CGameDlg::msleep(unsigned long msecs){
+    QThread::msleep(msecs);
 }
 
 void CGameDlg::mousePressEvent(QMouseEvent *ev){
     QPoint pos=ev->pos();
-    int y=(pos.x()-205)/50;
-    int x=(pos.y()-105)/50;
-    jewel[x][y]->setStyleSheet("QLabel{border:2px solid rgb(0, 255, 0);}");
-    jewel[index[x][y].x()][index[x][y].y()]->setStyleSheet("QLabel{border:2px solid rgb(0, 255, 0);}");
-    qDebug()<<x;
-    qDebug()<<y;
-    if(choose1.flag==false){
-        choose1.x=x;
-        choose1.y=y;
-        choose1.flag=true;
+    int x,y;
+    x=(pos.y()-startY)/70;
+    y=(pos.x()-startX)/70;
+    qDebug()<<x<<" "<<y;
+    if(soundplay==1){
+        musicplayer->PlaySound(2);
     }
-    else if(choose2.flag==false){
-        choose2.x=x;
-        choose2.y=y;
-        choose2.flag=true;
+    if(flag1==false){
+        p1.nRow=x;
+        p1.nCol=y;
+        p1.nPicNum=photo[x][y];
+        flag1=true;
+        showPic[x][y]=1;
+        repaint();
+    }
+    else if(flag2==false){
+        p2.nRow=x;
+        p2.nCol=y;
+        p2.nPicNum=photo[x][y];
+        flag2=true;
+        showPic[x][y]=1;
+        repaint();
     }
     else{
 
     }
-    qDebug()<<choose1.flag;
-    qDebug()<<choose2.flag;
-    if(choose1.flag==true&&choose2.flag==true){
-        p1.nCol=choose1.x;
-        p1.nRow=choose1.y;
-        p1.nPicNum=picture[choose1.x][choose1.y]->nPicNum;
-        p2.nCol=choose2.x;
-        p2.nRow=choose2.y;
-        p1.nCol=choose1.y;
-        p1.nRow=choose1.x;
-        p1.nPicNum=picture[choose1.x][choose1.y]->nPicNum;
-        p2.nCol=choose2.y;
-        p2.nRow=choose2.x;
-        p2.nPicNum=picture[choose2.x][choose2.y]->nPicNum;
-        int flag=logic->isAdjacent(p1,p2);
-        //调用logic的相邻判断函数
-        //如果为true：交换 更新判断
-        qDebug()<<44;
+    if(flag1==true&&flag2==true){
+        //qDebug()<<"p1:x"<<p1.nRow<<"p1:y"<<p1.nCol<<"p1:pic"<<p1.nPicNum;
+        //qDebug()<<"p2:x"<<p2.nRow<<"p2:y"<<p2.nCol<<"p2:pic"<<p2.nPicNum;
+        qDebug()<<"aaa";
+        bool flag=logic->isAdjacent(p1,p2);
+        qDebug()<<flag;
         if(flag){
-            if(choose1.x==choose2.x){
-                if(choose1.y<choose2.y){
-                    qDebug()<<11;
-                    moveChangeJewel(index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),1);
-                    moveChangeJewel(index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),0);
-                }
-                else{
-                    qDebug()<<22;
-                    moveChangeJewel(index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),0);
-                    moveChangeJewel(index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),1);
-                }
+            elimite=logic->canSwop();
+            qDebug()<<elimite.size();
+            //qDebug()<<elimite.size();
+            photo[p1.nRow][p1.nCol]=p2.nPicNum;
+            photo[p2.nRow][p2.nCol]=p1.nPicNum;
+            showPic[p1.nRow][p1.nCol]=0;
+            showPic[p2.nRow][p2.nCol]=0;
+            repaint();
+            msleep(300);                              //休眠
+            if(elimite.size()==0){
+                //qDebug()<<33;
+                int indx=photo[p1.nRow][p1.nCol];
+                photo[p1.nRow][p1.nCol]=photo[p2.nRow][p2.nCol];
+                photo[p2.nRow][p2.nCol]=indx;
+                repaint();
             }
-            if(choose1.y==choose2.y){
-                if(choose1.x<choose2.x){
-                    qDebug()<<33;
-                    moveChangeJewel(index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),3);
-                    moveChangeJewel(index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),2);
+            else{
+                setDelete(elimite);
+                score=score+elimite.size()*5;
+                ui->label->setText("分数："+QString::number(score));
+                if(score>=target){
+                    //让界面暂停，弹出界面
                 }
-                else{
-                    qDebug()<<44;
-                    moveChangeJewel(index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),2);
-                    moveChangeJewel(index[choose2.x][choose2.y].x(),index[choose2.x][choose2.y].y(),index[choose1.x][choose1.y].x(),index[choose1.x][choose1.y].y(),3);
-                }
-            }
-        }
-        changeJewel();
-        elimite=logic->canSwop();
-        qDebug()<<"@@";
-        qDebug()<<elimite.size();
-        int iter=0;
-        for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
-            qDebug()<<"!!";
-            delLength++;
-            del[iter][0]=it->nCol;
-            del[iter][1]=it->nRow;
-            mark[it->nRow]++;
-            number[it->nRow]++;
-            if(it->nCol+1>min[it->nRow]){
-                min[it->nRow]=it->nCol+1;
             }
         }
-        deleteJewel();
-        QTime time;
-        time.start();
-        while(time.elapsed() < 600)             //等待时间流逝5秒钟
-            QCoreApplication::processEvents();
-        elimite=logic->canSwop();
-        qDebug()<<"@@";
-        qDebug()<<elimite.size();
-        setDelete(elimite);
+        flag1=false;
+        flag2=false;
+        //qDebug()<<" ";
     }
 }
 
 void CGameDlg::setDelete(set<PICELEM> elimite){
-    int iter=0;
-    int minite[8]={0};
+    int column;
     for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
-        qDebug()<<"!!";
-        delLength++;
+        if(soundplay==1){
+            musicplayer->PlaySound(3);
+        }
+        int x=(*it).nRow;
+        int y=(*it).nCol;
+        photo[x][y]=7;
+        column=it->nCol;
+    }
+    repaint();
+    msleep(60);
+    for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+        int x=(*it).nRow;
+        int y=(*it).nCol;
+        photo[x][y]=8;
+    }
+    repaint();
+    msleep(60);
+    for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+        int x=(*it).nRow;
+        int y=(*it).nCol;
+        photo[x][y]=9;
+    }
+    repaint();
+    msleep(60);
+    if(soundplay==1){
+        musicplayer->PlaySound(4);
+    }
+    qDebug()<<"aaa";
+    int iter=0;
+    for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+         //delLength++;
         del[iter][0]=it->nRow;
         del[iter][1]=it->nCol;
         iter++;
-        mark[it->nCol]++;
         number[it->nCol]++;
-        if(it->nRow+1>minite[it->nCol]){
-            minite[it->nCol]=it->nRow+1;
+        if(it->nRow+1>max[it->nCol]){
+            max[it->nCol]=it->nRow+1;
         }
     }
-    qDebug()<<22333444;
-    for(int i=0;i<8;i++){
-        min[i]=minite[i];
-        qDebug()<<min[i];
+    for(int i=0;i<dimension;i++){
+        for(int j=0;j<dimension;j++){
+            if(lay[j][i]==0){
+                continue;
+            }else{
+                first[i]=j;
+                qDebug()<<first[i];
+                break;
+            }
+        }
     }
-    deleteJewel();
-    delLength=0;
-    for(int i=0;i<8;i++){
-        number[i]=0;
-        mark[i]=0;
-        min[i]=-1;
+    elimite=logic->fall();
+    for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
+        pic.append(*it);
     }
-}
-
-void CGameDlg::deleteJewel(){
-    //实现消子效果
-    for(int i=0;i<delLength;i++){
-        int col=del[i][0];
-        int row=del[i][1];
-        qDebug()<<6<<" "<<col<<" "<<row;
-        jewel[index[col][row].x()][index[col][row].y()]->setVisible(false);
-    }
-    for(int i=0;i<8;i++){
-        int col=del[i][0];
-        int row=del[i][1];
-        qDebug()<<6<<" "<<col<<" "<<row;
-        //jewel[index[col][row].x()][index[col][row].y()]->setVisible(false);
-    }
-    //宝石都应该在的位置，等待降落
-    for(int i=0;i<8;i++){//第i列是否有需要消的子
-        if(mark[i]!=0){//mark[i]记录着第i列有多少要消的子
-            for(int j=0;j<8;j++){//第j行是否是第i列要消的子
-                bool flag=false;
-                for(int k=0;k<8;k++){
-                    if(del[k][0]==j&&del[k][1]==i){
-                        flag=true;
+    for(int i=0;i<dimension;i++){
+        if(number[i]!=0){
+            for(int k=0,l=number[i]-1;k<number[i];k++,l--){
+                for(int j=max[i]-1;j>=first[i]+1;j--){
+                    photo[j][i]=photo[j-1][i];
+                }
+                for(int h=0;h<pic.size();h++){
+                    if(pic.at(h).nRow==l&&pic.at(h).nCol==i){
+                        photo[first[i]][i]=pic.at(h).nPicNum;
                     }
                 }
-                if(flag){
-                    qDebug()<<j<<"true";
-                    qDebug()<<mark[i];
-                    jewel[index[j][i].x()][index[j][i].y()]->move(i*50+205,105-mark[i]*50);
-                    jewel[index[j][i].x()][index[j][i].y()]->setVisible(true);
-                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
-                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+((j+number[i])%min[i])*50;
-                    mark[i]--;
-                }
-                else{
-                    qDebug()<<j<<"false"<<i;
-                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
-                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+(j+mark[i])*50;
-                    qDebug()<<j<<i<<"true";
-                    qDebug()<<mark[i];
-                    jewel[index[j][i].x()][index[j][i].y()]->move(i*50+205,105-mark[i]*50);
-                    QTime time;
-                    time.start();
-                    while(time.elapsed() < 100)             //等待时间流逝5秒钟
-                        QCoreApplication::processEvents();
-                    jewel[index[j][i].x()][index[j][i].y()]->setVisible(true);
-                    jewel[index[j][i].x()][index[j][i].y()]->targetx=i*50+205;
-                    jewel[index[j][i].x()][index[j][i].y()]->targety=105+((j+number[i])%min[i])*50;
-                    qDebug()<<(jewel[index[j][i].x()][index[j][i].y()]->targety-105)/50;
-                    mark[i]--;
-                }
+                repaint();
+                msleep(150);
             }
         }
     }
-    for(int i=0;i<8;i++){
-        if(min[i]!=-1){
-            if(min[i]!=0){
-                qDebug()<<min[i];
-                for(int j=0;j<min[i];j++){
-                    moveDeleteJewel(index[j][i].x(),index[j][i].y());
+    //qDebug()<<"fall";
+    for(int i=0;i<dimension;i++){
+        stringP[i].clear();
+        for(int j=0;j<dimension;j++){
+            stringP[i].append(QString::number(photo[i][j])+" ");
+        }
+        //qDebug()<<stringP[i];
+    }
+    //qDebug()<<"logic fall";
+    logic->output();
+    for(int i=0;i<dimension;i++){
+        number[i]=0;
+        del[i][0]=0;
+        del[i][1]=0;
+        max[i]=0;
+        first[i]=0;
+    }
+    pic.clear();
+    for(int i=0;i<dimension;i++){
+        for(int j=0;j<dimension;j++){
+            if(picture[i][j]!=photo[i][j]){
+                photo[i][j]=picture[i][j];
+                repaint();
+            }
+        }
+    }
+    elimite=logic->canEliminate();
+    while(elimite.size()>0){
+        //qDebug()<<"delete";
+        setDelete(elimite);
+        score=score+elimite.size()*5;
+        ui->label->setText("分数："+QString::number(score));
+        if(score>=target){
+            //让界面暂停
+        }
+        elimite=logic->canEliminate();
+    }
+    bool flag1=logic->hasEliminate();
+    if(!flag1){
+        //qDebug()<<"nothing";
+        picture=logic->getRandomDistribution();
+        for(int i=0;i<dimension;i++){
+            for(int j=0;j<dimension;j++){
+                photo[i][j]=picture[i][j];
+            }
+        }
+        for(set<PICELEM>::iterator it=setPic.begin();it!=setPic.end();it++){
+            int x=(*it).nRow;
+            int y=(*it).nCol;
+            photo[x][y]=it->nPicNum;
+        }
+        elimite=logic->canEliminate();
+        while(elimite.size()>0||logic->hasEliminate()==false){
+            picture=logic->getRandomDistribution();
+            for(int i=0;i<dimension;i++){
+                for(int j=0;j<dimension;j++){
+                    photo[i][j]=picture[i][j];
                 }
             }
-        }
-    }
-    for(int i=0;i<8;i++){
-        if(min[i]!=0){
-            for(int j=0;j<min[i];j++){
-                qDebug()<<(j+number[i]-1)%min[i];
-                jewel[index[j][i].x()][index[j][i].y()]->col=(j+number[i])%min[i];
-                index[j][i].setX(index[j+min[i]-number[i]%min[i]]->x());
-                picture[j][i]->nPicNum=picture[(j+number[i])%min[i]][i]->nPicNum;
-                qDebug()<<(j+min[i]-number[i])%min[i];
-                jewel[index[j][i].x()][index[j][i].y()]->col=(j+number[i])%min[i];
-                jewel[index[j][i].x()][index[j][i].y()]->row=i;
-                index[j][i].setX(index[(j+min[i]-number[i])%min[i]][i].x());
-                index[j][i].setY(index[(j+min[i]-number[i])%min[i]][i].y());
+            for(set<PICELEM>::iterator it=setPic.begin();it!=setPic.end();it++){
+                int x=(*it).nRow;
+                int y=(*it).nCol;
+                photo[x][y]=it->nPicNum;
             }
+            elimite=logic->canEliminate();
         }
     }
 }
-
-
-void CGameDlg::moveDeleteJewel(int labelx,int labely){
-    connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutd()));
-    qDebug()<<jewel[labelx][labely]->col<<"@"<<jewel[labelx][labely]->row;
-    jewel[labelx][labely]->timer->setSingleShot(false);
-    jewel[labelx][labely]->timer->start(100);
-}
-
-void CGameDlg::changeJewel(){
-    //交换PIC的num
-    int i=picture[choose1.x][choose1.y]->nPicNum;
-    picture[choose1.x][choose1.y]->nPicNum=picture[choose2.x][choose2.y]->nPicNum;
-    picture[choose2.x][choose2.y]->nPicNum=i;
-    //交换不同行列对应的QLabel
-    int temx=index[choose1.x][choose1.y].x();
-    int temy=index[choose1.x][choose1.y].y();
-    index[choose1.x][choose1.y].setX(index[choose2.x][choose2.y].x());
-    index[choose1.x][choose1.y].setY(index[choose2.x][choose2.y].y());
-    index[choose2.x][choose2.y].setX(temx);
-    index[choose2.x][choose2.y].setY(temy);
-    //交换不同QLabel对应的行列
-    int indx=jewel[index[choose1.x][choose1.y].x()][index[choose1.x][choose1.y].y()]->row;
-    int indy=jewel[index[choose1.x][choose1.y].x()][index[choose1.x][choose1.y].y()]->col;
-    jewel[index[choose1.x][choose1.y].x()][index[choose1.x][choose1.y].y()]->row=jewel[index[choose2.x][choose2.y].x()][index[choose2.x][choose2.y].y()]->row;
-    jewel[index[choose1.x][choose1.y].x()][index[choose1.x][choose1.y].y()]->col=jewel[index[choose2.x][choose2.y].x()][index[choose2.x][choose2.y].y()]->col;
-    jewel[index[choose2.x][choose2.y].x()][index[choose2.x][choose2.y].y()]->row=indx;
-    jewel[index[choose2.x][choose2.y].x()][index[choose2.x][choose2.y].y()]->col=indy;
-    //重置choose1\choose2的flag
-    choose1.flag=false;
-    choose2.flag=false;
-    //去掉QLabel的边框
-    jewel[index[choose1.x][choose1.y].x()][index[choose1.x][choose1.y].y()]->setStyleSheet("QLabel{border:0px solid rgb(0, 255, 0);}");
-    jewel[index[choose2.x][choose2.y].x()][index[choose2.x][choose2.y].y()]->setStyleSheet("QLabel{border:0px solid rgb(0, 255, 0);}");
-}
-
-
-void CGameDlg::moveChangeJewel(int labelx,int labely,int targetx,int targety,int pos){
-    qDebug()<<11;
-    jewel[labelx][labely]->targetx=jewel[targetx][targety]->row*50+205;
-    jewel[labelx][labely]->targety=jewel[targetx][targety]->col*50+105;
-    if(pos==0){
-        connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutl()));
-    }
-    else if(pos==1){
-        connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutr()));
-    }
-    else if(pos==2){
-        connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutu()));
-    }
-    else{
-        connect(jewel[labelx][labely]->timer,SIGNAL(timeout()),jewel[labelx][labely],SLOT(timerTimeOutd()));
-    }
-    jewel[labelx][labely]->timer->setSingleShot(false);
-    jewel[labelx][labely]->timer->start(100);
-}
-
 
 CGameDlg::~CGameDlg()
 {
@@ -328,9 +379,22 @@ CGameDlg::~CGameDlg()
 }
 
 
-void CGameDlg::on_pushButton_2_clicked()//打开菜单
+void CGameDlg::on_pushButton_clicked()
 {
-    cMenu = new CMenuDlg(this);
-    cMenu->show();
+    if(ui->pushButton->text()=="STOP"){
+        timer->stop();
+        label=new QLabel();
+        label->setGeometry(0,0,750,750);
+        label->setParent(this);
+        QString string="border-image:url(";
+        QString string1=theme.picture_Element[10];
+        string.append(string1+")");
+        label->setStyleSheet(string);
+        label->show();
+        ui->pushButton->setText("START");
+    }else{
+        timer->start(1000);
+        label->hide();
+        ui->pushButton->setText("STOP");
+    }
 }
-

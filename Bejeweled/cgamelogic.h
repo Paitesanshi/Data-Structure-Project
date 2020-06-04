@@ -5,6 +5,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <iterator>
+#include <QDebug>
 using namespace std;
 
 typedef struct FEASIBLESOLUTION{
@@ -48,6 +49,8 @@ typedef struct FEASIBLESOLUTION{
 class CGameLogic
 {
     int **distribute;  //二维数组存储目前宝石分布
+    int **layout;
+    int difficulty;
     int kinds;  //宝石种类
     set<SOLUTION> solutions;  //存储目前可交换的所有选择和交换后消除的所有位置
     int row; //地图行数
@@ -59,11 +62,13 @@ class CGameLogic
     bool changeIsFeasible(int **state,PICELEM p1,PICELEM p2);  //交换后是否可消除
     bool hasChanged(); //随机生成整体布局后判断是否有能消除的
 public:
-    CGameLogic(int row,int col,int kinds);
+    CGameLogic(int row,int col,int kinds,int difficulty);//难度分为1，2，3
     ~CGameLogic();
-    void changeDemension(int row,int col);  //改变地图行数和列数
+    void changeDifficulty(int difficult);
+    set<PICELEM> getLayout();
     void changeKinds(int kinds);  //改变宝石种类
-    int **getRandomDistribution();  //获取随机生成的地图
+    void output();
+    int** getRandomDistribution();  //获取随机生成的地图
     bool isAdjacent(PICELEM p1,PICELEM p2);  //两个图片是否相邻
     set<PICELEM> canSwop();  //两个图片交换后是否能够消除
     set<PICELEM> fall();  //获取消除后落下新宝石的集合

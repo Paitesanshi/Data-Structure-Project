@@ -10,10 +10,12 @@ CConfigDao::CConfigDao()
 CConfig* CConfigDao::ReadConFile(){
     BgStyle style;
     CConfig *config;
+    config = new CConfig();
     QSettings *configFile = new QSettings("./config.ini", QSettings::IniFormat);
     QFileInfo *file = new QFileInfo(configFile->fileName());
+    qDebug()<<55;
     if(!file->isFile()){
-        config = new CConfig();
+        qDebug()<<66;
         WriteConFile(config);
     }
     config->Set_Picture_Style(configFile->value("/Picture/Style").toInt());
@@ -24,6 +26,11 @@ CConfig* CConfigDao::ReadConFile(){
     style.picture_Element[3] = configFile->value("/Picture/Element4").toString();
     style.picture_Element[4] = configFile->value("/Picture/Element5").toString();
     style.picture_Element[5] = configFile->value("/Picture/Element6").toString();
+    style.picture_Element[6] = configFile->value("/Picture/Element7").toString();
+    style.picture_Element[7] = configFile->value("/Picture/Element8").toString();
+    style.picture_Element[8] = configFile->value("/Picture/Element9").toString();
+    style.picture_Element[9] = configFile->value("/Picture/Element10").toString();
+    style.picture_Element[10] = configFile->value("/Picture/Element11").toString();
     style.picture_Mask[0] = configFile->value("/Picture/Mask1").toString();
     style.picture_Mask[1] = configFile->value("/Picture/Mask2").toString();
     style.picture_Mask[2] = configFile->value("/Picture/Mask3").toString();
@@ -45,7 +52,7 @@ void CConfigDao::WriteConFile(CConfig *config){
     BgStyle style = config->Get_Picture_Style();
 
     QSettings *configFile = new QSettings("./config.ini", QSettings::IniFormat);
-
+    qDebug()<<11;
     configFile->setValue("/Picture/Style", QString::number(config->Get_PictureStyle()));
     configFile->setValue("/Picture/BgPic", style.picture_BgPic);
     configFile->setValue("/Picture/Element1", style.picture_Element[0]);
@@ -54,6 +61,11 @@ void CConfigDao::WriteConFile(CConfig *config){
     configFile->setValue("/Picture/Element4", style.picture_Element[3]);
     configFile->setValue("/Picture/Element5", style.picture_Element[4]);
     configFile->setValue("/Picture/Element6", style.picture_Element[5]);
+    configFile->setValue("/Picture/Element7", style.picture_Element[6]);
+    configFile->setValue("/Picture/Element8", style.picture_Element[7]);
+    configFile->setValue("/Picture/Element9", style.picture_Element[8]);
+    configFile->setValue("/Picture/Element10", style.picture_Element[9]);
+    configFile->setValue("/Picture/Element11", style.picture_Element[10]);
     configFile->setValue("/Picture/Mask1", style.picture_Mask[0]);
     configFile->setValue("/Picture/Mask2", style.picture_Mask[1]);
     configFile->setValue("/Picture/Mask3", style.picture_Mask[2]);
@@ -67,5 +79,7 @@ void CConfigDao::WriteConFile(CConfig *config){
     configFile->setValue("/Switch/BgMusic",QString::number(config->Get_Switch_BgMusic()));
     configFile->setValue("/Switch/Sound",QString::number(config->Get_Switch_Sound()));
 
+    //qDebug()<<22;
     delete configFile;
+    //qDebug()<<33;
 }

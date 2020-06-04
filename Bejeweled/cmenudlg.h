@@ -8,7 +8,7 @@
 class CMenuDlg : public QWidget
 {
 public:
-    CMenuDlg(QMainWindow *parent = 0);
+    CMenuDlg(int difficulty,int dimension,QMainWindow *parent = 0);
 };
 
 #endif // CMENUDLG_H

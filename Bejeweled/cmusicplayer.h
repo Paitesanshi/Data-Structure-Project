@@ -16,7 +16,7 @@ private:
     QMediaPlayer *Sound_Start;              // 开始游戏音效
     QMediaPlayer *Sound_Click;              // 点击音效
     QMediaPlayer *Sound_Eliminate;          // 消子音效
-    QMediaPlayer *Sound_Down;               // 下移音效
+    QMediaPlayer *Sound_Amazing;               // 下移音效
     QMediaPlayer *Sound_Success;            // 胜利音效
     QMediaPlayer *Sound_Fail;               // 失败音效
 };

@@ -3,7 +3,7 @@
 #include <cbejeweleddlg.h>
 #include <cgamedlg.h>
 
-CMenuDlg::CMenuDlg(QMainWindow *parent)
+CMenuDlg::CMenuDlg(int difficulty,int dimension,QMainWindow *parent)
 {
     this->setFixedSize(300,580);//菜单窗口大小
 
@@ -60,7 +60,7 @@ CMenuDlg::CMenuDlg(QMainWindow *parent)
     });//返回游戏按钮，关闭该菜单
 
     connect(restartBtn,&QPushButton::clicked,[=](){
-        CGameDlg* gameDlg=new CGameDlg(6);
+        CGameDlg* gameDlg=new CGameDlg(difficulty,dimension);
         gameDlg->show();
         this->close();
         parent->close();

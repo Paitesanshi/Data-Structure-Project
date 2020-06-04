@@ -5,6 +5,8 @@ CConfigLogic::CConfigLogic()
 
 }
 
+CConfig* CConfigLogic::getConfig(){    return dao.ReadConFile();}
+
 void CConfigLogic::changeTheme(int theme){
     CConfig *config=dao.ReadConFile();
     config->Set_Picture_Style(theme);

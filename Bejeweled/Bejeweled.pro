@@ -26,15 +26,15 @@ SOURCES += \
     cgamelogic.cpp \
     chelpdlg.cpp \
     choose.cpp \
-    cjewel.cpp \
     cmenudlg.cpp \
+    cprogressbar.cpp \
     crankdao.cpp \
     crankdlg.cpp \
     csetdlg.cpp \
     cstageselectdlg.cpp \
+    cstop.cpp \
     main.cpp \
     mainwindow.cpp \
-    picture.cpp \
     qnamedlg.cpp \
     qsetupdlg.cpp \
     capptool.cpp \
@@ -50,16 +50,16 @@ HEADERS += \
     cgamelogic.h \
     chelpdlg.h \
     choose.h \
-    cjewel.h \
     cmenudlg.h \
     connectiondb.h \
+    cprogressbar.h \
     crankdao.h \
     crankdlg.h \
     csetdlg.h \
     cstageselectdlg.h \
+    cstop.h \
     global.h \
     mainwindow.h \
-    picture.h \
     qnamedlg.h \
     qsetupdlg.h \
     capptool.h \
@@ -74,6 +74,7 @@ FORMS += \
     crankdlg.ui \
     csetdlg.ui \
     cstageselectdlg.ui \
+    cstop.ui \
     mainwindow.ui \
     qnamedlg.ui \
     qsetupdlg.ui
@@ -82,3 +83,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES +=

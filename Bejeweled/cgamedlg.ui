@@ -1,76 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CGameDlg</class>
- <widget class="QMainWindow" name="CGameDlg">
+ <widget class="QWidget" name="CGameDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CGameDlg</string>
+   <string>Form</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>430</y>
-      <width>75</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>提示</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>320</y>
-      <width>111</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>AcadEref</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>菜单</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>430</y>
-      <width>75</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>暂停</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <x>930</x>
+     <y>40</y>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>分数：</string>
+   </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>1060</x>
+     <y>610</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>STOP</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>1060</x>
+     <y>520</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>HINT</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

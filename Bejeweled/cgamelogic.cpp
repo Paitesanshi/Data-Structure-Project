@@ -1,34 +1,104 @@
 #include "cgamelogic.h"
 
-CGameLogic::CGameLogic(int row, int col, int kinds)
+CGameLogic::CGameLogic(int row, int col, int kinds, int difficulty)
 {
     this->row = row;
     this->col = col;
     this->kinds = kinds;
+    this->difficulty=difficulty;
     distribute = (int **) new int *[row];
     for (int i = 0; i < row; i++){
         distribute[i] = new int[col];
     }
+
+    layout=(int **)new int *[3];
+    for(int i=0;i<3;i++){
+        layout[i]=new int[row*col];
+    }
+
+    for(int i=0;i<row*col;i++){
+        for(int j=0;j<3;j++)
+            layout[j][i]=1;
+    }
+
+    //闅惧害浜屽竷灞€锛?
+    //001100   00011000   0000110000
+    //011110   00111100   0001111000
+    //111111   01111110   0011111100
+    //111111   11111111   0111111110
+    //011110   11111111   1111111111
+    //001100   01111110   1111111111
+    //         00111100   0111111110
+    //         00011000   0011111100
+    //                    0001111000
+    //                    0000110000
+    for(int i=0;i<row/2-1;i++){
+        for(int j=0;j<col/2-1-i;j++){
+            layout[1][i*row+j]=0;
+            layout[1][i*row+col-j-1]=0;
+            layout[1][(row-i-1)*row+j]=0;
+            layout[1][(row-i-1)*row+col-j-1]=0;
+        }
+    }
+
+    //闅惧害涓夊竷灞€锛?
+    //001100   00011000   0000110000
+    //011110   00111100   0001111000
+    //111111   01111110   0011111100
+    //111111   11111111   0111111110
+    //110011   11111111   1111111111
+    //100001   11100111   1111111111
+    //         11000011   1111001111
+    //         10000001   1110000111
+    //                    1100000011
+    //                    1000000001
+
+    for(int i=0;i<row/2-1;i++){
+        for(int j=0;j<col/2-1-i;j++){
+            layout[2][i*row+j]=0;
+            layout[2][i*row+col-j-1]=0;
+            layout[2][(row-i-1)*row+col/2-1-j]=0;
+            layout[2][(row-i-1)*row+col/2+j]=0;
+        }
+    }
+
 }
+
+void CGameLogic::output(){
+    QString string[row];
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            string[i].append(QString::number(distribute[i][j])+" ");
+        }
+        qDebug()<<string[i];
+    }
+}
+
 CGameLogic::~CGameLogic(){
     for (int i = 0; i < row; i++)
         delete []distribute[i];
-    delete[]distribute;
+    delete []distribute;
+
+    for (int i = 0; i < 3; i++)
+        delete []layout[i];
+    delete []layout;
 }
 
-void CGameLogic::changeDemension(int row, int col)
-{
-    this->row = row;
-    this->col = col;
-    for (int i = 0; i < row; i++)
-        delete[]distribute[i];
-    delete[]distribute;
 
-    distribute = (int **) new int *[row];
-    for (int i = 0; i < row; i++){
-        distribute[i] = new int[col];
+set<PICELEM> CGameLogic::getLayout()
+{
+    set<PICELEM> s;
+    PICELEM p;
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(layout[difficulty-1][i*row+j]==1){
+                p.nRow=i;
+                p.nCol=j;
+                s.insert(p);
+            }
+        }
     }
-    solutions.clear();
+    return s;
 }
 
 void CGameLogic::changeKinds(int kinds)
@@ -37,22 +107,37 @@ void CGameLogic::changeKinds(int kinds)
     solutions.clear();
 }
 
-int **CGameLogic::getRandomDistribution()
+int** CGameLogic::getRandomDistribution()
 {
-    srand((int)time(0));  // 产生随机种子  把0换成NULL也行
+    set<PICELEM> s;
+    PICELEM p;
+    srand((int)time(0));  // 浜х敓闅忔満绉嶅瓙  鎶?鎹㈡垚NULL涔熻
     solutions.clear();
 
     do{
         do{
-            for (int i = 0; i<row; i++)
-            for (int j = 0; j<col; j++)
-                distribute[i][j] = rand() % kinds + 1;
+            for (int i = 0; i<row; i++){
+                for (int j = 0; j<col; j++){
+                    if(layout[difficulty-1][i*row+j]!=0)
+                        distribute[i][j] = rand() % kinds + 1;
+                    else
+                        distribute[i][j]=0;
+                }
+            }
         } while (hasChanged());
-
-
 
     } while (getAllSolutions() == false);
 
+    //for(int i=0;i<row;i++){
+        //for(int j=0;j<col;j++){
+            //if(distribute[i][j]>0){
+                //p.nRow=i;
+                //p.nCol=j;
+                //p.nPicNum=distribute[i][j];
+                //s.insert(p);
+            //}
+        //}
+    //}
     return distribute;
 }
 
@@ -60,13 +145,13 @@ bool CGameLogic::hasChanged(){
     for (int i = 0; i<row; i++){
         for (int j = 0; j<col; j++){
             if (j < col - 2){
-                if (distribute[i][j] == distribute[i][j + 1] && distribute[i][j] == distribute[i][j + 2]){
+                if (distribute[i][j] == distribute[i][j + 1] && distribute[i][j] == distribute[i][j + 2] && distribute[i][j]!=0){
                     return true;
                 }
             }
 
             if (i < row - 2){
-                if (distribute[i][j] == distribute[i + 1][j] && distribute[i][j] == distribute[i + 2][j]){
+                if (distribute[i][j] == distribute[i + 1][j] && distribute[i][j] == distribute[i + 2][j] && distribute[i][j]!=0){
                     return true;
                 }
             }
@@ -77,6 +162,10 @@ bool CGameLogic::hasChanged(){
 
 bool CGameLogic::isAdjacent(PICELEM p1, PICELEM p2)
 {
+    //qDebug()<<11;
+    if(distribute[p1.nRow][p1.nCol]==0 || distribute[p2.nRow][p2.nCol]==0)
+        return false;
+
     if (p1<p2){
         this->p1 = p1;
         this->p2 = p2;
@@ -85,6 +174,9 @@ bool CGameLogic::isAdjacent(PICELEM p1, PICELEM p2)
         this->p1 = p2;
         this->p2 = p1;
     }
+
+
+    //qDebug()<<22;
 
     if (p1.nRow == p2.nRow && (p1.nCol - p2.nCol == 1 || p1.nCol - p2.nCol == -1))
         return true;
@@ -96,8 +188,11 @@ bool CGameLogic::isAdjacent(PICELEM p1, PICELEM p2)
 
 set<PICELEM> CGameLogic::canSwop()
 {
+    //qDebug()<<solutions.size();
     for (set<SOLUTION>::iterator it = solutions.begin(); it != solutions.end(); it++){
-        if ((*it).picture1 == p1 && (*it).picture2 == p2 || (*it).picture1 == p2 && (*it).picture2 == p1){
+        //qDebug()<<"ccc";
+        if (((*it).picture1 == p1 && (*it).picture2 == p2) || ((*it).picture1 == p2 && (*it).picture2 == p1)){
+            //qDebug()<<"bbb";
             int x = distribute[(*it).picture1.nRow][(*it).picture1.nCol];
             distribute[(*it).picture1.nRow][(*it).picture1.nCol] = distribute[(*it).picture2.nRow][(*it).picture2.nCol];
             distribute[(*it).picture2.nRow][(*it).picture2.nCol] = x;
@@ -114,25 +209,38 @@ set<PICELEM> CGameLogic::fall()
     set<PICELEM> ss;
     PICELEM p;
     for (set<PICELEM>::iterator it = eliminateSet.begin(); it != eliminateSet.end(); it++){
-        distribute[(*it).nRow][(*it).nCol] = 0;
+        distribute[(*it).nRow][(*it).nCol] = -1;
     }
     int k;
     srand((int)time(0));
+
     for (int i = 0; i<col; i++){
         k = row - 1;
+        while(distribute[k][i]==0)
+            k--;
         for (int j = row - 1; j >= 0; j--){
             if (distribute[j][i]>0){
                 distribute[k][i] = distribute[j][i];
                 k--;
+                if (k >= 0){
+                    while (distribute[k][i] == 0){
+                        k--;
+                        if (k < 0)
+                            break;
+                    }
+                }
             }
         }
 
         for (; k >= 0; k--){
-            distribute[k][i] = rand() % kinds + 1;
-            p.nRow=k;
-            p.nCol=i;
-            p.nPicNum=distribute[k][i];
-            ss.insert(p);
+            if(distribute[k][i]!=0){
+                distribute[k][i] = rand() % kinds + 1;
+                p.nRow=k;
+                p.nCol=i;
+                p.nPicNum=distribute[k][i];
+                ss.insert(p);
+            }
+
         }
     }
 
@@ -147,7 +255,7 @@ set<PICELEM> CGameLogic::canEliminate(){
     for (int i = 0; i<row; i++){
         for (int j = 0; j<col; j++){
             if (j < col - 2){
-                if (distribute[i][j] == distribute[i][j + 1] && distribute[i][j] == distribute[i][j + 2]){
+                if (distribute[i][j] == distribute[i][j + 1] && distribute[i][j] == distribute[i][j + 2] && distribute[i][j]!=0){
                     for (int k = 0; k<3; k++){
                         p.nRow = i;
                         p.nCol = j + k;
@@ -158,7 +266,7 @@ set<PICELEM> CGameLogic::canEliminate(){
             }
 
             if (i < row - 2){
-                if (distribute[i][j] == distribute[i + 1][j] && distribute[i][j] == distribute[i + 2][j]){
+                if (distribute[i][j] == distribute[i + 1][j] && distribute[i][j] == distribute[i + 2][j] && distribute[i][j]!=0){
                     for (int k = 0; k<3; k++){
                         p.nRow = i + k;
                         p.nCol = j;
@@ -196,44 +304,46 @@ bool CGameLogic::getAllSolutions()
 
     for (int i = 0; i<row; i++){
         for (int j = 0; j<col; j++){
-            if (j < col - 1 && distribute[i][j]!=distribute[i][j+1]){
-                p1.nRow = i;
-                p1.nCol = j;
-                p1.nPicNum = distribute[i][j];
-                p2.nRow = i;
-                p2.nCol = j+1;
-                p2.nPicNum = distribute[i][j+1];
+            if(distribute[i][j]!=0){
+                if (j < col - 1 && distribute[i][j]!=distribute[i][j+1] && distribute[i][j+1]!=0){
+                    p1.nRow = i;
+                    p1.nCol = j;
+                    p1.nPicNum = distribute[i][j];
+                    p2.nRow = i;
+                    p2.nCol = j+1;
+                    p2.nPicNum = distribute[i][j+1];
 
-                x = distribute[i][j];
-                distribute[i][j] = distribute[i][j+1];
-                distribute[i][j+1] = x;
+                    x = distribute[i][j];
+                    distribute[i][j] = distribute[i][j+1];
+                    distribute[i][j+1] = x;
 
-                if (changeIsFeasible(distribute, p1, p2))
-                    flag = true;
+                    if (changeIsFeasible(distribute, p1, p2))
+                        flag = true;
 
-                x = distribute[i][j];
-                distribute[i][j] = distribute[i][j + 1];
-                distribute[i][j + 1] = x;
-            }
+                    x = distribute[i][j];
+                    distribute[i][j] = distribute[i][j + 1];
+                    distribute[i][j + 1] = x;
+                }
 
-            if (i < row - 1 && distribute[i][j]!=distribute[i + 1][j]){
-                p1.nRow = i;
-                p1.nCol = j;
-                p1.nPicNum = distribute[i][j];
-                p2.nRow = i + 1;
-                p2.nCol = j;
-                p2.nPicNum = distribute[i + 1][j];
+                if (i < row - 1 && distribute[i][j]!=distribute[i + 1][j] && distribute[i + 1][j]!=0){
+                    p1.nRow = i;
+                    p1.nCol = j;
+                    p1.nPicNum = distribute[i][j];
+                    p2.nRow = i + 1;
+                    p2.nCol = j;
+                    p2.nPicNum = distribute[i + 1][j];
 
-                x = distribute[i][j];
-                distribute[i][j] = distribute[i + 1][j];
-                distribute[i + 1][j] = x;
+                    x = distribute[i][j];
+                    distribute[i][j] = distribute[i + 1][j];
+                    distribute[i + 1][j] = x;
 
-                if (changeIsFeasible(distribute, p1, p2))
-                    flag = true;
+                    if (changeIsFeasible(distribute, p1, p2))
+                        flag = true;
 
-                x = distribute[i][j];
-                distribute[i][j] = distribute[i + 1][j];
-                distribute[i + 1][j] = x;
+                    x = distribute[i][j];
+                    distribute[i][j] = distribute[i + 1][j];
+                    distribute[i + 1][j] = x;
+                }
             }
         }
     }
@@ -250,7 +360,7 @@ bool CGameLogic::changeIsFeasible(int **state, PICELEM p1, PICELEM p2){
     for (int i = 0; i<row; i++){
         for (int j = 0; j<col; j++){
             if (j < col - 2){
-                if (state[i][j] == state[i][j + 1] && state[i][j] == state[i][j + 2]){
+                if (state[i][j] == state[i][j + 1] && state[i][j] == state[i][j + 2] && state[i][j]!=0){
                     flag = true;
                     for (int k = 0; k<3; k++){
                         p.nRow = i;
@@ -262,7 +372,7 @@ bool CGameLogic::changeIsFeasible(int **state, PICELEM p1, PICELEM p2){
             }
 
             if (i < row - 2){
-                if (state[i][j] == state[i + 1][j] && state[i][j] == state[i + 2][j]){
+                if (state[i][j] == state[i + 1][j] && state[i][j] == state[i + 2][j] && state[i][j]!=0){
                     flag = true;
                     for (int k = 0; k<3; k++){
                         p.nRow = i + k;

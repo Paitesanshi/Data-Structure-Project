@@ -2,6 +2,7 @@
 #define CCONFIGDAO_H
 #include "cconfig.h"
 #include <QString>
+#include <QDebug>
 
 class CConfigDao
 {
