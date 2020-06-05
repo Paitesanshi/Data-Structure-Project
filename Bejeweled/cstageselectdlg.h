@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <cgamedlg.h>
 #include <cranklogic.h>
+#include <cbejeweleddlg.h>
 
 namespace Ui {
 class CStageSelectDlg;

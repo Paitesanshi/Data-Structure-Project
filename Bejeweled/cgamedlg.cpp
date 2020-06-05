@@ -11,6 +11,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     startX=400-dimension/2.0*70;
     startY=startX;
     //qDebug()<<startX;
+    this->difficulty=difficulty;
     this->dimension=dimension;
     for(int i=0;i<dimension*dimension;i++){
         QPixmap* pixmap=new QPixmap();
@@ -36,6 +37,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     }
     //qDebug()<<44;
     //bgpaint=new QPixmap();
+    flag3=true;
     configLogic=new CConfigLogic();
     //qDebug()<<33;
     config=configLogic->getConfig();
@@ -64,7 +66,8 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
                           }");*/
     //bar->setRange(0,100);
     score=0;//初始分数为0
-    target=100;//可改
+    target=(dimension-6)/2*500+difficulty*200;
+    qDebug()<<target;
     time=100;//可改，通过更改time来改变,单位是秒
     bar->setValue(time);
     timer=new QTimer();
@@ -100,12 +103,24 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     }
     */
     //qDebug()<<11;
+    for(int i=0;i<dimension;i++){
+        for(int j=0;j<dimension;j++){
+            lay[i][j]=0;
+        }
+    }
     layout=logic->getLayout();
     for(set<PICELEM>::iterator it=layout.begin();it!=layout.end();it++){
         int x=(*it).nRow;
         int y=(*it).nCol;
         lay[x][y]=1;
     }
+    //for(int i=0;i<dimension;i++){
+        //stringP[i].clear();
+        //for(int j=0;j<dimension;j++){
+            //stringP[i].append(QString::number(lay[i][j])+" ");
+        //}
+        //qDebug()<<stringP[i];
+    //}
     elimite=logic->canEliminate();
     while(elimite.size()>0||logic->hasEliminate()==false){
         picture=logic->getRandomDistribution();
@@ -130,7 +145,9 @@ void CGameDlg::timeOut(){
     bar->repaint();
     if(time==0){
         timer->stop();
-        //弹出界面
+        CStop* stop=new CStop(0,dimension,difficulty);
+        stop->show();
+        this->close();
     }
 }
 
@@ -171,6 +188,14 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
     x=(pos.y()-startY)/70;
     y=(pos.x()-startX)/70;
     qDebug()<<x<<" "<<y;
+    if(!((pic1.nRow==x&&pic1.nCol==y)||(pic2.nRow==x&&pic2.nCol==y))){
+        for(int i=0;i<dimension;i++){
+            for(int j=0;j<dimension;j++){
+                showPic[i][j]=0;
+            }
+        }
+    }
+    repaint();
     if(soundplay==1){
         musicplayer->PlaySound(2);
     }
@@ -194,6 +219,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
 
     }
     if(flag1==true&&flag2==true){
+        flag3=true;
         //qDebug()<<"p1:x"<<p1.nRow<<"p1:y"<<p1.nCol<<"p1:pic"<<p1.nPicNum;
         //qDebug()<<"p2:x"<<p2.nRow<<"p2:y"<<p2.nCol<<"p2:pic"<<p2.nPicNum;
         qDebug()<<"aaa";
@@ -218,10 +244,22 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
             }
             else{
                 setDelete(elimite);
-                score=score+elimite.size()*5;
+                score=score+elimite.size()*10;
                 ui->label->setText("分数："+QString::number(score));
                 if(score>=target){
-                    //让界面暂停，弹出界面
+                    msleep(100);
+                    score=score+time*5;
+                    if(soundplay==1){
+                        musicplayer->StopBgMusic();
+                    }
+                    //qDebug()<<11;
+                    qDebug()<<"difficulty"+QString::number(difficulty)+"dimension"+QString::number(dimension);
+                    CStop* stop=new CStop(1,dimension,difficulty);
+                    //qDebug()<<22;
+                    stop->show();
+                    //qDebug()<<33;
+                    this->close();
+                    //qDebug()<<44;
                 }
             }
         }
@@ -258,9 +296,6 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     }
     repaint();
     msleep(60);
-    if(soundplay==1){
-        musicplayer->PlaySound(4);
-    }
     qDebug()<<"aaa";
     int iter=0;
     for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
@@ -305,13 +340,13 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
         }
     }
     //qDebug()<<"fall";
-    for(int i=0;i<dimension;i++){
-        stringP[i].clear();
-        for(int j=0;j<dimension;j++){
-            stringP[i].append(QString::number(photo[i][j])+" ");
-        }
+    //for(int i=0;i<dimension;i++){
+        //stringP[i].clear();
+        //for(int j=0;j<dimension;j++){
+            //stringP[i].append(QString::number(photo[i][j])+" ");
+        //}
         //qDebug()<<stringP[i];
-    }
+    //}
     //qDebug()<<"logic fall";
     logic->output();
     for(int i=0;i<dimension;i++){
@@ -333,11 +368,26 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     elimite=logic->canEliminate();
     while(elimite.size()>0){
         //qDebug()<<"delete";
+        if(soundplay==1&&flag3){
+            musicplayer->PlaySound(4);
+            flag3=false;
+        }
         setDelete(elimite);
-        score=score+elimite.size()*5;
+        score=score+elimite.size()*10;
         ui->label->setText("分数："+QString::number(score));
         if(score>=target){
-            //让界面暂停
+            msleep(100);
+            if(soundplay==1){
+                musicplayer->StopBgMusic();
+            }
+            //qDebug()<<"aa";
+            qDebug()<<"difficulty"+QString::number(difficulty)+"dimension"+QString::number(dimension);
+            CStop* stop=new CStop(1,dimension,difficulty);
+            //qDebug()<<"bb";
+            stop->show();
+            //qDebug()<<"cc";
+            this->close();
+            //qDebug()<<"dd";
         }
         elimite=logic->canEliminate();
     }
@@ -397,4 +447,15 @@ void CGameDlg::on_pushButton_clicked()
         label->hide();
         ui->pushButton->setText("STOP");
     }
+}
+
+void CGameDlg::on_pushButton_3_clicked()
+{
+    score=score-50;
+    solution=logic->getHint();
+    pic1=solution.picture1;
+    pic2=solution.picture2;
+    showPic[pic1.nRow][pic1.nCol]=1;
+    showPic[pic2.nRow][pic2.nCol]=1;
+    repaint();
 }

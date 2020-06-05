@@ -19,6 +19,7 @@
 #include <cconfig.h>
 #include <cconfiglogic.h>
 #include <QLabel>
+#include <cstop.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CGameDlg; }
@@ -52,6 +53,10 @@ public:
     int number[10]={0};
     int max[10]={0};
     int* first;
+    bool flag3;
+    PICELEM pic1;
+    PICELEM pic2;
+    SOLUTION solution;
     QLabel* label;
     CMusicPlayer* musicplayer;
     BgStyle theme;
@@ -60,7 +65,7 @@ public:
     CConfigLogic* configLogic;
     QTimer* timer;
     CProgressBar* bar;
-    QString stringP[8];
+    QString stringP[10];
     set<PICELEM> layout;
     set<PICELEM> setPic;
     set<PICELEM> elimite;
@@ -84,6 +89,8 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::CGameDlg *ui;

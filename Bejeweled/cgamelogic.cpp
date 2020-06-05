@@ -91,6 +91,7 @@ set<PICELEM> CGameLogic::getLayout()
     PICELEM p;
     for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
+            qDebug()<<layout[difficulty-1][i*row+j];
             if(layout[difficulty-1][i*row+j]==1){
                 p.nRow=i;
                 p.nCol=j;

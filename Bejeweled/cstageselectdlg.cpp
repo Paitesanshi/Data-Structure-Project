@@ -30,12 +30,14 @@ void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
         //QMessageBox::critical(this,"Failure","当前所选关卡尚未解锁！",QMessageBox::Cancel);
     //}else{
         this->hide();
-        CGameDlg* gameDlg=new CGameDlg(3,10);
+        CGameDlg* gameDlg=new CGameDlg(1,6);
         gameDlg->show();
     //}
 }
 
 void CStageSelectDlg::on_pushButton_2_clicked()//取消按钮
 {
+    CBejeweledDlg* bejeweled=new CBejeweledDlg();
+    bejeweled->show();
     this->close();
 }

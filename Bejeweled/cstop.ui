@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>CStop</class>
+ <widget class="QWidget" name="CStop">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,10 +16,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>60</y>
-     <width>68</width>
-     <height>15</height>
+     <x>80</x>
+     <y>50</y>
+     <width>231</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
