@@ -49,7 +49,7 @@ public:
     int** lay;
     int bgplay;
     int soundplay;
-    int del[10][2]={0};
+    int del[10][2];
     int number[10]={0};
     int max[10]={0};
     int* first;
@@ -73,6 +73,7 @@ public:
     QList<QPixmap*> list;
     QList<PICELEM> pic;
     CGameLogic* logic;
+    CStop *nextStage;
     void changeTheme();
     void changeMusic();
     void setDelete(set<PICELEM> set);

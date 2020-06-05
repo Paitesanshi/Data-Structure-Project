@@ -6,6 +6,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     , ui(new Ui::CGameDlg)
 {
     ui->setupUi(this);
+    nextStage=new CStop(1,dimension,difficulty);
     flag1=false;
     flag2=false;
     startX=400-dimension/2.0*70;
@@ -68,6 +69,8 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     score=0;//初始分数为0
     target=(dimension-6)/2*500+difficulty*200;
     qDebug()<<target;
+    this->ui->label_2->setText("目标："+QString::number(target));
+    this->ui->label_2->setStyleSheet("background-color:white");
     time=100;//可改，通过更改time来改变,单位是秒
     bar->setValue(time);
     timer=new QTimer();
@@ -244,8 +247,8 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
             }
             else{
                 setDelete(elimite);
-                score=score+elimite.size()*10;
-                ui->label->setText("分数："+QString::number(score));
+//                score=score+elimite.size()*10;
+//                ui->label->setText("分数："+QString::number(score));
                 if(score>=target){
                     msleep(100);
                     score=score+time*5;
@@ -254,9 +257,15 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                     }
                     //qDebug()<<11;
                     qDebug()<<"difficulty"+QString::number(difficulty)+"dimension"+QString::number(dimension);
-                    CStop* stop=new CStop(1,dimension,difficulty);
+
+
                     //qDebug()<<22;
-                    stop->show();
+                    if(!this->nextStage->isVisible())
+                    {
+
+                        nextStage->show();
+                        qDebug()<<"---"<<this->nextStage->isVisible();
+                    }
                     //qDebug()<<33;
                     this->close();
                     //qDebug()<<44;
@@ -270,6 +279,8 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
 }
 
 void CGameDlg::setDelete(set<PICELEM> elimite){
+    score=score+elimite.size()*10;
+    ui->label->setText("分数："+QString::number(score));
     int column;
     for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
         if(soundplay==1){
@@ -375,20 +386,20 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
         setDelete(elimite);
         score=score+elimite.size()*10;
         ui->label->setText("分数："+QString::number(score));
-        if(score>=target){
-            msleep(100);
-            if(soundplay==1){
-                musicplayer->StopBgMusic();
-            }
-            //qDebug()<<"aa";
-            qDebug()<<"difficulty"+QString::number(difficulty)+"dimension"+QString::number(dimension);
-            CStop* stop=new CStop(1,dimension,difficulty);
-            //qDebug()<<"bb";
-            stop->show();
-            //qDebug()<<"cc";
-            this->close();
-            //qDebug()<<"dd";
-        }
+//        if(score>=target){
+//            msleep(100);
+//            if(soundplay==1){
+//                musicplayer->StopBgMusic();
+//            }
+//            //qDebug()<<"aa";
+//            qDebug()<<"difficulty"+QString::number(difficulty)+"dimension"+QString::number(dimension);
+//            CStop* stop=new CStop(1,dimension,difficulty);
+//            //qDebug()<<"bb";
+//            stop->show();
+//            //qDebug()<<"cc";
+//            this->close();
+//            //qDebug()<<"dd";
+//        }
         elimite=logic->canEliminate();
     }
     bool flag1=logic->hasEliminate();

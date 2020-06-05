@@ -48,7 +48,14 @@ typedef struct RANKINFORMATION  // 玩家积分信息
 class comp{
 public:
     bool operator()(const RANKINFOR &s1,const RANKINFOR &s2){
-        if(s1.level==s2.level) return s1.finalGrade>s2.finalGrade;
+        if(s1.level==s2.level)
+        {
+            if(s1.finalGrade==s2.finalGrade)
+            {
+                return s1.strName<s2.strName;
+            }
+            return s1.finalGrade>s2.finalGrade;
+        }
         return s1.level>s2.level;
     }
 };
