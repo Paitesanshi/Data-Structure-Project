@@ -7,7 +7,7 @@ CRankLogic::CRankLogic()
     player.strPass="";
 }
 
-RANKINFOR CRankLogic::getPlayer() const
+RANKINFOR& CRankLogic::getPlayer()
 {
     return player;
 }

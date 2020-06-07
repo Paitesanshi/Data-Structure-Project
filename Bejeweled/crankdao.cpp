@@ -12,12 +12,14 @@ CRankDao::CRankDao()
         query.exec("select * from bejeweled.ranks ORDER BY level desc,finalGrade DESC");
         while (query.next()&&users.size()<10) {
             qDebug()<<query.value(0)<<" "<<query.value(1)<<" "<<query.value(2)<<query.value(3);
-            QByteArray ba = query.value(0).toString().toUtf8();
+          //  QByteArray ba = query.value(0).toString().toUtf8();
             RANKINFOR tem;
-            tem.strName=ba.data();
+            //tem.strName=ba.data();
+            tem.strName=query.value(0).toString();
             qDebug()<<"1111  "<<tem.strName<<endl;
-            ba = query.value(1).toString().toUtf8();
-            tem.strPass=ba.data();
+         //   ba = query.value(1).toString().toUtf8();
+          //  tem.strPass=ba.data();
+            tem.strPass=query.value(1).toString();
             tem.level=query.value(2).toInt();
             //strcpy(tem.strName,ba.data());
             tem.finalGrade=query.value(3).toInt();
@@ -25,9 +27,6 @@ CRankDao::CRankDao()
             tem.nRank=users.size()+1;
             for(int i=1;i<=9;++i)
                 tem.nGrade[i]=query.value(4+i).toInt();
-            tem.strName="PTSS";
-            tem.level=9;
-            tem.finalGrade=99;
             users.insert(tem);
         }
 

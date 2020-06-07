@@ -7,6 +7,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
 {
     ui->setupUi(this);
     nextStage=new CStop(1,dimension,difficulty);
+    this->rank=CRankLogic::getInstance();
     flag1=false;
     flag2=false;
     startX=400-dimension/2.0*70;
@@ -150,6 +151,24 @@ void CGameDlg::timeOut(){
         timer->stop();
         CStop* stop=new CStop(0,dimension,difficulty);
         stop->show();
+        bool up=false;
+        int stage=(dimension-6)/2*3+difficulty;
+        if(stage==this->rank->getPlayer().level)
+        {
+            if(score>this->rank->getPlayer().finalGrade)
+            {
+                this->rank->getPlayer().finalGrade=score;
+                this->rank->getPlayer().nTime=time;
+                up=true;
+            }
+
+        }
+        if(score>this->rank->getPlayer().nGrade[stage])
+        {
+            this->rank->getPlayer().nGrade[stage]=score;
+            up=true;
+        }
+        if(up)rank->addUser(this->rank->getPlayer());
         this->close();
     }
 }
@@ -264,7 +283,22 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                     {
 
                         nextStage->show();
-                        qDebug()<<"---"<<this->nextStage->isVisible();
+                        bool up=false;
+                        int stage=(dimension-6)/2*3+difficulty;
+                        if(stage==this->rank->getPlayer().level)
+                        {
+                            this->rank->getPlayer().level++;
+                            this->rank->getPlayer().finalGrade=0;
+                            this->rank->getPlayer().nTime=0;
+                            up=true;
+                        }
+                        if(score>this->rank->getPlayer().nGrade[stage])
+                        {
+                            this->rank->getPlayer().nGrade[stage]=score;
+                            up=true;
+                        }
+                        if(up)rank->addUser(this->rank->getPlayer());
+                        //qDebug()<<"---"<<this->nextStage->isVisible();
                     }
                     //qDebug()<<33;
                     this->close();

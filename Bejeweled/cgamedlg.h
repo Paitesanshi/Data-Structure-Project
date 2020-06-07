@@ -19,6 +19,7 @@
 #include <cconfig.h>
 #include <cconfiglogic.h>
 #include <QLabel>
+#include <cranklogic.h>
 #include <cstop.h>
 
 QT_BEGIN_NAMESPACE
@@ -74,6 +75,7 @@ public:
     QList<PICELEM> pic;
     CGameLogic* logic;
     CStop *nextStage;
+    CRankLogic *rank;
     void changeTheme();
     void changeMusic();
     void setDelete(set<PICELEM> set);
