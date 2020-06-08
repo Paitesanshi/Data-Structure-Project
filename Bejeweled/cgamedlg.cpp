@@ -279,6 +279,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
 
 
                     //qDebug()<<22;
+
                     if(!this->nextStage->isVisible())
                     {
 
@@ -300,6 +301,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                         if(up)rank->addUser(this->rank->getPlayer());
                         //qDebug()<<"---"<<this->nextStage->isVisible();
                     }
+
                     //qDebug()<<33;
                     this->close();
                     //qDebug()<<44;

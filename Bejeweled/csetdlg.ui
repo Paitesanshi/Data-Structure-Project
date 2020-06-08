@@ -206,34 +206,75 @@
       <string>自定义</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QGroupBox" name="groupBox_3">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>190</y>
-       <width>191</width>
-       <height>21</height>
+       <x>20</x>
+       <y>110</y>
+       <width>501</width>
+       <height>191</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>190</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
+     <property name="title">
+      <string>主题选择</string>
      </property>
-     <property name="font">
-      <font>
-       <family>AcadEref</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>主题选择：</string>
-     </property>
+     <widget class="QRadioButton" name="theme1SelectBtn">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>AcadEref</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>宝石迷阵</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="theme2SelectBtn">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>30</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>AcadEref</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>动物世界</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="theme3SelectBtn">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>30</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>AcadEref</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>水果乐园</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

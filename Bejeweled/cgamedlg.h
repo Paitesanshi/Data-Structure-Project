@@ -20,7 +20,8 @@
 #include <cconfiglogic.h>
 #include <QLabel>
 #include <cranklogic.h>
-#include <cstop.h>
+#include "cstop.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CGameDlg; }

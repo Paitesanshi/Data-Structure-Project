@@ -17,6 +17,7 @@ class CStop:public QWidget
 public:
     int dimension;
     int difficulty;
+    //CGameDlg* stop;
     CStop(int success,int dimension,int difficulty,QWidget *parent = nullptr);
 
 private slots:
