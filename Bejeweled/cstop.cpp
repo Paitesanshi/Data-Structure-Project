@@ -7,6 +7,7 @@ CStop::CStop(int success,int dimension,int difficulty,QWidget *parent) :
 {
     ui->setupUi(this);
     //qDebug()<<1;
+    //this->stop=widget;
     this->dimension=dimension;
     this->difficulty=difficulty;
     //qDebug()<<2;
@@ -40,12 +41,14 @@ void CStop::on_pushButton_clicked()
             QMessageBox::critical(this,"SUCCESS","您已闯关成功！恭喜！",QMessageBox::Cancel);
         }
     }
+    //stop->close();
     this->close();
 }
 
 void CStop::on_pushButton_2_clicked()
 {
     CGameDlg* game=new CGameDlg(difficulty,dimension);
+    //stop->close();
     game->show();
     this->close();
 }
@@ -54,5 +57,6 @@ void CStop::on_pushButton_3_clicked()
 {
     CBejeweledDlg* bejeweled=new CBejeweledDlg();
     bejeweled->show();
+    //stop->close();
     this->close();
 }

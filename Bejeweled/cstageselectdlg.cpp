@@ -36,6 +36,7 @@ void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
         qDebug()<<stage;
 
          CGameDlg* gameDlg=new CGameDlg(stage%3+1,6+stage/3*2);
+        //CGameDlg* gameDlg=new CGameDlg(1,6);
         gameDlg->show();
     }
 //    this->hide();

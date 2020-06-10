@@ -75,6 +75,9 @@ public:
     bool hasEliminate();  //是否存在能够交换消除的宝石
     SOLUTION getHint();  //获得提示
     set<PICELEM> canEliminate(); //当前布局有没有可消除的宝石
+    PICELEM eliminateOne(PICELEM p);
+    set<PICELEM> eliminateRow(int r);
+    set<PICELEM> eliminateCol(int c);
 };
 
 #endif // CGAMELOGIC_H

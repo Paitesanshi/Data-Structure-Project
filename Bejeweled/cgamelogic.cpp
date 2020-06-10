@@ -281,6 +281,65 @@ set<PICELEM> CGameLogic::canEliminate(){
     return eliminateSet;
 }
 
+PICELEM CGameLogic::eliminateOne(PICELEM p)
+{
+    for(int i=p.nRow;i>0;i--){
+        distribute[i][p.nCol]=distribute[i-1][p.nCol];
+    }
+    srand((int)time(0));
+    distribute[0][p.nCol]=rand() % kinds + 1;
+    PICELEM p1;
+    p1.nRow=0;
+    p1.nCol=p.nCol;
+    p1.nPicNum=distribute[0][p.nCol];
+
+    solutions.clear();
+    eliminateSet.clear();
+    getAllSolutions();
+    return p1;
+}
+
+set<PICELEM> CGameLogic::eliminateRow(int r)
+{
+    set<PICELEM> s;
+    PICELEM p;
+    srand((int)time(0));
+    for(int i=0;i<col;i++){
+        for(int j=r;j>0;j--)
+            distribute[j][i]=distribute[j-1][i];
+        distribute[0][i]=rand() % kinds + 1;
+        p.nRow=0;
+        p.nCol=i;
+        p.nPicNum=distribute[0][i];
+        s.insert(p);
+    }
+
+    solutions.clear();
+    eliminateSet.clear();
+    getAllSolutions();
+    return s;
+
+}
+
+set<PICELEM> CGameLogic::eliminateCol(int c)
+{
+    set<PICELEM> s;
+    PICELEM p;
+    srand((int)time(0));
+    for(int i=0;i<row;i++){
+        distribute[i][c]=rand() % kinds + 1;
+        p.nRow=i;
+        p.nCol=c;
+        p.nPicNum=distribute[i][c];
+        s.insert(p);
+    }
+
+    solutions.clear();
+    eliminateSet.clear();
+    getAllSolutions();
+    return s;
+}
+
 bool CGameLogic::hasEliminate()
 {
     if (solutions.size()>0)

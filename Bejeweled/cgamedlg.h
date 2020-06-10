@@ -35,6 +35,9 @@ public:
     int target;
     int time;
     int difficulty;
+    int tool1;
+    int tool2;
+    int tool3;
     PICELEM p1;
     PICELEM p2;
     bool flag1;
@@ -54,9 +57,16 @@ public:
     int max[10]={0};
     int* first;
     bool flag3;
+    bool flag4;
+    bool flag5;
+    bool flag6;
+    bool flag7;
+    bool flag8;
+    bool flag9;
     PICELEM pic1;
     PICELEM pic2;
     SOLUTION solution;
+    QLabel* label1;
     QLabel* label;
     CMusicPlayer* musicplayer;
     BgStyle theme;
@@ -73,7 +83,6 @@ public:
     QList<QPixmap*> list;
     QList<PICELEM> pic;
     CGameLogic* logic;
-    CStop *nextStage;
     void changeTheme();
     void changeMusic();
     void setDelete(set<PICELEM> set);
@@ -83,15 +92,19 @@ public:
 
 protected:
     void mousePressEvent(QMouseEvent *ev) override;
+    void mouseMoveEvent(QMouseEvent *ev) override;
     void paintEvent(QPaintEvent* event) override;
 
 public slots:
     void timeOut();
 
 private slots:
-    void on_pushButton_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::CGameDlg *ui;
