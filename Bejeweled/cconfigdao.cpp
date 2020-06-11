@@ -13,9 +13,9 @@ CConfig* CConfigDao::ReadConFile(){
     config = new CConfig();
     QSettings *configFile = new QSettings("./config.ini", QSettings::IniFormat);
     QFileInfo *file = new QFileInfo(configFile->fileName());
-    qDebug()<<55;
+    //qDebug()<<55;
     if(!file->isFile()){
-        qDebug()<<66;
+        //qDebug()<<66;
         WriteConFile(config);
     }
     config->Set_Picture_Style(configFile->value("/Picture/Style").toInt());
@@ -63,7 +63,7 @@ void CConfigDao::WriteConFile(CConfig *config){
     BgStyle style = config->Get_Picture_Style();
 
     QSettings *configFile = new QSettings("./config.ini", QSettings::IniFormat);
-    qDebug()<<11;
+    //qDebug()<<11;
     configFile->setValue("/Picture/Style", QString::number(config->Get_PictureStyle()));
     configFile->setValue("/Picture/BgPic", style.picture_BgPic);
     configFile->setValue("/Picture/Element1", style.picture_Element[0]);

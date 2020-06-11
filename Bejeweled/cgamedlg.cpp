@@ -5,7 +5,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CGameDlg)
 {
-    qDebug()<<"---------"<<QDir::currentPath()<<endl;
+    //qDebug()<<"---------"<<QDir::currentPath()<<endl;
     ui->setupUi(this);
     //nextStage=new CStop(1,dimension,difficulty);
     this->rank=CRankLogic::getInstance();
@@ -76,7 +76,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     //bar->setRange(0,100);
     score=0;//初始分数为0
     target=(dimension-6)/2*500+difficulty*200;
-    qDebug()<<target;
+    //qDebug()<<target;
     this->ui->label_2->setText("目标："+QString::number(target));
     this->ui->label_2->setStyleSheet("background-color:white");
 
@@ -372,7 +372,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
         this->close();
     }
     else{
-        qDebug()<<x<<" "<<y;
+        //qDebug()<<x<<" "<<y;
         if(x>=0&&x<dimension&&y>=0&&y<dimension){
             if(flag4){
                 this->setMouseTracking(false);
@@ -412,7 +412,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                 setDelete(elimite);
             }
             else{
-                qDebug()<<"normal";
+                //qDebug()<<"normal";
                 if(!((pic1.nRow==x&&pic1.nCol==y)||(pic2.nRow==x&&pic2.nCol==y))){
                     for(int i=0;i<dimension;i++){
                         for(int j=0;j<dimension;j++){
@@ -447,12 +447,12 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                     flag3=true;
                     //qDebug()<<"p1:x"<<p1.nRow<<"p1:y"<<p1.nCol<<"p1:pic"<<p1.nPicNum;
                     //qDebug()<<"p2:x"<<p2.nRow<<"p2:y"<<p2.nCol<<"p2:pic"<<p2.nPicNum;
-                    qDebug()<<"aaa";
+                    //qDebug()<<"aaa";
                     bool flag=logic->isAdjacent(p1,p2);
-                    qDebug()<<flag;
+                    //qDebug()<<flag;
                     if(flag){
                         elimite=logic->canSwop();
-                        qDebug()<<elimite.size();
+                        //qDebug()<<elimite.size();
                         //qDebug()<<elimite.size();
                         photo[p1.nRow][p1.nCol]=p2.nPicNum;
                         photo[p2.nRow][p2.nCol]=p1.nPicNum;
@@ -500,7 +500,7 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                                 {
 
                                     nextStage->show();
-                                    qDebug()<<"---"<<nextStage->isVisible();
+                                    //qDebug()<<"---"<<nextStage->isVisible();
                                 }
                                 //qDebug()<<33;
                                 this->close();
@@ -554,7 +554,7 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     }
     repaint();
     msleep(60);
-    qDebug()<<"aaa";
+    //qDebug()<<"aaa";
     int iter=0;
     for(set<PICELEM>::iterator it=elimite.begin();it!=elimite.end();it++){
          //delLength++;
@@ -568,7 +568,7 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     }
 
     for(int i=0;i<dimension;i++){
-        qDebug()<<number[i];
+        //qDebug()<<number[i];
         for(int j=0;j<dimension;j++){
             if(lay[j][i]==0){
                 continue;
@@ -645,7 +645,7 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     pic.clear();
     for(int i=0;i<dimension;i++){
         for(int j=0;j<dimension;j++){
-            qDebug()<<"gg";
+            //qDebug()<<"gg";
             if(picture[i][j]!=photo[i][j]){
                 photo[i][j]=picture[i][j];
                 repaint();

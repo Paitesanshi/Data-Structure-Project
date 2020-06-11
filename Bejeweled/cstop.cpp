@@ -28,12 +28,12 @@ CStop::CStop(int success,int dimension,int difficulty,QWidget *parent) :
 void CStop::on_pushButton_clicked()
 {
     if(difficulty<=2){
-        qDebug()<<1;
+        //qDebug()<<1;
         CGameDlg* game=new CGameDlg(difficulty+1,dimension);
         game->show();
     }
     else{
-        qDebug()<<2;
+        //qDebug()<<2;
         if(dimension<=8){
             CGameDlg* game=new CGameDlg(1,dimension+2);
             game->show();

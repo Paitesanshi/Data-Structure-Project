@@ -19,11 +19,7 @@ CRankDlg::CRankDlg(QWidget *parent) :
     set<RANKINFOR,comp> ranks = logic->getRank();//获得排名信息
 
     /*如果排名信息非空，则填入表中*/
-    qDebug()<<"-------------"<<ranks.size();
-    for(auto &item: ranks)
-    {
-        qDebug()<<item.strName;
-    }
+    //qDebug()<<"-------------"<<ranks.size();
     if(!ranks.empty()){
         set<RANKINFOR,comp>::iterator it=ranks.begin();
         if(ranks.size()>10){

@@ -11,12 +11,12 @@ CRankDao::CRankDao()
         //query.exec("insert into bejeweled.ranks values('PTSS',0,0)");
         query.exec("select * from bejeweled.ranks ORDER BY level desc,finalGrade DESC");
         while (query.next()&&users.size()<10) {
-            qDebug()<<query.value(0)<<" "<<query.value(1)<<" "<<query.value(2)<<query.value(3);
+            //qDebug()<<query.value(0)<<" "<<query.value(1)<<" "<<query.value(2)<<query.value(3);
           //  QByteArray ba = query.value(0).toString().toUtf8();
             RANKINFOR tem;
             //tem.strName=ba.data();
             tem.strName=query.value(0).toString();
-            qDebug()<<"1111  "<<tem.strName<<endl;
+            //qDebug()<<"1111  "<<tem.strName<<endl;
          //   ba = query.value(1).toString().toUtf8();
           //  tem.strPass=ba.data();
             tem.strPass=query.value(1).toString();
@@ -38,7 +38,7 @@ set<RANKINFOR,comp> CRankDao::getUsers()
 {
     for(auto &item: users)
     {
-        qDebug()<<"gggg "<<item.strName;
+        //qDebug()<<"gggg "<<item.strName;
     }
     return users;
 }
@@ -118,7 +118,7 @@ int CRankDao::loginCheck(QString name, QString password,RANKINFOR &tem)
 }
 
 bool CRankDao::userRegister(QString name, QString password)
-{qDebug()<<name<<password;
+{//qDebug()<<name<<password;
     QSqlQuery query(db);
     QString str=QString("select * from bejeweled.ranks where name='%1'").arg(name);
     query.exec(str);
@@ -126,7 +126,7 @@ bool CRankDao::userRegister(QString name, QString password)
     {
         return false;
     }
-    qDebug()<<name<<password;
+    //qDebug()<<name<<password;
     str=QString("insert into bejeweled.ranks values('%1','%2',1,0,0,0,0,0,0,0,0,0,0,0)").arg(name).arg(password);
     query.exec(str);
     return true;

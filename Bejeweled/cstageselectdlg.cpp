@@ -53,7 +53,7 @@ int CStageSelectDlg::getButtonIndex(){
 void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
 {
     int stage = getButtonIndex();
-    qDebug()<<logic->getPlayer().level<<endl;
+    //qDebug()<<logic->getPlayer().level<<endl;
     logic->getPlayer().level=999;
     if(stage>logic->getPlayer().level/*条件判断：读取用户信息，仅开放已解锁关卡*/){
         QMessageBox::critical(this,"Failure","当前所选关卡尚未解锁！",QMessageBox::Cancel);
@@ -62,7 +62,7 @@ void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
         //CGameDlg* gameDlg=new CGameDlg(1,6);
         int stage,cnt;
         stage=getButtonIndex();
-        qDebug()<<stage;
+        //qDebug()<<stage;
         int kk,dd;
         if(stage%3==0)kk=3;
         else kk=stage%3;
