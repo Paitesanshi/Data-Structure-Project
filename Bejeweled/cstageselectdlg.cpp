@@ -54,7 +54,7 @@ void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
 {
     int stage = getButtonIndex();
     qDebug()<<logic->getPlayer().level<<endl;
-    //logic->getPlayer().level=999;
+    logic->getPlayer().level=999;
     if(stage>logic->getPlayer().level/*条件判断：读取用户信息，仅开放已解锁关卡*/){
         QMessageBox::critical(this,"Failure","当前所选关卡尚未解锁！",QMessageBox::Cancel);
     }else{
@@ -91,6 +91,12 @@ void CStageSelectDlg::paintEvent(QPaintEvent *)
     pix.load(":/img/shiny rocks.png");
     painter.drawPixmap(0,0,this->width(),this->height(),pix);
 
+    QPixmap title;
+    title.load(":/img/stageSelectTitle.png");
+    painter.drawPixmap(200,30,200,50,title);
+
+
+/*
     QPixmap button;
     button.load(":/img/Button.png");
 
@@ -103,45 +109,46 @@ void CStageSelectDlg::paintEvent(QPaintEvent *)
     painter.drawPixmap(ui->radioButton_7->pos().x()-10,ui->radioButton_7->pos().y(),ui->radioButton_7->width(),ui->radioButton_7->height(),button);
     painter.drawPixmap(ui->radioButton_8->pos().x()-10,ui->radioButton_8->pos().y(),ui->radioButton_8->width(),ui->radioButton_8->height(),button);
     painter.drawPixmap(ui->radioButton_9->pos().x()-10,ui->radioButton_9->pos().y(),ui->radioButton_9->width(),ui->radioButton_9->height(),button);
+*/
 
-    drawIndex = getButtonIndex();
-    QPixmap stageimg;
-    if(drawIndex==1){
-        stageimg.load(":/img/stage1.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==2){
-        stageimg.load(":/img/stage2.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==3){
-        stageimg.load(":/img/stage3.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==4){
-        stageimg.load(":/img/stage4.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==5){
-        stageimg.load(":/img/stage5.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==6){
-        stageimg.load(":/img/stage6.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==7){
-        stageimg.load(":/img/stage7.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==8){
-        stageimg.load(":/img/stage8.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
-    if(drawIndex==9){
-        stageimg.load(":/img/stage9.png");
-        painter.drawPixmap(ui->radioButton_3->pos().x()+100,ui->radioButton_3->pos().y(),200,200,stageimg);
-    }
+
+    QPixmap stageimg[9];
+
+    stageimg[0].load(":/img/stage1.png");
+    painter.drawPixmap(ui->radioButton->pos().x()-20,ui->radioButton->pos().y()-20,130,130,stageimg[0]);
+
+
+    stageimg[1].load(":/img/stage2.png");
+    painter.drawPixmap(ui->radioButton_2->pos().x()-20,ui->radioButton_2->pos().y()-20,130,130,stageimg[1]);
+
+
+    stageimg[2].load(":/img/stage3.png");
+    painter.drawPixmap(ui->radioButton_3->pos().x()-20,ui->radioButton_3->pos().y()-20,130,130,stageimg[2]);
+
+
+    stageimg[3].load(":/img/stage4.png");
+    painter.drawPixmap(ui->radioButton_4->pos().x()-20,ui->radioButton_4->pos().y()-20,130,130,stageimg[3]);
+
+
+    stageimg[4].load(":/img/stage5.png");
+    painter.drawPixmap(ui->radioButton_5->pos().x()-20,ui->radioButton_5->pos().y()-20,130,130,stageimg[4]);
+
+
+    stageimg[5].load(":/img/stage6.png");
+    painter.drawPixmap(ui->radioButton_6->pos().x()-20,ui->radioButton_6->pos().y()-20,130,130,stageimg[5]);
+
+
+    stageimg[6].load(":/img/stage7.png");
+    painter.drawPixmap(ui->radioButton_7->pos().x()-20,ui->radioButton_7->pos().y()-20,130,130,stageimg[6]);
+
+
+    stageimg[7].load(":/img/stage8.png");
+    painter.drawPixmap(ui->radioButton_8->pos().x()-20,ui->radioButton_8->pos().y()-20,130,130,stageimg[7]);
+
+
+    stageimg[8].load(":/img/stage9.png");
+    painter.drawPixmap(ui->radioButton_9->pos().x()-20,ui->radioButton_9->pos().y()-20,130,130,stageimg[8]);
+
 }
 
 void CStageSelectDlg::on_radioButton_clicked()
