@@ -5,6 +5,7 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CGameDlg)
 {
+    qDebug()<<"---------"<<QDir::currentPath()<<endl;
     ui->setupUi(this);
     //nextStage=new CStop(1,dimension,difficulty);
     this->rank=CRankLogic::getInstance();
@@ -222,8 +223,9 @@ void CGameDlg::timeOut(){
     bar->setValue(time);
     bar->repaint();
     if(time==0){
+
         timer->stop();
-        CStop* stop=new CStop(0,dimension,difficulty,this);
+        CStop* stop=new CStop(0,dimension,difficulty);
         stop->show();
         bool up=false;
         int stage=(dimension-6)/2*3+difficulty;
@@ -618,7 +620,7 @@ void CGameDlg::setDelete(set<PICELEM> elimite){
     }
     for(int i=0;i<dimension;i++){
         if(number[i]!=0){
-            for(int k=0,l=number[i]-1;k<number[i];k++,l--){
+            for(int k=0,l=first[i]+number[i]-1;k<number[i];k++,l--){
                 for(int j=max[i]-1;j>=first[i]+1;j--){
                     photo[j][i]=photo[j-1][i];
                 }
@@ -733,7 +735,7 @@ void CGameDlg::on_pushButton_2_clicked()
     if(tool1==0){
         ui->pushButton_2->setEnabled(false);
     }
-    ui->pushButton_4->setText("可使用数量："+QString::number(tool1));
+    ui->pushButton_2->setText("可使用数量："+QString::number(tool1));
 }
 
 void CGameDlg::on_pushButton_4_clicked()
@@ -773,5 +775,5 @@ void CGameDlg::on_pushButton_5_clicked()
     if(tool3==0){
         ui->pushButton_5->setEnabled(false);
     }
-    ui->pushButton_4->setText("可使用数量："+QString::number(tool3));
+    ui->pushButton_5->setText("可使用数量："+QString::number(tool3));
 }

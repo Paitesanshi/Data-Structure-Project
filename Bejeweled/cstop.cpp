@@ -20,6 +20,7 @@ CStop::CStop(int success,int dimension,int difficulty,QWidget *parent) :
         //qDebug()<<4;
         ui->label->setText("很遗憾，闯关失败");
         ui->pushButton->setEnabled(false);
+        qDebug()<<"zzz";
     }
     //qDebug()<<5;
 }

@@ -1,5 +1,5 @@
 #include "cconfig.h"
-
+#include <QDebug>
 CConfig::CConfig()
 {
     picture_Style = 0; // 初始化主题为主题1
@@ -16,6 +16,7 @@ CConfig::CConfig()
             style[i].picture_Element[k].append(QString::number(j));
             style[i].picture_Element[k].append(".png");
             k++;
+            qDebug()<< style[i].picture_Element[k]<<endl;
         }
 
         // 掩码初始化待修改 目前三套主题掩码图片相同 确认后再修改

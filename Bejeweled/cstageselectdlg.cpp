@@ -63,8 +63,11 @@ void CStageSelectDlg::on_pushButton_clicked()//进入游戏按钮
         int stage,cnt;
         stage=getButtonIndex();
         qDebug()<<stage;
-
-         CGameDlg* gameDlg=new CGameDlg(stage%3+1,6+stage/3*2);
+        int kk,dd;
+        if(stage%3==0)kk=3;
+        else kk=stage%3;
+        dd=6+(stage-1)/3*2;
+         CGameDlg* gameDlg=new CGameDlg(kk,dd);
         //CGameDlg* gameDlg=new CGameDlg(1,6);
         gameDlg->show();
     }

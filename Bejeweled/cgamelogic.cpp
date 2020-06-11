@@ -283,15 +283,22 @@ set<PICELEM> CGameLogic::canEliminate(){
 
 PICELEM CGameLogic::eliminateOne(PICELEM p)
 {
-    for(int i=p.nRow;i>0;i--){
-        distribute[i][p.nCol]=distribute[i-1][p.nCol];
+    int i=p.nRow;
+    while(i>0){
+        if(distribute[i-1][p.nCol]!=0){
+            distribute[i][p.nCol]=distribute[i-1][p.nCol];
+            i--;
+        }
+        else
+            break;
     }
+
     srand((int)time(0));
-    distribute[0][p.nCol]=rand() % kinds + 1;
+    distribute[i][p.nCol]=rand() % kinds + 1;
     PICELEM p1;
-    p1.nRow=0;
+    p1.nRow=i;
     p1.nCol=p.nCol;
-    p1.nPicNum=distribute[0][p.nCol];
+    p1.nPicNum=distribute[i][p.nCol];
 
     solutions.clear();
     eliminateSet.clear();
@@ -305,12 +312,23 @@ set<PICELEM> CGameLogic::eliminateRow(int r)
     PICELEM p;
     srand((int)time(0));
     for(int i=0;i<col;i++){
-        for(int j=r;j>0;j--)
-            distribute[j][i]=distribute[j-1][i];
-        distribute[0][i]=rand() % kinds + 1;
-        p.nRow=0;
+        int j=r;
+        if(distribute[j][i]==0)
+            continue;
+
+        while(j>0){
+            if(distribute[j-1][i]!=0){
+                distribute[j][i]=distribute[j-1][i];
+                j--;
+            }
+            else
+                break;
+        }
+
+        distribute[j][i]=rand() % kinds + 1;
+        p.nRow=j;
         p.nCol=i;
-        p.nPicNum=distribute[0][i];
+        p.nPicNum=distribute[j][i];
         s.insert(p);
     }
 
@@ -326,12 +344,21 @@ set<PICELEM> CGameLogic::eliminateCol(int c)
     set<PICELEM> s;
     PICELEM p;
     srand((int)time(0));
-    for(int i=0;i<row;i++){
-        distribute[i][c]=rand() % kinds + 1;
-        p.nRow=i;
-        p.nCol=c;
-        p.nPicNum=distribute[i][c];
-        s.insert(p);
+    int i=0;
+    while(distribute[i][c]==0)
+        i++;
+
+    while(i<row){
+        if(distribute[i][c]!=0){
+            distribute[i][c]=rand() % kinds + 1;
+            p.nRow=i;
+            p.nCol=c;
+            p.nPicNum=distribute[i][c];
+            s.insert(p);
+            i++;
+        }else
+            break;
+
     }
 
     solutions.clear();

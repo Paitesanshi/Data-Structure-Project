@@ -17,7 +17,7 @@ CSetDlg::CSetDlg(QWidget *parent) :
     ui->pushButton_3->setDisabled(true);
 
     //绘图变量：是否绘出主题按钮
-    paintButton=0;
+    paintButton=1;
 
     //主题选择
     //默认状态主题选择不可用
@@ -25,7 +25,7 @@ CSetDlg::CSetDlg(QWidget *parent) :
     ui->theme2SelectBtn->setDisabled(true);
     ui->theme3SelectBtn->setDisabled(true);
 
-    ui->tabWidget->setStyleSheet("QTabWidget:pane{border: 1px solid black; top: -1px;background: transparent;}QTabBar::tab{height:50px; margin-right: 2px; margin-bottom:-2px;}");
+    ui->tabWidget->setStyleSheet("QTabWidget:pane{border: 1px solid black; top: -1px;background: transparent;}");
 }
 
 CSetDlg::~CSetDlg()
@@ -128,9 +128,9 @@ void CSetDlg::paintEvent(QPaintEvent *)
     button.load(":/img/Button.png");
 
     if(paintButton==1){
-        painter.drawPixmap(ui->theme1SelectBtn->pos().x()+30,ui->theme1SelectBtn->pos().y()+170,ui->theme1SelectBtn->width()+15,ui->theme1SelectBtn->height(),button);
-        painter.drawPixmap(ui->theme2SelectBtn->pos().x()+30,ui->theme2SelectBtn->pos().y()+170,ui->theme2SelectBtn->width()+15,ui->theme2SelectBtn->height(),button);
-        painter.drawPixmap(ui->theme3SelectBtn->pos().x()+30,ui->theme3SelectBtn->pos().y()+170,ui->theme3SelectBtn->width()+15,ui->theme3SelectBtn->height(),button);
+        painter.drawPixmap(ui->theme1SelectBtn->pos().x()+30,ui->theme1SelectBtn->pos().y()+150,ui->theme1SelectBtn->width()+15,ui->theme1SelectBtn->height(),button);
+        painter.drawPixmap(ui->theme2SelectBtn->pos().x()+30,ui->theme2SelectBtn->pos().y()+150,ui->theme2SelectBtn->width()+15,ui->theme2SelectBtn->height(),button);
+        painter.drawPixmap(ui->theme3SelectBtn->pos().x()+30,ui->theme3SelectBtn->pos().y()+150,ui->theme3SelectBtn->width()+15,ui->theme3SelectBtn->height(),button);
     }
 }
 
