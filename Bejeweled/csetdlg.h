@@ -20,6 +20,9 @@ public:
     explicit CSetDlg(QWidget *parent = nullptr);
     ~CSetDlg();
     struct Settings getSettings();
+    void paintEvent(QPaintEvent *);
+    int getTheme();
+    int paintButton;
 
 private slots:
     void on_pushButton_3_clicked();
@@ -34,6 +37,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_clicked();
+
+    void on_tabWidget_tabBarClicked(int index);
 
 private:
     Ui::CSetDlg *ui;

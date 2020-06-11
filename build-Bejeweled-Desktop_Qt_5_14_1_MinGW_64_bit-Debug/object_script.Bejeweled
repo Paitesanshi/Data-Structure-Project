@@ -20,6 +20,7 @@ capptool.o
 cconfigdao.o
 cmusicplayer.o
 cranklogic.o
+qrc_res.o
 moc_cbejeweleddlg.o
 moc_cgamedlg.o
 moc_chelpdlg.o

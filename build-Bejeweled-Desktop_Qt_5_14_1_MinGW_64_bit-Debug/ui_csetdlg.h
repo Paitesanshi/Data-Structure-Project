@@ -12,9 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -39,8 +37,10 @@ public:
     QWidget *theme;
     QRadioButton *radioButton_3;
     QRadioButton *radioButton_4;
-    QComboBox *comboBox;
-    QLabel *label;
+    QGroupBox *groupBox_3;
+    QRadioButton *theme1SelectBtn;
+    QRadioButton *theme2SelectBtn;
+    QRadioButton *theme3SelectBtn;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
 
@@ -101,28 +101,33 @@ public:
         radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
         radioButton_4->setGeometry(QRect(320, 70, 89, 16));
         radioButton_4->setFont(font);
-        comboBox = new QComboBox(theme);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(220, 190, 191, 21));
-        label = new QLabel(theme);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(110, 190, 81, 21));
+        groupBox_3 = new QGroupBox(theme);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(20, 110, 501, 191));
+        theme1SelectBtn = new QRadioButton(groupBox_3);
+        theme1SelectBtn->setObjectName(QString::fromUtf8("theme1SelectBtn"));
+        theme1SelectBtn->setGeometry(QRect(30, 30, 101, 41));
         QFont font1;
         font1.setFamily(QString::fromUtf8("AcadEref"));
-        font1.setPointSize(12);
-        label->setFont(font1);
+        font1.setPointSize(14);
+        theme1SelectBtn->setFont(font1);
+        theme2SelectBtn = new QRadioButton(groupBox_3);
+        theme2SelectBtn->setObjectName(QString::fromUtf8("theme2SelectBtn"));
+        theme2SelectBtn->setGeometry(QRect(190, 30, 101, 41));
+        theme2SelectBtn->setFont(font1);
+        theme3SelectBtn = new QRadioButton(groupBox_3);
+        theme3SelectBtn->setObjectName(QString::fromUtf8("theme3SelectBtn"));
+        theme3SelectBtn->setGeometry(QRect(360, 30, 101, 41));
+        theme3SelectBtn->setFont(font1);
         tabWidget->addTab(theme, QString());
         pushButton = new QPushButton(CSetDlg);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(70, 370, 131, 41));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("AcadEref"));
-        font2.setPointSize(14);
-        pushButton->setFont(font2);
+        pushButton->setFont(font1);
         pushButton_2 = new QPushButton(CSetDlg);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(360, 370, 131, 41));
-        pushButton_2->setFont(font2);
+        pushButton_2->setFont(font1);
 
         retranslateUi(CSetDlg);
 
@@ -145,7 +150,10 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(sound), QCoreApplication::translate("CSetDlg", "\351\237\263\346\225\210\350\256\276\347\275\256", nullptr));
         radioButton_3->setText(QCoreApplication::translate("CSetDlg", "\351\273\230\350\256\244", nullptr));
         radioButton_4->setText(QCoreApplication::translate("CSetDlg", "\350\207\252\345\256\232\344\271\211", nullptr));
-        label->setText(QCoreApplication::translate("CSetDlg", "\344\270\273\351\242\230\351\200\211\346\213\251\357\274\232", nullptr));
+        groupBox_3->setTitle(QCoreApplication::translate("CSetDlg", "\344\270\273\351\242\230\351\200\211\346\213\251", nullptr));
+        theme1SelectBtn->setText(QCoreApplication::translate("CSetDlg", "\345\256\235\347\237\263\350\277\267\351\230\265", nullptr));
+        theme2SelectBtn->setText(QCoreApplication::translate("CSetDlg", "\345\212\250\347\211\251\344\270\226\347\225\214", nullptr));
+        theme3SelectBtn->setText(QCoreApplication::translate("CSetDlg", "\346\260\264\346\236\234\344\271\220\345\233\255", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(theme), QCoreApplication::translate("CSetDlg", "\344\270\273\351\242\230\350\256\276\347\275\256", nullptr));
         pushButton->setText(QCoreApplication::translate("CSetDlg", "\347\241\256\345\256\232", nullptr));
         pushButton_2->setText(QCoreApplication::translate("CSetDlg", "\345\217\226\346\266\210", nullptr));

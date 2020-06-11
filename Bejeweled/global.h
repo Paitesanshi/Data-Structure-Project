@@ -30,8 +30,8 @@ typedef struct PICTUREELEMENT  // 图片元素信息
 
 typedef struct RANKINFORMATION  // 玩家积分信息
 {
-    char *strName;   // 玩家姓名
-    char *strPass;//玩家密码
+    QString strName;   // 玩家姓名
+    QString strPass;//玩家密码
     int level;//玩家最高关卡
     int finalGrade;//最高关分数
     int nTime;          // 剩余时间

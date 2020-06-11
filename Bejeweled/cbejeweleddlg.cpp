@@ -1,5 +1,8 @@
 #include "cbejeweleddlg.h"
 #include "ui_cbejeweleddlg.h"
+#include <QPainter>
+#include <QPixmap>
+#include <QDebug>
 
 CBejeweledDlg::CBejeweledDlg(QWidget *parent)
     : QMainWindow(parent)
@@ -29,13 +32,16 @@ void CBejeweledDlg::on_pushButton_4_clicked()//注册
 
 void CBejeweledDlg::on_pushButton_clicked()//开始游戏
 {
-    if(logic->getPlayer().strName==""){
-        QMessageBox::warning(this,"Failure","请先登录！",QMessageBox::Ok);
-    }else{
-        this->hide();
-        CStageSelectDlg* stageSelect = new CStageSelectDlg();
-        stageSelect->show();
-    }
+//    if(logic->getPlayer().strName==""){
+//        QMessageBox::warning(this,"Failure","请先登录！",QMessageBox::Ok);
+//    }else{
+//        this->hide();
+//        CStageSelectDlg* stageSelect = new CStageSelectDlg();
+//        stageSelect->show();
+//    }
+    this->hide();
+    CStageSelectDlg* stageSelect = new CStageSelectDlg();
+    stageSelect->show();
 }
 
 void CBejeweledDlg::on_pushButton_5_clicked()//退出游戏
@@ -65,4 +71,14 @@ void CBejeweledDlg::on_pushButton_8_clicked()//设置
 {
     cSet = new CSetDlg(nullptr);
     cSet->show();
+}
+
+void CBejeweledDlg::paintEvent(QPaintEvent *){
+    QPainter painter(this);
+    QPixmap pix;
+
+    pix.load(":/img/shiny rocks.png");
+//    bool ok = pix.load(":/img/shiny rocks.png");
+//    qDebug()<<ok;
+    painter.drawPixmap(0,0,this->width(),this->height(),pix);
 }

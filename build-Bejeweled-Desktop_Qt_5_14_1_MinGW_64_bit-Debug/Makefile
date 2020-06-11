@@ -72,7 +72,8 @@ SOURCES       = ..\Bejeweled\cbejeweleddlg.cpp \
 		..\Bejeweled\capptool.cpp \
 		..\Bejeweled\cconfigdao.cpp \
 		..\Bejeweled\cmusicplayer.cpp \
-		..\Bejeweled\cranklogic.cpp moc_cbejeweleddlg.cpp \
+		..\Bejeweled\cranklogic.cpp qrc_res.cpp \
+		moc_cbejeweleddlg.cpp \
 		moc_cgamedlg.cpp \
 		moc_chelpdlg.cpp \
 		moc_cprogressbar.cpp \
@@ -105,6 +106,7 @@ OBJECTS       = cbejeweleddlg.o \
 		cconfigdao.o \
 		cmusicplayer.o \
 		cranklogic.o \
+		qrc_res.o \
 		moc_cbejeweleddlg.o \
 		moc_cgamedlg.o \
 		moc_chelpdlg.o \
@@ -375,6 +377,7 @@ Makefile: ../Bejeweled/Bejeweled.pro ../../5.14.1/mingw73_64/mkspecs/win32-g++/q
 		../../5.14.1/mingw73_64/mkspecs/features/yacc.prf \
 		../../5.14.1/mingw73_64/mkspecs/features/lex.prf \
 		../Bejeweled/Bejeweled.pro \
+		../Bejeweled/res.qrc \
 		../../5.14.1/mingw73_64/lib/Qt5Multimedia.prl \
 		../../5.14.1/mingw73_64/lib/Qt5Widgets.prl \
 		../../5.14.1/mingw73_64/lib/Qt5Gui.prl \
@@ -584,6 +587,7 @@ Makefile: ../Bejeweled/Bejeweled.pro ../../5.14.1/mingw73_64/mkspecs/win32-g++/q
 ../../5.14.1/mingw73_64/mkspecs/features/yacc.prf:
 ../../5.14.1/mingw73_64/mkspecs/features/lex.prf:
 ../Bejeweled/Bejeweled.pro:
+../Bejeweled/res.qrc:
 ../../5.14.1/mingw73_64/lib/Qt5Multimedia.prl:
 ../../5.14.1/mingw73_64/lib/Qt5Widgets.prl:
 ../../5.14.1/mingw73_64/lib/Qt5Gui.prl:
@@ -597,10 +601,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Bejeweled.zip $(SOURCES) $(DIST) ..\Bejeweled\Bejeweled.pro ..\..\5.14.1\mingw73_64\mkspecs\features\spec_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\qdevice.pri ..\..\5.14.1\mingw73_64\mkspecs\features\device_config.prf ..\..\5.14.1\mingw73_64\mkspecs\common\sanitize.conf ..\..\5.14.1\mingw73_64\mkspecs\common\gcc-base.conf ..\..\5.14.1\mingw73_64\mkspecs\common\g++-base.conf ..\..\5.14.1\mingw73_64\mkspecs\common\angle.conf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\5.14.1\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\5.14.1\mingw73_64\mkspecs\common\g++-win32.conf ..\..\5.14.1\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\5.14.1\mingw73_64\mkspecs\qconfig.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_script.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_script_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\5.14.1\mingw73_64\mkspecs\features\qt_functions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qt_config.prf ..\..\5.14.1\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\5.14.1\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\5.14.1\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\5.14.1\mingw73_64\mkspecs\features\toolchain.prf ..\..\5.14.1\mingw73_64\mkspecs\features\default_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resolve_config.prf ..\..\5.14.1\mingw73_64\mkspecs\features\default_post.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qml_debug.prf ..\..\5.14.1\mingw73_64\mkspecs\features\precompile_header.prf ..\..\5.14.1\mingw73_64\mkspecs\features\warn_on.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qt.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resources_functions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resources.prf ..\..\5.14.1\mingw73_64\mkspecs\features\moc.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\5.14.1\mingw73_64\mkspecs\features\uic.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qmake_use.prf ..\..\5.14.1\mingw73_64\mkspecs\features\file_copies.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\windows.prf ..\..\5.14.1\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\5.14.1\mingw73_64\mkspecs\features\exceptions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\yacc.prf ..\..\5.14.1\mingw73_64\mkspecs\features\lex.prf ..\Bejeweled\Bejeweled.pro ..\..\5.14.1\mingw73_64\lib\Qt5Multimedia.prl ..\..\5.14.1\mingw73_64\lib\Qt5Widgets.prl ..\..\5.14.1\mingw73_64\lib\Qt5Gui.prl ..\..\5.14.1\mingw73_64\lib\Qt5Sql.prl ..\..\5.14.1\mingw73_64\lib\Qt5Network.prl ..\..\5.14.1\mingw73_64\lib\Qt5Core.prl ..\..\5.14.1\mingw73_64\lib\qtmain.prl    ..\..\5.14.1\mingw73_64\mkspecs\features\data\dummy.cpp ..\Bejeweled\cbejeweleddlg.h ..\Bejeweled\cconfig.h ..\Bejeweled\cconfiglogic.h ..\Bejeweled\cgamedlg.h ..\Bejeweled\cgamelogic.h ..\Bejeweled\chelpdlg.h ..\Bejeweled\choose.h ..\Bejeweled\cmenudlg.h ..\Bejeweled\connectiondb.h ..\Bejeweled\cprogressbar.h ..\Bejeweled\crankdao.h ..\Bejeweled\crankdlg.h ..\Bejeweled\csetdlg.h ..\Bejeweled\cstageselectdlg.h ..\Bejeweled\cstop.h ..\Bejeweled\global.h ..\Bejeweled\mainwindow.h ..\Bejeweled\qnamedlg.h ..\Bejeweled\qsetupdlg.h ..\Bejeweled\capptool.h ..\Bejeweled\cconfigdao.h ..\Bejeweled\cmusicplayer.h ..\Bejeweled\cranklogic.h  ..\Bejeweled\cbejeweleddlg.cpp ..\Bejeweled\cconfig.cpp ..\Bejeweled\cconfiglogic.cpp ..\Bejeweled\cgamedlg.cpp ..\Bejeweled\cgamelogic.cpp ..\Bejeweled\chelpdlg.cpp ..\Bejeweled\choose.cpp ..\Bejeweled\cmenudlg.cpp ..\Bejeweled\cprogressbar.cpp ..\Bejeweled\crankdao.cpp ..\Bejeweled\crankdlg.cpp ..\Bejeweled\csetdlg.cpp ..\Bejeweled\cstageselectdlg.cpp ..\Bejeweled\cstop.cpp ..\Bejeweled\main.cpp ..\Bejeweled\mainwindow.cpp ..\Bejeweled\qnamedlg.cpp ..\Bejeweled\qsetupdlg.cpp ..\Bejeweled\capptool.cpp ..\Bejeweled\cconfigdao.cpp ..\Bejeweled\cmusicplayer.cpp ..\Bejeweled\cranklogic.cpp ..\Bejeweled\cbejeweleddlg.ui ..\Bejeweled\cgamedlg.ui ..\Bejeweled\chelpdlg.ui ..\Bejeweled\crankdlg.ui ..\Bejeweled\csetdlg.ui ..\Bejeweled\cstageselectdlg.ui ..\Bejeweled\cstop.ui ..\Bejeweled\mainwindow.ui ..\Bejeweled\qnamedlg.ui ..\Bejeweled\qsetupdlg.ui    
+	$(ZIP) Bejeweled.zip $(SOURCES) $(DIST) ..\Bejeweled\Bejeweled.pro ..\..\5.14.1\mingw73_64\mkspecs\features\spec_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\qdevice.pri ..\..\5.14.1\mingw73_64\mkspecs\features\device_config.prf ..\..\5.14.1\mingw73_64\mkspecs\common\sanitize.conf ..\..\5.14.1\mingw73_64\mkspecs\common\gcc-base.conf ..\..\5.14.1\mingw73_64\mkspecs\common\g++-base.conf ..\..\5.14.1\mingw73_64\mkspecs\common\angle.conf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\5.14.1\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\5.14.1\mingw73_64\mkspecs\common\g++-win32.conf ..\..\5.14.1\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\5.14.1\mingw73_64\mkspecs\qconfig.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_charts.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_script.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_script_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\5.14.1\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\5.14.1\mingw73_64\mkspecs\features\qt_functions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qt_config.prf ..\..\5.14.1\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\5.14.1\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\5.14.1\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\5.14.1\mingw73_64\mkspecs\features\toolchain.prf ..\..\5.14.1\mingw73_64\mkspecs\features\default_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resolve_config.prf ..\..\5.14.1\mingw73_64\mkspecs\features\default_post.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qml_debug.prf ..\..\5.14.1\mingw73_64\mkspecs\features\precompile_header.prf ..\..\5.14.1\mingw73_64\mkspecs\features\warn_on.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qt.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resources_functions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\resources.prf ..\..\5.14.1\mingw73_64\mkspecs\features\moc.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\5.14.1\mingw73_64\mkspecs\features\uic.prf ..\..\5.14.1\mingw73_64\mkspecs\features\qmake_use.prf ..\..\5.14.1\mingw73_64\mkspecs\features\file_copies.prf ..\..\5.14.1\mingw73_64\mkspecs\features\win32\windows.prf ..\..\5.14.1\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\5.14.1\mingw73_64\mkspecs\features\exceptions.prf ..\..\5.14.1\mingw73_64\mkspecs\features\yacc.prf ..\..\5.14.1\mingw73_64\mkspecs\features\lex.prf ..\Bejeweled\Bejeweled.pro ..\Bejeweled\res.qrc ..\..\5.14.1\mingw73_64\lib\Qt5Multimedia.prl ..\..\5.14.1\mingw73_64\lib\Qt5Widgets.prl ..\..\5.14.1\mingw73_64\lib\Qt5Gui.prl ..\..\5.14.1\mingw73_64\lib\Qt5Sql.prl ..\..\5.14.1\mingw73_64\lib\Qt5Network.prl ..\..\5.14.1\mingw73_64\lib\Qt5Core.prl ..\..\5.14.1\mingw73_64\lib\qtmain.prl   ..\Bejeweled\res.qrc ..\..\5.14.1\mingw73_64\mkspecs\features\data\dummy.cpp ..\Bejeweled\cbejeweleddlg.h ..\Bejeweled\cconfig.h ..\Bejeweled\cconfiglogic.h ..\Bejeweled\cgamedlg.h ..\Bejeweled\cgamelogic.h ..\Bejeweled\chelpdlg.h ..\Bejeweled\choose.h ..\Bejeweled\cmenudlg.h ..\Bejeweled\connectiondb.h ..\Bejeweled\cprogressbar.h ..\Bejeweled\crankdao.h ..\Bejeweled\crankdlg.h ..\Bejeweled\csetdlg.h ..\Bejeweled\cstageselectdlg.h ..\Bejeweled\cstop.h ..\Bejeweled\global.h ..\Bejeweled\mainwindow.h ..\Bejeweled\qnamedlg.h ..\Bejeweled\qsetupdlg.h ..\Bejeweled\capptool.h ..\Bejeweled\cconfigdao.h ..\Bejeweled\cmusicplayer.h ..\Bejeweled\cranklogic.h  ..\Bejeweled\cbejeweleddlg.cpp ..\Bejeweled\cconfig.cpp ..\Bejeweled\cconfiglogic.cpp ..\Bejeweled\cgamedlg.cpp ..\Bejeweled\cgamelogic.cpp ..\Bejeweled\chelpdlg.cpp ..\Bejeweled\choose.cpp ..\Bejeweled\cmenudlg.cpp ..\Bejeweled\cprogressbar.cpp ..\Bejeweled\crankdao.cpp ..\Bejeweled\crankdlg.cpp ..\Bejeweled\csetdlg.cpp ..\Bejeweled\cstageselectdlg.cpp ..\Bejeweled\cstop.cpp ..\Bejeweled\main.cpp ..\Bejeweled\mainwindow.cpp ..\Bejeweled\qnamedlg.cpp ..\Bejeweled\qsetupdlg.cpp ..\Bejeweled\capptool.cpp ..\Bejeweled\cconfigdao.cpp ..\Bejeweled\cmusicplayer.cpp ..\Bejeweled\cranklogic.cpp ..\Bejeweled\cbejeweleddlg.ui ..\Bejeweled\cgamedlg.ui ..\Bejeweled\chelpdlg.ui ..\Bejeweled\crankdlg.ui ..\Bejeweled\csetdlg.ui ..\Bejeweled\cstageselectdlg.ui ..\Bejeweled\cstop.ui ..\Bejeweled\mainwindow.ui ..\Bejeweled\qnamedlg.ui ..\Bejeweled\qsetupdlg.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) cbejeweleddlg.o cconfig.o cconfiglogic.o cgamedlg.o cgamelogic.o chelpdlg.o choose.o cmenudlg.o cprogressbar.o crankdao.o crankdlg.o csetdlg.o cstageselectdlg.o cstop.o main.o mainwindow.o qnamedlg.o qsetupdlg.o capptool.o cconfigdao.o cmusicplayer.o cranklogic.o moc_cbejeweleddlg.o moc_cgamedlg.o moc_chelpdlg.o moc_cprogressbar.o moc_crankdlg.o moc_csetdlg.o moc_cstageselectdlg.o moc_cstop.o moc_mainwindow.o moc_qnamedlg.o moc_qsetupdlg.o
+	-$(DEL_FILE) cbejeweleddlg.o cconfig.o cconfiglogic.o cgamedlg.o cgamelogic.o chelpdlg.o choose.o cmenudlg.o cprogressbar.o crankdao.o crankdlg.o csetdlg.o cstageselectdlg.o cstop.o main.o mainwindow.o qnamedlg.o qsetupdlg.o capptool.o cconfigdao.o cmusicplayer.o cranklogic.o qrc_res.o moc_cbejeweleddlg.o moc_cgamedlg.o moc_chelpdlg.o moc_cprogressbar.o moc_crankdlg.o moc_csetdlg.o moc_cstageselectdlg.o moc_cstop.o moc_mainwindow.o moc_qnamedlg.o moc_qsetupdlg.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -617,8 +621,29 @@ benchmark: first
 
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_res.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_res.cpp
+qrc_res.cpp: ../Bejeweled/res.qrc \
+		../../5.14.1/mingw73_64/bin/rcc.exe \
+		../Bejeweled/img/Button.png \
+		../Bejeweled/img/settingWindowBg(3).png \
+		../Bejeweled/img/stage6.png \
+		../Bejeweled/img/stage1.png \
+		../Bejeweled/img/stage5.png \
+		../Bejeweled/img/MainWindowBackGround.png \
+		../Bejeweled/img/stage9.png \
+		../Bejeweled/img/settingWindowBg(5).png \
+		../Bejeweled/img/shiny\ rocks.png \
+		../Bejeweled/img/stage4.png \
+		../Bejeweled/img/stage8.png \
+		../Bejeweled/img/settingWindowBg(4).png \
+		../Bejeweled/img/stage3.png \
+		../Bejeweled/img/stage7.png \
+		../Bejeweled/img/SettingWindowBackground.png \
+		../Bejeweled/img/stage2.png
+	D:\Qt\5.14.1\mingw73_64\bin\rcc.exe -name res ..\Bejeweled\res.qrc -o qrc_res.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -808,6 +833,10 @@ moc_cbejeweleddlg.cpp: ../Bejeweled/cbejeweleddlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cbejeweleddlg.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/csetdlg.h \
@@ -977,6 +1006,33 @@ moc_cgamedlg.cpp: ../Bejeweled/cgamedlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cranklogic.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlError \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		../Bejeweled/connectiondb.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		../../5.14.1/mingw73_64/include/QtCore/QStringList \
+		../Bejeweled/crankdao.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cgamedlg.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
+		../Bejeweled/cstageselectdlg.h \
 		moc_predefs.h \
 		../../5.14.1/mingw73_64/bin/moc.exe
 	D:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Qt/jiaxin/build-Bejeweled-Desktop_Qt_5_14_1_MinGW_64_bit-Debug/moc_predefs.h -ID:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -ID:/Qt/jiaxin/Bejeweled -ID:/Qt/5.14.1/mingw73_64/include -ID:/Qt/5.14.1/mingw73_64/include/QtMultimedia -ID:/Qt/5.14.1/mingw73_64/include/QtWidgets -ID:/Qt/5.14.1/mingw73_64/include/QtGui -ID:/Qt/5.14.1/mingw73_64/include/QtANGLE -ID:/Qt/5.14.1/mingw73_64/include/QtSql -ID:/Qt/5.14.1/mingw73_64/include/QtNetwork -ID:/Qt/5.14.1/mingw73_64/include/QtCore -I. -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Bejeweled\cgamedlg.h -o moc_cgamedlg.cpp
@@ -1600,6 +1656,8 @@ moc_cstageselectdlg.cpp: ../Bejeweled/cstageselectdlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
 		../Bejeweled/cranklogic.h \
 		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
 		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
@@ -1615,6 +1673,15 @@ moc_cstageselectdlg.cpp: ../Bejeweled/cstageselectdlg.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
 		../../5.14.1/mingw73_64/include/QtCore/QStringList \
 		../Bejeweled/crankdao.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
+		../Bejeweled/cstageselectdlg.h \
 		moc_predefs.h \
 		../../5.14.1/mingw73_64/bin/moc.exe
 	D:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Qt/jiaxin/build-Bejeweled-Desktop_Qt_5_14_1_MinGW_64_bit-Debug/moc_predefs.h -ID:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -ID:/Qt/jiaxin/Bejeweled -ID:/Qt/5.14.1/mingw73_64/include -ID:/Qt/5.14.1/mingw73_64/include/QtMultimedia -ID:/Qt/5.14.1/mingw73_64/include/QtWidgets -ID:/Qt/5.14.1/mingw73_64/include/QtGui -ID:/Qt/5.14.1/mingw73_64/include/QtANGLE -ID:/Qt/5.14.1/mingw73_64/include/QtSql -ID:/Qt/5.14.1/mingw73_64/include/QtNetwork -ID:/Qt/5.14.1/mingw73_64/include/QtCore -I. -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Bejeweled\cstageselectdlg.h -o moc_cstageselectdlg.cpp
@@ -1724,6 +1791,89 @@ moc_cstop.cpp: ../Bejeweled/cstop.h \
 		../../5.14.1/mingw73_64/include/QtCore/qfiledevice.h \
 		../../5.14.1/mingw73_64/include/QtGui/qvector2d.h \
 		../../5.14.1/mingw73_64/include/QtGui/qtouchdevice.h \
+		../Bejeweled/cgamedlg.h \
+		../../5.14.1/mingw73_64/include/QtGui/QPixmap \
+		../Bejeweled/cgamelogic.h \
+		../Bejeweled/global.h \
+		../../5.14.1/mingw73_64/include/QtCore/QDebug \
+		../../5.14.1/mingw73_64/include/QtGui/QPainter \
+		../../5.14.1/mingw73_64/include/QtGui/qpainter.h \
+		../../5.14.1/mingw73_64/include/QtGui/qtextoption.h \
+		../../5.14.1/mingw73_64/include/QtGui/qpen.h \
+		../../5.14.1/mingw73_64/include/QtGui/QPaintEvent \
+		../../5.14.1/mingw73_64/include/QtCore/QDir \
+		../../5.14.1/mingw73_64/include/QtCore/qdir.h \
+		../../5.14.1/mingw73_64/include/QtCore/qfileinfo.h \
+		../../5.14.1/mingw73_64/include/QtCore/QList \
+		../../5.14.1/mingw73_64/include/QtCore/QThread \
+		../../5.14.1/mingw73_64/include/QtCore/qthread.h \
+		../../5.14.1/mingw73_64/include/QtCore/QTimer \
+		../../5.14.1/mingw73_64/include/QtCore/qtimer.h \
+		../../5.14.1/mingw73_64/include/QtCore/qbasictimer.h \
+		../Bejeweled/cmenudlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMainWindow \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmainwindow.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qtabwidget.h \
+		../../5.14.1/mingw73_64/include/QtGui/qicon.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QPushButton \
+		../../5.14.1/mingw73_64/include/QtWidgets/qpushbutton.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../Bejeweled/cprogressbar.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QProgressBar \
+		../../5.14.1/mingw73_64/include/QtWidgets/qprogressbar.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qframe.h \
+		../Bejeweled/cmusicplayer.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/QMediaPlayer \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaplayer.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaobject.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmultimedia.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediacontent.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaresource.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qnetworkrequest.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		../../5.14.1/mingw73_64/include/QtCore/QSharedDataPointer \
+		../../5.14.1/mingw73_64/include/QtCore/QString \
+		../../5.14.1/mingw73_64/include/QtCore/QUrl \
+		../../5.14.1/mingw73_64/include/QtCore/QVariant \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../5.14.1/mingw73_64/include/QtCore/qmetaobject.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qaudio.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/QMediaPlaylist \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaplaylist.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediabindableinterface.h \
+		../Bejeweled/cconfig.h \
+		../Bejeweled/cconfiglogic.h \
+		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cranklogic.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlError \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		../Bejeweled/connectiondb.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		../../5.14.1/mingw73_64/include/QtCore/QStringList \
+		../Bejeweled/crankdao.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
+		../Bejeweled/cstageselectdlg.h \
 		moc_predefs.h \
 		../../5.14.1/mingw73_64/bin/moc.exe
 	D:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Qt/jiaxin/build-Bejeweled-Desktop_Qt_5_14_1_MinGW_64_bit-Debug/moc_predefs.h -ID:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -ID:/Qt/jiaxin/Bejeweled -ID:/Qt/5.14.1/mingw73_64/include -ID:/Qt/5.14.1/mingw73_64/include/QtMultimedia -ID:/Qt/5.14.1/mingw73_64/include/QtWidgets -ID:/Qt/5.14.1/mingw73_64/include/QtGui -ID:/Qt/5.14.1/mingw73_64/include/QtANGLE -ID:/Qt/5.14.1/mingw73_64/include/QtSql -ID:/Qt/5.14.1/mingw73_64/include/QtNetwork -ID:/Qt/5.14.1/mingw73_64/include/QtCore -I. -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Bejeweled\cstop.h -o moc_cstop.cpp
@@ -1909,6 +2059,9 @@ moc_mainwindow.cpp: ../Bejeweled/mainwindow.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/csetdlg.h \
@@ -2224,7 +2377,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
@@ -2410,6 +2563,9 @@ cbejeweleddlg.o: ../Bejeweled/cbejeweleddlg.cpp ../Bejeweled/cbejeweleddlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/csetdlg.h \
@@ -2698,6 +2854,32 @@ cgamedlg.o: ../Bejeweled/cgamedlg.cpp ../Bejeweled/cgamedlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cranklogic.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlError \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		../Bejeweled/connectiondb.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		../../5.14.1/mingw73_64/include/QtCore/QStringList \
+		../Bejeweled/crankdao.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
+		../Bejeweled/cstageselectdlg.h \
 		ui_cgamedlg.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/QApplication \
 		../../5.14.1/mingw73_64/include/QtWidgets/qapplication.h \
@@ -2705,9 +2887,7 @@ cgamedlg.o: ../Bejeweled/cgamedlg.cpp ../Bejeweled/cgamedlg.h \
 		../../5.14.1/mingw73_64/include/QtCore/qeventloop.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../5.14.1/mingw73_64/include/QtGui/qguiapplication.h \
-		../../5.14.1/mingw73_64/include/QtGui/qinputmethod.h \
-		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
-		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h
+		../../5.14.1/mingw73_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cgamedlg.o ..\Bejeweled\cgamedlg.cpp
 
 cgamelogic.o: ../Bejeweled/cgamelogic.cpp ../Bejeweled/cgamelogic.h \
@@ -3091,6 +3271,9 @@ cmenudlg.o: ../Bejeweled/cmenudlg.cpp ../Bejeweled/cmenudlg.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/cstageselectdlg.h
@@ -3647,7 +3830,10 @@ csetdlg.o: ../Bejeweled/csetdlg.cpp ../Bejeweled/csetdlg.h \
 		../Bejeweled/cconfig.h \
 		../../5.14.1/mingw73_64/include/QtCore/QString \
 		../Bejeweled/cconfigdao.h \
-		../../5.14.1/mingw73_64/include/QtCore/QDebug
+		../../5.14.1/mingw73_64/include/QtCore/QDebug \
+		../../5.14.1/mingw73_64/include/QtGui/QPainter \
+		../../5.14.1/mingw73_64/include/QtGui/qpainter.h \
+		../../5.14.1/mingw73_64/include/QtGui/QPalette
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csetdlg.o ..\Bejeweled\csetdlg.cpp
 
 cstageselectdlg.o: ../Bejeweled/cstageselectdlg.cpp ../Bejeweled/cstageselectdlg.h \
@@ -3812,6 +3998,8 @@ cstageselectdlg.o: ../Bejeweled/cstageselectdlg.cpp ../Bejeweled/cstageselectdlg
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
 		../Bejeweled/cranklogic.h \
 		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
 		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
@@ -3827,6 +4015,14 @@ cstageselectdlg.o: ../Bejeweled/cstageselectdlg.cpp ../Bejeweled/cstageselectdlg
 		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
 		../../5.14.1/mingw73_64/include/QtCore/QStringList \
 		../Bejeweled/crankdao.h \
+		../Bejeweled/cstop.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
 		ui_cstageselectdlg.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/QApplication \
 		../../5.14.1/mingw73_64/include/QtWidgets/qapplication.h \
@@ -3848,8 +4044,6 @@ cstageselectdlg.o: ../Bejeweled/cstageselectdlg.cpp ../Bejeweled/cstageselectdlg
 		../../5.14.1/mingw73_64/include/QtWidgets/qtabbar.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/qrubberband.h \
 		../../5.14.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
-		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
-		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/QMenuBar \
 		../../5.14.1/mingw73_64/include/QtWidgets/qmenubar.h \
 		../../5.14.1/mingw73_64/include/QtWidgets/qmenu.h \
@@ -3963,7 +4157,97 @@ cstop.o: ../Bejeweled/cstop.cpp ../Bejeweled/cstop.h \
 		../../5.14.1/mingw73_64/include/QtCore/qfile.h \
 		../../5.14.1/mingw73_64/include/QtCore/qfiledevice.h \
 		../../5.14.1/mingw73_64/include/QtGui/qvector2d.h \
-		../../5.14.1/mingw73_64/include/QtGui/qtouchdevice.h
+		../../5.14.1/mingw73_64/include/QtGui/qtouchdevice.h \
+		../Bejeweled/cgamedlg.h \
+		../../5.14.1/mingw73_64/include/QtGui/QPixmap \
+		../Bejeweled/cgamelogic.h \
+		../Bejeweled/global.h \
+		../../5.14.1/mingw73_64/include/QtCore/QDebug \
+		../../5.14.1/mingw73_64/include/QtGui/QPainter \
+		../../5.14.1/mingw73_64/include/QtGui/qpainter.h \
+		../../5.14.1/mingw73_64/include/QtGui/qtextoption.h \
+		../../5.14.1/mingw73_64/include/QtGui/qpen.h \
+		../../5.14.1/mingw73_64/include/QtGui/QPaintEvent \
+		../../5.14.1/mingw73_64/include/QtCore/QDir \
+		../../5.14.1/mingw73_64/include/QtCore/qdir.h \
+		../../5.14.1/mingw73_64/include/QtCore/qfileinfo.h \
+		../../5.14.1/mingw73_64/include/QtCore/QList \
+		../../5.14.1/mingw73_64/include/QtCore/QThread \
+		../../5.14.1/mingw73_64/include/QtCore/qthread.h \
+		../../5.14.1/mingw73_64/include/QtCore/QTimer \
+		../../5.14.1/mingw73_64/include/QtCore/qtimer.h \
+		../../5.14.1/mingw73_64/include/QtCore/qbasictimer.h \
+		../Bejeweled/cmenudlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMainWindow \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmainwindow.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qtabwidget.h \
+		../../5.14.1/mingw73_64/include/QtGui/qicon.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QPushButton \
+		../../5.14.1/mingw73_64/include/QtWidgets/qpushbutton.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../Bejeweled/cprogressbar.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QProgressBar \
+		../../5.14.1/mingw73_64/include/QtWidgets/qprogressbar.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qframe.h \
+		../Bejeweled/cmusicplayer.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/QMediaPlayer \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaplayer.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaobject.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmultimedia.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediacontent.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaresource.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qnetworkrequest.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		../../5.14.1/mingw73_64/include/QtCore/QSharedDataPointer \
+		../../5.14.1/mingw73_64/include/QtCore/QString \
+		../../5.14.1/mingw73_64/include/QtCore/QUrl \
+		../../5.14.1/mingw73_64/include/QtCore/QVariant \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../5.14.1/mingw73_64/include/QtCore/qmetaobject.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qaudio.h \
+		../../5.14.1/mingw73_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/QMediaPlaylist \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediaplaylist.h \
+		../../5.14.1/mingw73_64/include/QtMultimedia/qmediabindableinterface.h \
+		../Bejeweled/cconfig.h \
+		../Bejeweled/cconfiglogic.h \
+		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cranklogic.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		../../5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		../../5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		../../5.14.1/mingw73_64/include/QtSql/QSqlError \
+		../../5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		../Bejeweled/connectiondb.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
+		../../5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		../../5.14.1/mingw73_64/include/QtCore/QStringList \
+		../Bejeweled/crankdao.h \
+		../Bejeweled/cbejeweleddlg.h \
+		../Bejeweled/qsetupdlg.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QDialog \
+		../Bejeweled/qnamedlg.h \
+		../Bejeweled/chelpdlg.h \
+		../Bejeweled/crankdlg.h \
+		../Bejeweled/csetdlg.h \
+		../Bejeweled/cstageselectdlg.h \
+		ui_cstop.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QApplication \
+		../../5.14.1/mingw73_64/include/QtWidgets/qapplication.h \
+		../../5.14.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		../../5.14.1/mingw73_64/include/QtCore/qeventloop.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../5.14.1/mingw73_64/include/QtGui/qguiapplication.h \
+		../../5.14.1/mingw73_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cstop.o ..\Bejeweled\cstop.cpp
 
 main.o: ../Bejeweled/main.cpp ../Bejeweled/mainwindow.h \
@@ -4147,6 +4431,9 @@ main.o: ../Bejeweled/main.cpp ../Bejeweled/mainwindow.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/csetdlg.h \
@@ -4341,6 +4628,9 @@ mainwindow.o: ../Bejeweled/mainwindow.cpp ../Bejeweled/mainwindow.h \
 		../Bejeweled/cconfig.h \
 		../Bejeweled/cconfiglogic.h \
 		../Bejeweled/cconfigdao.h \
+		../../5.14.1/mingw73_64/include/QtWidgets/QLabel \
+		../../5.14.1/mingw73_64/include/QtWidgets/qlabel.h \
+		../Bejeweled/cstop.h \
 		../Bejeweled/chelpdlg.h \
 		../Bejeweled/crankdlg.h \
 		../Bejeweled/csetdlg.h \
@@ -5061,6 +5351,9 @@ cranklogic.o: ../Bejeweled/cranklogic.cpp ../Bejeweled/cranklogic.h \
 		../Bejeweled/crankdao.h \
 		../Bejeweled/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cranklogic.o ..\Bejeweled\cranklogic.cpp
+
+qrc_res.o: qrc_res.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_res.o qrc_res.cpp
 
 moc_cbejeweleddlg.o: moc_cbejeweleddlg.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cbejeweleddlg.o moc_cbejeweleddlg.cpp

@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/Button.png</file>
+        <file>img/MainWindowBackGround.png</file>
+        <file>img/SettingWindowBackground.png</file>
+        <file>img/shiny rocks.png</file>
+        <file>img/settingWindowBg(3).png</file>
+        <file>img/settingWindowBg(4).png</file>
+        <file>img/settingWindowBg(5).png</file>
+        <file>img/stage1.png</file>
+        <file>img/stage2.png</file>
+        <file>img/stage3.png</file>
+        <file>img/stage4.png</file>
+        <file>img/stage5.png</file>
+        <file>img/stage6.png</file>
+        <file>img/stage7.png</file>
+        <file>img/stage8.png</file>
+        <file>img/stage9.png</file>
+    </qresource>
+</RCC>

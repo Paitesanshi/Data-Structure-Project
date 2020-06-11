@@ -6,6 +6,8 @@ CGameDlg::CGameDlg(int difficulty,int dimension,QWidget *parent)
     , ui(new Ui::CGameDlg)
 {
     ui->setupUi(this);
+    //nextStage=new CStop(1,dimension,difficulty);
+    this->rank=CRankLogic::getInstance();
     flag1=false;
     flag2=false;
     flag4=false;
@@ -223,6 +225,24 @@ void CGameDlg::timeOut(){
         timer->stop();
         CStop* stop=new CStop(0,dimension,difficulty,this);
         stop->show();
+        bool up=false;
+        int stage=(dimension-6)/2*3+difficulty;
+        if(stage==this->rank->getPlayer().level)
+        {
+            if(score>this->rank->getPlayer().finalGrade)
+            {
+                this->rank->getPlayer().finalGrade=score;
+                this->rank->getPlayer().nTime=time;
+                up=true;
+            }
+
+        }
+        if(score>this->rank->getPlayer().nGrade[stage])
+        {
+            this->rank->getPlayer().nGrade[stage]=score;
+            up=true;
+        }
+        if(up)rank->addUser(this->rank->getPlayer());
         this->close();
     }
 }
@@ -450,6 +470,21 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
             //                score=score+elimite.size()*10;
             //                ui->label->setText("分数："+QString::number(score));
                             if(score>=target){
+                                bool up=false;
+                                int stage=(dimension-6)/2*3+difficulty;
+                                if(stage==this->rank->getPlayer().level)
+                                {
+                                    this->rank->getPlayer().level++;
+                                    this->rank->getPlayer().finalGrade=0;
+                                    this->rank->getPlayer().nTime=0;
+                                    up=true;
+                                }
+                                if(score>this->rank->getPlayer().nGrade[stage])
+                                {
+                                    this->rank->getPlayer().nGrade[stage]=score;
+                                    up=true;
+                                }
+                                if(up)rank->addUser(this->rank->getPlayer());
                                 msleep(100);
                                 score=score+time*5;
                                 if(soundplay==1){
@@ -474,6 +509,14 @@ void CGameDlg::mousePressEvent(QMouseEvent *ev){
                     flag1=false;
                     flag2=false;
                     //qDebug()<<" ";
+                    //qDebug()<<22;
+
+
+                    //qDebug()<<"---"<<this->nextStage->isVisible();
+
+                    //qDebug()<<33;
+                    //this->close();
+                    //qDebug()<<44;
                 }
             }
         }
