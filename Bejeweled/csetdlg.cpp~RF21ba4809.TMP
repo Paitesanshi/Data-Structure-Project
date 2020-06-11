@@ -5,8 +5,6 @@
 #include <cconfiglogic.h>
 #include <QPainter>
 #include <QPalette>
-#include <QLabel>
-#include <QImage>
 
 CSetDlg::CSetDlg(QWidget *parent) :
     QWidget(parent),
@@ -75,7 +73,7 @@ void CSetDlg::on_pushButton_2_clicked()//“取消”按钮
 
 int CSetDlg::getTheme()
 {
-    if(ui->theme1SelectBtn->isChecked()){       
+    if(ui->theme1SelectBtn->isChecked()){
         return 1;
     }
     if(ui->theme2SelectBtn->isChecked()){
@@ -144,28 +142,4 @@ void CSetDlg::on_tabWidget_tabBarClicked(int index)
     }else if(index==0){
         paintButton=0;
     }
-}
-
-void CSetDlg::on_theme1SelectBtn_clicked()
-{
-    QPixmap preview1;
-    preview1.load(":/img/theme1Preview.png");
-    ui->label->setPixmap(preview1.scaled(ui->label->size()));
-    update();
-}
-
-void CSetDlg::on_theme2SelectBtn_clicked()
-{
-    QPixmap preview2;
-    preview2.load(":/img/theme2Preview.png");
-    ui->label->setPixmap(preview2.scaled(ui->label->size()));
-    update();
-}
-
-void CSetDlg::on_theme3SelectBtn_clicked()
-{
-    QPixmap preview3;
-    preview3.load(":/img/theme3Preview.png");
-    ui->label->setPixmap(preview3.scaled(ui->label->size()));
-    update();
 }

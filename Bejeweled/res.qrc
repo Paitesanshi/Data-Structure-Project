@@ -17,5 +17,8 @@
         <file>img/stage8.png</file>
         <file>img/stage9.png</file>
         <file>img/stageSelectTitle.png</file>
+        <file>img/theme1Preview.png</file>
+        <file>img/theme2Preview.png</file>
+        <file>img/theme3Preview.png</file>
     </qresource>
 </RCC>

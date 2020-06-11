@@ -40,16 +40,9 @@ private slots:
 
     void on_tabWidget_tabBarClicked(int index);
 
-    void on_theme1SelectBtn_clicked();
-
-    void on_theme2SelectBtn_clicked();
-
-    void on_theme3SelectBtn_clicked();
-
 private:
     Ui::CSetDlg *ui;
     Settings settings;
 };
 
 #endif // CSETDLG_H
-
